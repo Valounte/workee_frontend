@@ -18,11 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./",
-    "paths": {
-      "@ui-kit": [ "src/ui-kit"],
-    }
+    "jsx": "react-jsx"
   },
   "include": [
     "src"
