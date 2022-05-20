@@ -1,3 +1,3 @@
-export const App = () => {
-  return <> Hello Workee !</>;
-};
+import React from 'react';
+
+export const App = () => <>Hello</>;
