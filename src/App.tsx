@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const App = () => <>Hello</>;
+import { Box } from '@ui-kit';
+
+export const App = () => <Box>Hello</Box>;
