@@ -63,6 +63,11 @@ module.exports = {
         project: `${__dirname}/tsconfig.json`,
         extensions: ['.ts', '.tsx'],
       },
+      alias: {
+        map: [
+            [ "@ui-kit", "./src/ui-kit" ]
+        ]
+    }
     },
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
