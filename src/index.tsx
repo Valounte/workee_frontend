@@ -13,6 +13,7 @@ import { theme } from '@ui-kit';
 
 import { App } from './App';
 import { store } from './store/store';
+import { theme } from './ui-kit/theme';
 
 import './index.css';
 
