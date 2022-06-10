@@ -24,6 +24,7 @@ store.subscribe(
   }, 800)
 );
 
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
@@ -35,6 +36,7 @@ root.render(
           </SnackbarProvider>
         </BrowserProvider>
       </ThemeProvider>
+      <App />
     </StoreProvider>
   </React.StrictMode>
 );
