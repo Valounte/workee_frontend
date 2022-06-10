@@ -18,7 +18,8 @@
     "baseUrl": "./",
     "paths": {
       "@ui-kit": ["src/ui-kit"],
-      "@entities/*": ["src/entities/*"]
+      "@entities/*": ["src/entities/*"],
+      "@helpers/*": ["src/helpers/*"]
     }
   },
   "include": ["src"]
