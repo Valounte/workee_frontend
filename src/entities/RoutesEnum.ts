@@ -3,4 +3,5 @@ export const RoutesEnum = {
   login: '/login',
   inviteUser: '/inviteUser',
   register: '/finalize-registration',
+  usersHandler: '/usersHandler',
 };

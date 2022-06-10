@@ -22,3 +22,7 @@ export * from './icons/Menu/Menu';
 export * from './icons/Social/Facebook';
 export * from './icons/Social/Instagram';
 export * from './icons/Social/LinkedIn';
+export * from './components/Sidebar/Sidebar';
+export * from './components/Dropdown/Dropdown';
+export * from './components/Tab/Tab';
+export * from './components/Tabs/Tabs';

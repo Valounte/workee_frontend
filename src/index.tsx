@@ -36,7 +36,6 @@ root.render(
           </SnackbarProvider>
         </BrowserProvider>
       </ThemeProvider>
-      <App />
     </StoreProvider>
   </React.StrictMode>
 );
