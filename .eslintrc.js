@@ -67,6 +67,7 @@ module.exports = {
         map: [
           ['@ui-kit', './src/ui-kit'],
           ['@entities/*', './src/entities/*'],
+          ['@helpers/*', './src/helpers/*'],
         ],
       },
     },
@@ -81,6 +82,7 @@ module.exports = {
       files: ['*.test.ts'],
       rules: {
         'import/no-extraneous-dependencies': ['off'],
+        'no-console': 'off',
       },
     },
   ],

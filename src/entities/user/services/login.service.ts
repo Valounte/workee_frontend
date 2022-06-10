@@ -7,12 +7,12 @@ export type UserLoginBody = Pick<User, 'email'> & {
 };
 
 interface UserLoginResponse {
-  data: { token: string; message: string };
-  status: string;
+  token: string;
+  message: string;
 }
 
 export const loginService = (params: UserLoginBody) =>
   axios.post<UserLoginResponse>('/api/login', {
-    login: params.email,
+    email: params.email,
     password: params.password,
   });

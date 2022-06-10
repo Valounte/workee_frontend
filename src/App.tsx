@@ -1,5 +1,13 @@
 import React from 'react';
 
-import { Box } from '@ui-kit';
+import { Route, Routes } from 'react-router-dom';
 
-export const App = () => <Box>Hello</Box>;
+import { RoutesEnum } from '@entities/RoutesEnum';
+
+import LoginScreen from './features/login/Login.screen';
+
+export const App = () => (
+  <Routes>
+    <Route path={RoutesEnum.login} element={<LoginScreen />} />
+  </Routes>
+);
