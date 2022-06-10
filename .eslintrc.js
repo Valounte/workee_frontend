@@ -65,9 +65,10 @@ module.exports = {
       },
       alias: {
         map: [
-            [ "@ui-kit", "./src/ui-kit" ]
-        ]
-    }
+          ['@ui-kit', './src/ui-kit'],
+          ['@entities/*', './src/entities/*'],
+        ],
+      },
     },
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
