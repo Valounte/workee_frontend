@@ -2,6 +2,7 @@ import React from 'react';
 
 import { debounce } from '@mui/material';
 import axios from 'axios';
+import { SnackbarProvider } from 'notistack';
 import ReactDOM from 'react-dom/client';
 import { Provider as StoreProvider } from 'react-redux';
 
@@ -23,8 +24,10 @@ store.subscribe(
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <StoreProvider store={store}>
-      <App />
-    </StoreProvider>
+    <SnackbarProvider>
+      <StoreProvider store={store}>
+        <App />
+      </StoreProvider>
+    </SnackbarProvider>
   </React.StrictMode>
 );

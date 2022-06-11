@@ -35,6 +35,7 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
+    "formik": "^2.2.9",
     "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
@@ -43,6 +44,7 @@
     "jest-watch-typeahead": "^1.0.0",
     "local-storage": "^2.0.0",
     "mini-css-extract-plugin": "^2.4.5",
+    "notistack": "^2.0.5",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
@@ -69,7 +71,8 @@
     "webpack": "^5.64.4",
     "webpack-dev-server": "^4.6.0",
     "webpack-manifest-plugin": "^4.0.2",
-    "workbox-webpack-plugin": "^6.4.1"
+    "workbox-webpack-plugin": "^6.4.1",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "node scripts/start.js",
