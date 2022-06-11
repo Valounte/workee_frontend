@@ -5,6 +5,7 @@ import axios from 'axios';
 import { SnackbarProvider } from 'notistack';
 import ReactDOM from 'react-dom/client';
 import { Provider as StoreProvider } from 'react-redux';
+import {BrowserRouter as BrowserProvider} from "react-router-dom";
 
 import { saveStateToken, LocalStorageKey } from '@helpers/localStorage';
 
@@ -26,7 +27,9 @@ root.render(
   <React.StrictMode>
     <SnackbarProvider>
       <StoreProvider store={store}>
-        <App />
+          <BrowserProvider>
+              <App />
+          </BrowserProvider>
       </StoreProvider>
     </SnackbarProvider>
   </React.StrictMode>
