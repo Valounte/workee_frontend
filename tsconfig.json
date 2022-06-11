@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,10 +17,10 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@ui-kit": [ "src/ui-kit"],
+      "@ui-kit": ["src/ui-kit"],
+      "@entities/*": ["src/entities/*"],
+      "@helpers/*": ["src/helpers/*"]
     }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
