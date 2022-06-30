@@ -51,11 +51,11 @@ export const LoginForm = () => {
         minHeight="90vh"
         justifyContent="center"
         alignItems="center">
-        <Typography variant="h4" paddingBottom={6}>
+        <Typography variant="h3" paddingBottom={6}>
           Content de vous revoir !
         </Typography>
         <TextField
-          sx={{ width: '35vw' }}
+          sx={{ width: '70%' }}
           autoFocus
           variant="outlined"
           id="email"
@@ -72,7 +72,7 @@ export const LoginForm = () => {
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
         <TextField
-          sx={{ width: '35vw' }}
+          sx={{ width: '70%' }}
           autoFocus
           id="password"
           name="password"
@@ -88,8 +88,12 @@ export const LoginForm = () => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-        <Button variant="contained" type="submit" sx={{ width: '35vw' }}>
-          <Typography>Connexion</Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          type="submit"
+          sx={{ width: '70%' }}>
+          <Typography color="">Connexion</Typography>
         </Button>
       </Box>
     </form>
