@@ -1,4 +1,5 @@
 // Components
+export * from './components/Container/Container';
 export * from './components/Box/Box';
 export * from './components/Button/Button';
 export * from './components/Stack/Stack';
