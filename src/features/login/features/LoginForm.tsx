@@ -9,8 +9,16 @@ import { string as yupString, object as yupObject } from 'yup';
 
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { loginThunk } from '@entities/user/store/thunks/login.thunk';
-import { Box, Button, Typography } from '@ui-kit';
+import { Box, Button, styled, Typography } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
+
+const StyledTextField = styled(TextField)`
+  width: 70%;
+`;
+
+const StyledButton = styled(Button)`
+  width: 70%;
+`;
 
 const validationSchema = yupObject({
   email: yupString().email('Enter a valid email').required('Email is required'),
@@ -54,8 +62,7 @@ export const LoginForm = () => {
         <Typography variant="h3" paddingBottom={6}>
           Content de vous revoir !
         </Typography>
-        <TextField
-          sx={{ width: '70%' }}
+        <StyledTextField
           autoFocus
           variant="outlined"
           id="email"
@@ -71,8 +78,7 @@ export const LoginForm = () => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-        <TextField
-          sx={{ width: '70%' }}
+        <StyledTextField
           autoFocus
           id="password"
           name="password"
@@ -88,13 +94,9 @@ export const LoginForm = () => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-        <Button
-          variant="contained"
-          color="secondary"
-          type="submit"
-          sx={{ width: '70%' }}>
+        <StyledButton variant="contained" color="secondary" type="submit">
           <Typography color="">Connexion</Typography>
-        </Button>
+        </StyledButton>
       </Box>
     </form>
   );

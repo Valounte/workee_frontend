@@ -28,16 +28,17 @@ const LoginScreen = () => {
       <Grid container>
         <Grid item xs={12} sm={6}>
           <Box
+            minHeight="90vh"
+            minWidth="50vw"
             display="flex"
             flexDirection="column"
             justifyContent="center"
-            alignItems="center"
-            sx={{ minHeight: '90vh', minWidth: '50vw' }}>
+            alignItems="center">
             <LoginImage width="80%" />
           </Box>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Box sx={{ minHeight: '90vh', minWidth: '50vw' }}>
+          <Box minHeight="90vh" minWidth="50vw">
             <LoginForm />
           </Box>
         </Grid>
