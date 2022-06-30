@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49">
+  <g id="Groupe_152" data-name="Groupe 152" transform="translate(-1111 -2381)">
+    <g id="Groupe_151" data-name="Groupe 151" transform="translate(68)">
+      <g id="Rectangle_218" data-name="Rectangle 218" transform="translate(1043 2381)" fill="#fff" stroke="#000" stroke-width="2">
+        <rect width="49" height="49" rx="7" stroke="none"/>
+        <rect x="1" y="1" width="47" height="47" rx="6" fill="none"/>
+      </g>
+      <g id="Ellipse_125" data-name="Ellipse 125" transform="translate(1050 2389)" fill="#fff" stroke="#000" stroke-width="2">
+        <ellipse cx="4.5" cy="4" rx="4.5" ry="4" stroke="none"/>
+        <ellipse cx="4.5" cy="4" rx="3.5" ry="3" fill="none"/>
+      </g>
+      <circle id="Ellipse_126" data-name="Ellipse 126" cx="2" cy="2" r="2" transform="translate(1078.699 2390.2)" fill="#fff"/>
+    </g>
+    <g id="Rectangle_219" data-name="Rectangle 219" transform="translate(1118 2398)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="9" height="24" stroke="none"/>
+      <rect x="1" y="1" width="7" height="22" fill="none"/>
+    </g>
+    <g id="Rectangle_220" data-name="Rectangle 220" transform="translate(1128 2398)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="9" height="24" stroke="none"/>
+      <rect x="1" y="1" width="7" height="22" fill="none"/>
+    </g>
+    <g id="Rectangle_221" data-name="Rectangle 221" transform="translate(1143 2408)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="9" height="14" stroke="none"/>
+      <rect x="1" y="1" width="7" height="12" fill="none"/>
+    </g>
+    <path id="Tracé_1885" data-name="Tracé 1885" d="M-10510.485,3179.535a12.2,12.2,0,0,1,6.13-2.144c3.122-.155,7.438,1.825,8.376,8.849" transform="translate(11647 -778)" fill="none" stroke="#000" stroke-width="2"/>
+    <path id="Tracé_1886" data-name="Tracé 1886" d="M-10510.661,3184.621s2.334-2.087,4.692-1.533c.944.2,2.375,1.673,3.253,3.833" transform="translate(11647 -778)" fill="none" stroke="#000" stroke-width="2"/>
+    <path id="Tracé_1887" data-name="Tracé 1887" d="M-10508.437,3180.859l-4.687,2.469" transform="matrix(1, 0.017, -0.017, 1, 11700.935, -594.077)" fill="none" stroke="#fff" stroke-width="2.5"/>
+    <path id="Tracé_1888" data-name="Tracé 1888" d="M-10499.5,3189.625a12.034,12.034,0,0,0-1.312-6.812" transform="translate(11646.942 -778)" fill="none" stroke="#fff" stroke-width="5"/>
+  </g>
+</svg>

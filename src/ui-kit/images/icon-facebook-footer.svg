@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49">
+  <g id="Groupe_153" data-name="Groupe 153" transform="translate(-1182 -2378)">
+    <g id="Rectangle_225" data-name="Rectangle 225" transform="translate(1182 2378)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="49" height="49" rx="7" stroke="none"/>
+      <rect x="1" y="1" width="47" height="47" rx="6" fill="none"/>
+    </g>
+    <g id="Rectangle_222" data-name="Rectangle 222" transform="translate(1203 2402)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="9.5" height="25" stroke="none"/>
+      <rect x="1" y="1" width="7.5" height="23" fill="none"/>
+    </g>
+    <g id="Rectangle_223" data-name="Rectangle 223" transform="translate(1200.25 2410.25) rotate(-90)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="8.5" height="17" stroke="none"/>
+      <rect x="1" y="1" width="6.5" height="15" fill="none"/>
+    </g>
+    <g id="Rectangle_224" data-name="Rectangle 224" transform="translate(1205 2401.7)" fill="#fff" stroke="#fff" stroke-width="1">
+      <rect width="5.5" height="12" stroke="none"/>
+      <rect x="0.5" y="0.5" width="4.5" height="11" fill="none"/>
+    </g>
+    <path id="Tracé_1891" data-name="Tracé 1891" d="M-10443,3179.828s-.486-10.186,7-9.568" transform="translate(11647 -778)" fill="none" stroke="#000" stroke-width="2"/>
+    <path id="Tracé_1892" data-name="Tracé 1892" d="M-10435.376,3180.193a6.163,6.163,0,0,1-.249-1.693,3.537,3.537,0,0,1,.729-2.186c.324-.438.93-.567,2.4-.652.461-.033,1.727-.1,2.758-.162" transform="translate(11647 -778)" fill="none" stroke="#000" stroke-width="2"/>
+    <path id="Tracé_1894" data-name="Tracé 1894" d="M0,0V7H0" transform="translate(1217.2 2391.5)" fill="none" stroke="#000" stroke-width="2"/>
+    <path id="Tracé_1893" data-name="Tracé 1893" d="M-10429.859,3170.531a62.411,62.411,0,0,0-6.578-.656h0" transform="translate(11466.786 -1319.482) rotate(-3)" fill="none" stroke="#000" stroke-width="2"/>
+  </g>
+</svg>
