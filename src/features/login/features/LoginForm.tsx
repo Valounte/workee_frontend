@@ -91,9 +91,6 @@ export const LoginForm = () => {
         <Button variant="contained" type="submit" sx={{ width: '35vw' }}>
           <Typography>Connexion</Typography>
         </Button>
-        <Button variant="contained" type="submit" sx={{ width: '35vw' }}>
-          <Typography>Connexion avec Google</Typography>
-        </Button>
       </Box>
     </form>
   );
