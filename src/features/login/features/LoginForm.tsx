@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { TextField } from '@mui/material';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -9,7 +8,7 @@ import { string as yupString, object as yupObject } from 'yup';
 
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { loginThunk } from '@entities/user/store/thunks/login.thunk';
-import { Box, Button, styled, Typography } from '@ui-kit';
+import { Box, Button, styled, Typography, TextField } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 const StyledTextField = styled(TextField)`

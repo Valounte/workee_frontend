@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 
-import { Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
-import { Box } from '@ui-kit';
+import { Box, Grid } from '@ui-kit';
 import { ReactComponent as LoginImage } from '@ui-kit/images/workee-login.svg';
 
 import { LoginForm } from './features/LoginForm';

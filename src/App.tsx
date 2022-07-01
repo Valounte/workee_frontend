@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 
-import { Typography, Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
 import { logoutThunk } from '@entities/user/store/thunks/logout.thunk';
+import { Button, Typography } from '@ui-kit';
 
 import LoginScreen from './features/login/Login.screen';
 import { useAppDispatch } from './store/useAppDispatch';
