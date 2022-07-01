@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Checkbox } from '@mui/material';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -8,7 +9,7 @@ import { string as yupString, object as yupObject } from 'yup';
 
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { loginThunk } from '@entities/user/store/thunks/login.thunk';
-import { Box, Button, styled, Typography, TextField } from '@ui-kit';
+import { Box, Button, styled, Typography, TextField, Grid, Stack } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 const StyledTextField = styled(TextField)`
@@ -93,8 +94,28 @@ export const LoginForm = () => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          width="70%">
+          <Grid item>
+            <Stack direction="row" alignItems="center">
+              <Checkbox
+                sx={{ padding: 0, paddingRight: 0.5 }}
+                disableRipple
+                size="small"
+              />
+              <Typography>Rester connecté</Typography>
+            </Stack>
+          </Grid>
+          <Grid item>
+            <Typography>Mot de passe oublié ?</Typography>
+          </Grid>
+        </Grid>
         <StyledButton variant="contained" color="secondary" type="submit">
-          <Typography color="">Connexion</Typography>
+          <Typography>Connexion</Typography>
         </StyledButton>
       </Box>
     </form>
