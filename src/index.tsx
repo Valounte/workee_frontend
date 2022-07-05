@@ -9,10 +9,10 @@ import { Provider as StoreProvider } from 'react-redux';
 import { BrowserRouter as BrowserProvider } from 'react-router-dom';
 
 import { saveStateToken, LocalStorageKey } from '@helpers/localStorage';
+import { theme } from '@ui-kit';
 
 import { App } from './App';
 import { store } from './store/store';
-import { theme } from './ui-kit/theme';
 
 import './index.css';
 

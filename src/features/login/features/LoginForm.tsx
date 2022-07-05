@@ -1,14 +1,24 @@
 import React from 'react';
 
-import { TextField } from '@mui/material';
+import { Checkbox } from '@mui/material';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 import { string as yupString, object as yupObject } from 'yup';
 
+import { RoutesEnum } from '@entities/RoutesEnum';
 import { loginThunk } from '@entities/user/store/thunks/login.thunk';
-import { Box, Button, Typography } from '@ui-kit';
+import { Box, Button, styled, Typography, TextField, Grid, Stack } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
+
+const StyledTextField = styled(TextField)`
+  width: 70%;
+`;
+
+const StyledButton = styled(Button)`
+  width: 70%;
+`;
 
 const validationSchema = yupObject({
   email: yupString().email('Enter a valid email').required('Email is required'),
@@ -16,6 +26,7 @@ const validationSchema = yupObject({
 });
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const formik = useFormik({
@@ -27,12 +38,11 @@ export const LoginForm = () => {
     onSubmit: values => {
       dispatch(loginThunk(values))
         .then(unwrapResult)
-        .then(loginInfo => {
-          console.log(loginInfo);
+        .then(() => {
           enqueueSnackbar('Successfull connected', {
             variant: 'success',
           });
-          // navigate(RoutesEnum.home);
+          navigate(RoutesEnum.home);
         })
         .catch(() => {
           enqueueSnackbar('Password or email incorrect', {
@@ -43,13 +53,21 @@ export const LoginForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box display="flex" flexDirection="column" maxWidth="50vh">
-        <TextField
+      <Box
+        display="flex"
+        flexDirection="column"
+        minHeight="90vh"
+        justifyContent="center"
+        alignItems="center">
+        <Typography variant="h3" paddingBottom={6}>
+          Content de vous revoir !
+        </Typography>
+        <StyledTextField
           autoFocus
           variant="outlined"
           id="email"
           name="email"
-          label="Email"
+          label="Mail"
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
@@ -60,11 +78,11 @@ export const LoginForm = () => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-        <TextField
+        <StyledTextField
           autoFocus
           id="password"
           name="password"
-          label="Password"
+          label="Mot de passe"
           type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
@@ -76,11 +94,29 @@ export const LoginForm = () => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-        <Box textAlign="center">
-          <Button variant="contained" type="submit">
-            <Typography>Sign in</Typography>
-          </Button>
-        </Box>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          width="70%">
+          <Grid item>
+            <Stack direction="row" alignItems="center">
+              <Checkbox
+                sx={{ padding: 0, paddingRight: 0.5 }}
+                disableRipple
+                size="small"
+              />
+              <Typography>Rester connecté</Typography>
+            </Stack>
+          </Grid>
+          <Grid item>
+            <Typography>Mot de passe oublié ?</Typography>
+          </Grid>
+        </Grid>
+        <StyledButton variant="contained" color="secondary" type="submit">
+          <Typography>Connexion</Typography>
+        </StyledButton>
       </Box>
     </form>
   );

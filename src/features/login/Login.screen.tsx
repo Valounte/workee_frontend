@@ -1,42 +1,47 @@
-import React, { useCallback } from 'react';
+import React, { useEffect } from 'react';
 
-import { useSnackbar } from 'notistack';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { RoutesEnum } from '@entities/RoutesEnum';
 import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
-import { logoutThunk } from '@entities/user/store/thunks/logout.thunk';
-import { Button, Typography } from '@ui-kit';
-import { useAppDispatch } from 'src/store/useAppDispatch';
+import { Box, Grid } from '@ui-kit';
+import { ReactComponent as LoginImage } from '@ui-kit/images/workee-login.svg';
 
 import { LoginForm } from './features/LoginForm';
+import { LoginHeader } from './features/LoginHeader';
 
 const LoginScreen = () => {
   const isAuthentificated = useSelector(selectIsAuthentificated);
-  const dispatch = useAppDispatch();
-  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
-  const handleLogoutButton = useCallback(() => {
-    dispatch(logoutThunk())
-      .then(() => {
-        enqueueSnackbar('Successfull disconected', {
-          variant: 'success',
-        });
-      })
-      .catch(() => {});
-  }, [dispatch, enqueueSnackbar]);
+  useEffect(() => {
+    if (isAuthentificated) {
+      navigate(RoutesEnum.home);
+    }
+  }, [isAuthentificated, navigate]);
+
   return (
     <>
-      <Typography>This is my Login Screen page</Typography>
-      {isAuthentificated ? (
-        <>
-          <Typography>You are authentificated</Typography>
-          <Button variant="contained" onClick={handleLogoutButton}>
-            Logout
-          </Button>
-        </>
-      ) : (
-        <LoginForm />
-      )}
+      <LoginHeader />
+      <Grid container>
+        <Grid item xs={12} sm={6}>
+          <Box
+            minHeight="90vh"
+            minWidth="50vw"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center">
+            <LoginImage width="80%" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Box minHeight="90vh" minWidth="50vw">
+            <LoginForm />
+          </Box>
+        </Grid>
+      </Grid>
     </>
   );
 };
