@@ -14,4 +14,6 @@ export * from './styled';
 // Theme
 export * from './theme';
 
-export * from './icons';
+export * from './icons/Social/Facebook';
+export * from './icons/Social/Instagram';
+export * from './icons/Social/LinkedIn';
