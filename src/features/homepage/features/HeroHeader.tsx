@@ -5,12 +5,12 @@ import { Box, Stack, Typography, Button } from '@ui-kit';
 export const HeroHeader = () => (
   <Box
     sx={{
-      height: '60vh',
+      height: '65vh',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
     }}>
-    <Stack direction="column">
+    <Stack direction="column" sx={{ width: '50vw', alignItems: 'flex-start' }}>
       <Typography variant="h1">Workee</Typography>
       <Typography>se reconnecter à lessentiel</Typography>
       <Button variant="contained" color="secondary" size="small">
