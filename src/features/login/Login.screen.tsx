@@ -21,6 +21,10 @@ const LoginScreen = () => {
     }
   }, [isAuthentificated, navigate]);
 
+  if (isAuthentificated) {
+    return null;
+  }
+
   return (
     <>
       <LoginHeader />
