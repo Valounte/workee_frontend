@@ -1,19 +1,18 @@
 import React from 'react';
 
-import { Box, Stack, Typography } from '@ui-kit';
+import { Box, Stack, Typography, Button } from '@ui-kit';
+import { ReactComponent as WorkeeFriendImage } from '@ui-kit/images/home-animal-illustration.svg';
 
 export const About = () => (
   <Box
-    sx={{
-      height: '65vh',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    }}>
-    <Box sx={{ backgroundColor: 'primary.main', width: '50vw', height: '50vh' }}>
-      Image
+    height="65vh"
+    display="flex"
+    justifyContent="space-between"
+    alignItems="center">
+    <Box width="50vw" height="50vh">
+      <WorkeeFriendImage height="100%" />
     </Box>
-    <Stack direction="column" sx={{ width: '50vw', height: '50vh' }}>
+    <Stack direction="column" width="50vw" height="50vh" alignItems="flex-start">
       <Typography variant="h2">
         Workee, un animal robotique à votre service
       </Typography>
@@ -26,6 +25,9 @@ export const About = () => (
         carbasos aedificet onerariam navem omnibusque armamentis instructam mari
         committat.
       </Typography>
+      <Button variant="contained" color="secondary" size="small">
+        En voir plus
+      </Button>
     </Stack>
   </Box>
 );
