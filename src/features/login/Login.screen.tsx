@@ -3,13 +3,13 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { SimpleHeader } from '@common-features/simpleHeader/SimpleHeader';
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
 import { Box, Grid } from '@ui-kit';
 import { ReactComponent as LoginImage } from '@ui-kit/images/workee-login.svg';
 
 import { LoginForm } from './features/LoginForm';
-import { LoginHeader } from './features/LoginHeader';
 
 const LoginScreen = () => {
   const isAuthentificated = useSelector(selectIsAuthentificated);
@@ -27,7 +27,7 @@ const LoginScreen = () => {
 
   return (
     <>
-      <LoginHeader />
+      <SimpleHeader />
       <Grid container>
         <Grid item xs={12} sm={6}>
           <Box

@@ -68,6 +68,7 @@ module.exports = {
           ['@ui-kit', './src/ui-kit'],
           ['@entities/*', './src/entities/*'],
           ['@helpers/*', './src/helpers/*'],
+          ['@common-features/*', './src/common-features/*'],
         ],
       },
     },

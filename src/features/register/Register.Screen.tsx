@@ -3,10 +3,10 @@ import React from 'react';
 import { useJwt } from 'react-jwt';
 import { useLocation } from 'react-router-dom';
 
+import { SimpleHeader } from '@common-features/simpleHeader/SimpleHeader';
 import { Box, Grid, Typography } from '@ui-kit';
 import { ReactComponent as LoginImage } from '@ui-kit/images/workee-login.svg';
 
-import { LoginHeader } from '../login/features/LoginHeader';
 import { RegisterForm } from './features/RegisterForm';
 
 interface JWTDecoded {
@@ -31,7 +31,7 @@ const RegisterScreen = () => {
   return (
     <>
       {/* TODO: create a common component for the header */}
-      <LoginHeader />
+      <SimpleHeader />
       <Grid container>
         <Grid item xs={12} sm={6}>
           <Box
