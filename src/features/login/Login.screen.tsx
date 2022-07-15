@@ -1,31 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-
+import { NotAuthentificatedRoute } from '@common-features/redirects/redirectIfAuthentificated/NotAuthentificatedRoute';
 import { SimpleHeader } from '@common-features/simpleHeader/SimpleHeader';
-import { RoutesEnum } from '@entities/RoutesEnum';
-import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
 import { Box, Grid } from '@ui-kit';
 import { ReactComponent as LoginImage } from '@ui-kit/images/workee-login.svg';
 
 import { LoginForm } from './features/LoginForm';
 
-const LoginScreen = () => {
-  const isAuthentificated = useSelector(selectIsAuthentificated);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthentificated) {
-      navigate(RoutesEnum.home);
-    }
-  }, [isAuthentificated, navigate]);
-
-  if (isAuthentificated) {
-    return null;
-  }
-
-  return (
+const LoginScreen = () => (
+  <NotAuthentificatedRoute>
     <>
       <SimpleHeader />
       <Grid container>
@@ -47,7 +30,7 @@ const LoginScreen = () => {
         </Grid>
       </Grid>
     </>
-  );
-};
+  </NotAuthentificatedRoute>
+);
 
 export default LoginScreen;

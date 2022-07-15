@@ -3,6 +3,7 @@ import React from 'react';
 import { useJwt } from 'react-jwt';
 import { useLocation } from 'react-router-dom';
 
+import { NotAuthentificatedRoute } from '@common-features/redirects/redirectIfAuthentificated/NotAuthentificatedRoute';
 import { SimpleHeader } from '@common-features/simpleHeader/SimpleHeader';
 import { Box, Grid, Typography } from '@ui-kit';
 import { ReactComponent as LoginImage } from '@ui-kit/images/workee-login.svg';
@@ -29,29 +30,30 @@ const RegisterScreen = () => {
   const { email } = decodedToken;
 
   return (
-    <>
-      {/* TODO: create a common component for the header */}
-      <SimpleHeader />
-      <Grid container>
-        <Grid item xs={12} sm={6}>
-          <Box
-            minHeight="90vh"
-            minWidth="50vw"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center">
-            {/* #TODO: replace by register image when */}
-            <LoginImage width="80%" />
-          </Box>
+    <NotAuthentificatedRoute>
+      <>
+        <SimpleHeader />
+        <Grid container>
+          <Grid item xs={12} sm={6}>
+            <Box
+              minHeight="90vh"
+              minWidth="50vw"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center">
+              {/* #TODO: replace by register image when ready */}
+              <LoginImage width="80%" />
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Box minHeight="90vh" minWidth="50vw">
+              <RegisterForm email={email} token={token} />
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Box minHeight="90vh" minWidth="50vw">
-            <RegisterForm email={email} token={token} />
-          </Box>
-        </Grid>
-      </Grid>
-    </>
+      </>
+    </NotAuthentificatedRoute>
   );
 };
 export default RegisterScreen;
