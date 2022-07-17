@@ -7,7 +7,11 @@ import { ReactComponent as WorkeeImage } from '@ui-kit/images/workee-icon.svg';
 
 export const BrandStatistics = () => (
   <Container maxWidth="md">
-    <Box display="flex" justifyContent="space-between" my={3}>
+    <Stack
+      direction={{ xs: 'column', sm: 'row' }}
+      my={3}
+      justifyContent="space-between"
+      alignItems="center">
       <Stack direction="row" alignItems="center">
         <Box>
           <WorkeeImage width="70%" display="block" />
@@ -35,6 +39,6 @@ export const BrandStatistics = () => (
           <Typography>équipes créées</Typography>
         </Stack>
       </Stack>
-    </Box>
+    </Stack>
   </Container>
 );

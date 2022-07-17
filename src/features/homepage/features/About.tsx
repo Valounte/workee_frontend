@@ -6,16 +6,19 @@ import { ReactComponent as WorkeeFriendImage } from '@ui-kit/images/home-animal-
 export const About = () => (
   <Box bgcolor="#FDFBFB">
     <Container maxWidth="md">
-      <Box
-        height="65vh"
-        display="flex"
-        justifyContent="space-between"
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
         alignItems="center"
-        mt={3}>
-        <Box width="50vw" height="50vh">
+        py={3}
+        spacing={3}>
+        <Box width={{ xs: '100%', sm: '50%' }} height={{ xs: '100%', sm: '50vh' }}>
           <WorkeeFriendImage height="100%" />
         </Box>
-        <Stack direction="column" width="50vw" height="50vh" alignItems="flex-start">
+        <Stack
+          direction="column"
+          alignItems="flex-start"
+          width={{ xs: '100%', sm: '50%' }}
+          mt={{ xs: 3 }}>
           <Typography variant="h2">
             Workee, un animal robotique à votre service
           </Typography>
@@ -32,7 +35,7 @@ export const About = () => (
             En voir plus
           </Button>
         </Stack>
-      </Box>
+      </Stack>
     </Container>
   </Box>
 );

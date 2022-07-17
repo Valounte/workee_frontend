@@ -4,13 +4,16 @@ import { Container, Box, Stack, Typography, Button } from '@ui-kit';
 
 export const Product = () => (
   <Container maxWidth="md">
-    <Box
-      height="65vh"
-      display="flex"
-      justifyContent="space-between"
+    <Stack
+      direction={{ xs: 'column-reverse', sm: 'row' }}
       alignItems="center"
-      mt={3}>
-      <Stack direction="column" width="50vw" alignItems="flex-start">
+      py={3}
+      spacing={3}>
+      <Stack
+        direction="column"
+        alignItems="flex-start"
+        width={{ xs: '100%', sm: '50%' }}
+        mt={{ xs: 3 }}>
         <Typography variant="h3">Un avant-goût de Workee ?</Typography>
         <Typography>
           Cyprum itidem insulam procul a continenti discretam et portuosam inter
@@ -25,9 +28,7 @@ export const Product = () => (
           Pré-commandez le vôtre !
         </Button>
       </Stack>
-      <Box width="50vw" height="50vh">
-        Image
-      </Box>
-    </Box>
+      <Box width={{ xs: '100%', sm: '50%' }}>Image</Box>
+    </Stack>
   </Container>
 );
