@@ -73,6 +73,16 @@ export const theme = createTheme({
       xl: 1536,
     },
   },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        colorPrimary: {
+          backgroundColor: 'white',
+          color: 'black',
+        },
+      },
+    },
+  },
 });
 
 theme.typography.h3 = {
