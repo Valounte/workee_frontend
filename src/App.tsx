@@ -9,6 +9,7 @@ import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIs
 import { logoutThunk } from '@entities/user/store/thunks/logout.thunk';
 import { Button, Typography } from '@ui-kit';
 
+import { HomePageScreen } from './features/homepage/Homepage.screen';
 import LoginScreen from './features/login/Login.screen';
 import { useAppDispatch } from './store/useAppDispatch';
 
@@ -30,6 +31,7 @@ export const App = () => {
     <>
       <Routes>
         <Route path={RoutesEnum.login} element={<LoginScreen />} />
+        <Route path={RoutesEnum.home} element={<HomePageScreen />} />
       </Routes>
       {isAuthentificated && (
         <>
