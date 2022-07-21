@@ -19,7 +19,8 @@
     "paths": {
       "@ui-kit": ["src/ui-kit"],
       "@entities/*": ["src/entities/*"],
-      "@helpers/*": ["src/helpers/*"]
+      "@helpers/*": ["src/helpers/*"], 
+      "@common-features/*": ["src/common-features/*"],
     }
   },
   "include": ["src"]
