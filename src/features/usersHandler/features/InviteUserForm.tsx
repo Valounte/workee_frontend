@@ -1,13 +1,13 @@
 import React from 'react';
 
-// interdiction d'utiliser material-ui, on passe par l'ui-kit
+// TODO: interdiction d'utiliser material-ui, on passe par l'ui-kit
 import { MenuItem } from '@mui/material';
 import { useFormik } from 'formik';
 import { string as yupString, object as yupObject } from 'yup';
 
 import { Box, Button, Typography, TextField, Select } from '@ui-kit';
 
-// à remplacer par l'appel de service pour avoir les teams
+// TODO: à remplacer par l'appel de service pour avoir les teams
 const teams = [
   'Compta',
   'Devs Frontend',
@@ -35,7 +35,7 @@ export const InviteUserForm = () => {
       team: [],
     },
     validationSchema,
-    // le onsubmit est cassé
+    // TODO: le onsubmit est cassé
     onSubmit: values => {
       console.log('send an email to', values);
     },
@@ -90,8 +90,8 @@ export const InviteUserForm = () => {
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
 
-        {/* voir le bug etrange sur les labels */}
-        {/* remplacer par des chips le rendu */}
+        {/* TODO: voir le bug etrange sur les labels */}
+        {/* TODO: remplacer par des chips le rendu */}
         <Select
           multiple
           variant="outlined"
