@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Box, Stack, Typography, Button } from '@ui-kit';
+import { Container, Box, Stack, Typography } from '@ui-kit';
 import { ReactComponent as WorkeeFriendImage } from '@ui-kit/images/home-workee-friendly.svg';
 
 export const About = () => (
@@ -12,7 +12,7 @@ export const About = () => (
         py={3}
         spacing={3}>
         <Stack width={{ xs: '100%', sm: '50%' }}>
-          <WorkeeFriendImage width="100%" />
+          <WorkeeFriendImage width="80%" />
         </Stack>
         <Stack
           direction="column"
@@ -27,9 +27,6 @@ export const About = () => (
             Workee vous accompagne lors de vos journées de télétravail et prend soin
             de vous.
           </Typography>
-          <Button variant="contained" color="secondary" size="small">
-            En voir plus
-          </Button>
         </Stack>
       </Stack>
     </Container>

@@ -8,7 +8,6 @@ const StyledButton = styled(MuiButton)`
   text-transform: none;
   fontsize: 15px;
   border-radius: 50px;
-  border-color: #213242;
 `;
 export const Button = memo((props: ButtonProps) => {
   const { children, ...otherProps } = props;
