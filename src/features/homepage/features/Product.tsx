@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Container, Box, Stack, Typography, Button } from '@ui-kit';
+import { Container, Stack, Typography, Button } from '@ui-kit';
+import { ReactComponent as WorkeeConstruction } from '@ui-kit/images/home-workee-in-progress.svg';
 
 export const Product = () => (
   <Container maxWidth="md">
@@ -11,24 +12,23 @@ export const Product = () => (
       spacing={3}>
       <Stack
         direction="column"
-        alignItems="flex-start"
+        alignItems={{ xs: 'center', sm: 'flex-start' }}
         width={{ xs: '100%', sm: '50%' }}
         mt={{ xs: 3 }}>
         <Typography variant="h3">Un avant-goût de Workee ?</Typography>
         <Typography>
-          Cyprum itidem insulam procul a continenti discretam et portuosam inter
-          municipia crebra urbes duae faciunt claram Salamis et Paphus, altera Iovis
-          delubris altera Veneris templo insignis. tanta autem tamque multiplici
-          fertilitate abundat rerum omnium eadem Cyprus ut nullius externi indigens
-          adminiculi indigenis viribus a fundamento ipso carinae ad supremos usque
-          carbasos aedificet onerariam navem omnibusque armamentis instructam mari
-          committat.
+          Nos équipes travaillent activement sur notre Workee 1.0.
+        </Typography>
+        <Typography>
+          Pour les plus impatients, les pré-commandes sont ouvertes !
         </Typography>
         <Button variant="contained" color="secondary">
           Pré-commandez le vôtre !
         </Button>
       </Stack>
-      <Box width={{ xs: '100%', sm: '50%' }}>Image</Box>
+      <Stack width={{ xs: '100%', sm: '50%' }}>
+        <WorkeeConstruction width="100%" />
+      </Stack>
     </Stack>
   </Container>
 );
