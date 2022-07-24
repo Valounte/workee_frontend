@@ -1,7 +1,4 @@
-interface Company {
-  id: number;
-  name: string;
-}
+import { Company } from '../companies/Company';
 
 export interface Job {
   id: number;

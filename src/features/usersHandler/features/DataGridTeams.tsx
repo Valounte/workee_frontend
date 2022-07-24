@@ -3,7 +3,7 @@ import React, { memo, useMemo } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useSelector } from 'react-redux';
 
-import { selectTeams } from '@entities/teams/store/selectors/getAllTeams.selector';
+import { selectTeams } from '@entities/teams/store/selectors/getTeams.selector';
 
 import { teamCompanyDataGridCol } from './data-grid/teamCompanyDataGridCol';
 import { teamIdDataGridCol } from './data-grid/teamIdDataGridCol';

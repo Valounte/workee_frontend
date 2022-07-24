@@ -1,8 +1,4 @@
-// TODO: a deplacer dans un fichier dans entity/company
-interface Company {
-  id: number;
-  name: string;
-}
+import type { Company } from '../companies/Company';
 
 export interface Team {
   id: number;

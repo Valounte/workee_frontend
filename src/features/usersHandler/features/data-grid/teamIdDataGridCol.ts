@@ -2,7 +2,7 @@ import { GridColDef } from '@mui/x-data-grid';
 
 export const teamIdDataGridCol: GridColDef = {
   field: 'id',
-  headerName: 'Team Id',
+  headerName: 'ID Equipe',
   type: 'string',
   flex: 1,
 };

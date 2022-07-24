@@ -1,43 +1,59 @@
 import React from 'react';
 
-// TODO: interdiction d'utiliser material-ui, on passe par l'ui-kit
-import { MenuItem } from '@mui/material';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
+import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { string as yupString, object as yupObject } from 'yup';
 
-import { Box, Button, Typography, TextField, Select } from '@ui-kit';
+import { RoutesEnum } from '@entities/RoutesEnum';
+import { selectToken } from '@entities/user/store/selectors/selectToken.selector';
+import { inviteThunk } from '@entities/user/store/thunks/invite.thunk';
+import { Box, Button, Typography, TextField } from '@ui-kit';
 
-// TODO: à remplacer par l'appel de service pour avoir les teams
-const teams = [
-  'Compta',
-  'Devs Frontend',
-  'Devs Backend',
-  'DevOps',
-  'CoDir',
-  'les boss',
-  'les fétards',
-  'les pedago epitech',
-];
+import { useAppDispatch } from '../../../store/useAppDispatch';
 
 const validationSchema = yupObject({
-  email: yupString().email('Enter a valid email').required('Email is required'),
-  firstname: yupString().required('Firstname is required'),
-  lastname: yupString().required('Lastname is required'),
-  team: yupString().optional(),
+  email: yupString().email('Entrer un email valide').required('Email Obligatoire'),
+  firstname: yupString().required('Prénom Obligatoire'),
+  lastname: yupString().required('Nom Obligatoire'),
 });
 
 export const InviteUserForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const token = useSelector(selectToken) as string;
+  const { enqueueSnackbar } = useSnackbar();
   const formik = useFormik({
     initialValues: {
       email: '',
       firstname: '',
       lastname: '',
-      team: [],
     },
     validationSchema,
-    // TODO: le onsubmit est cassé
     onSubmit: values => {
-      console.log('send an email to', values);
+      const InviteValues = {
+        email: values.email,
+        firstname: values.firstname,
+        lastname: values.lastname,
+        // envoyer les team
+        // envoyer les jobs
+        token,
+      };
+      dispatch(inviteThunk(InviteValues))
+        .then(unwrapResult)
+        .then(() => {
+          enqueueSnackbar('User successfully invited !', {
+            variant: 'success',
+          });
+          navigate(RoutesEnum.home);
+        })
+        .catch(() => {
+          enqueueSnackbar('Error invitation', {
+            variant: 'error',
+          });
+        });
     },
   });
   return (
@@ -63,7 +79,7 @@ export const InviteUserForm = () => {
           variant="outlined"
           id="firstname"
           name="firstname"
-          label="Firstname"
+          label="Prénom"
           value={formik.values.firstname}
           onChange={formik.handleChange}
           error={formik.touched.firstname && Boolean(formik.errors.firstname)}
@@ -78,7 +94,7 @@ export const InviteUserForm = () => {
           variant="outlined"
           id="lastname"
           name="lastname"
-          label="Lastname"
+          label="Nom"
           value={formik.values.lastname}
           onChange={formik.handleChange}
           error={formik.touched.lastname && Boolean(formik.errors.lastname)}
@@ -89,27 +105,9 @@ export const InviteUserForm = () => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-
-        {/* TODO: voir le bug etrange sur les labels */}
-        {/* TODO: remplacer par des chips le rendu */}
-        <Select
-          multiple
-          variant="outlined"
-          id="team"
-          name="team"
-          label="Team"
-          value={formik.values.team}
-          onChange={formik.handleChange}>
-          {teams.map(team => (
-            <MenuItem key={team} value={team}>
-              {team}
-            </MenuItem>
-          ))}
-        </Select>
-
         <Box textAlign="center">
           <Button variant="contained" type="submit">
-            <Typography>Invite</Typography>
+            <Typography>Inviter</Typography>
           </Button>
         </Box>
       </Box>

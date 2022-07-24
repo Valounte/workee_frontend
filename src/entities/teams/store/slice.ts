@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import type { Team } from '../Team';
-import { getTeamsThunk } from './thunks/getAllTeams.thunk';
+import { getTeamsThunk } from './thunks/getTeams.thunk';
 
 export const teamsAdapter = createEntityAdapter<Team>({
   selectId: team => team.id,

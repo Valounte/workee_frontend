@@ -3,7 +3,7 @@ import React, { memo, useMemo } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useSelector } from 'react-redux';
 
-import { selectJobs } from '@entities/jobs/store/selectors/getAllJobs.selector';
+import { selectJobs } from '@entities/jobs/store/selectors/getJobs.selector';
 
 import { jobCompanyDataGridCol } from './data-grid/jobCompanyDataGridCol';
 import { jobIdDataGridCol } from './data-grid/jobIdDataGridCol';
@@ -29,7 +29,7 @@ export const DataGridJobs = memo(({ loading, error }: DataGridJobsProps) => {
         name: job.name,
         company: job.company.name,
       })),
-      [jobs]
+    [jobs]
   );
   return (
     <DataGrid

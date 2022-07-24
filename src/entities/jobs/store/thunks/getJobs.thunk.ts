@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import type { Job } from '../../Job';
-import { getJobsService } from '../../services/getAllJobs.service';
-import type { getJobsServiceParams } from '../../services/getAllJobs.service';
+import { getJobsService } from '../../services/getJobs.service';
+import type { getJobsServiceParams } from '../../services/getJobs.service';
 
 export const getJobsThunk = createAsyncThunk<Job[], getJobsServiceParams>(
   '/jobs',

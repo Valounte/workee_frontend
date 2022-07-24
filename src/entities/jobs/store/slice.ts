@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import type { Job } from '../Job';
-import { getJobsThunk } from './thunks/getAllJobs.thunk';
+import { getJobsThunk } from './thunks/getJobs.thunk';
 
 export const jobsAdapter = createEntityAdapter<Job>({
   selectId: job => job.id,
