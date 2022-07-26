@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { NotAuthentificatedRoute } from '@common-features/redirects/redirectIfAuthentificated/NotAuthentificatedRoute';
 import { SimpleHeader } from '@common-features/simpleHeader/SimpleHeader';
 import { Box, Grid, Typography } from '@ui-kit';
-import { ReactComponent as LoginImage } from '@ui-kit/images/workee-login.svg';
+import { ReactComponent as RegisterImage } from '@ui-kit/images/password-illustration.svg';
 
 import { RegisterForm } from './features/RegisterForm';
 
@@ -42,8 +42,7 @@ const RegisterScreen = () => {
               flexDirection="column"
               justifyContent="center"
               alignItems="center">
-              {/* #TODO: replace by register image when ready */}
-              <LoginImage width="80%" />
+              <RegisterImage width="80%" />
             </Box>
           </Grid>
           <Grid item xs={12} sm={6}>
