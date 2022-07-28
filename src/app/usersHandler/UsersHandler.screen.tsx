@@ -90,27 +90,20 @@ const UsersHandlerScreen = () => {
           <StyledTab disableRipple value={TabsEnum.jobs} label="Métiers" />
         </StyledTabs>
       </Box>
-      <Box p={2}>
-        <TabPanel value={value} index={TabsEnum.users}>
-          <Stack direction="row" spacing={2}>
-            <InviteUserForm />
-            <DataGridUsers loading={loadingUsers} error={errorUsers} />
-          </Stack>
-        </TabPanel>
-        <TabPanel value={value} index={TabsEnum.teams}>
-          <Stack direction="row" spacing={2}>
-            <CreateTeamForm />
-            <DataGridTeams loading={loadingTeams} error={errorTeams} />
-          </Stack>
-        </TabPanel>
-        <TabPanel value={value} index={TabsEnum.jobs}>
-          <Stack direction="row" spacing={2}>
-            <CreateJobForm />
-            <DataGridJobs loading={loadingJobs} error={errorJobs} />
-          </Stack>
-        </TabPanel>
-      </Box>
-    </StyledContainer>
+      <TabPanel value={value} index={TabsEnum.users}>
+        <InviteUserForm />
+        <DataGridUsers loading={loadingUsers} error={errorUsers} />
+      </TabPanel>
+      <TabPanel value={value} index={TabsEnum.teams}>
+        <Typography>Teams</Typography>
+        <CreateTeamForm />
+        <DataGridTeams loading={loadingTeams} error={errorTeams} />
+      </TabPanel>
+      <TabPanel value={value} index={TabsEnum.jobs}>
+        <Typography>Jobs</Typography>
+        <DataGridJobs loading={loadingJobs} error={errorJobs} />
+      </TabPanel>
+    </div>
   );
 };
 
