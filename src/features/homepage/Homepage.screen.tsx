@@ -12,8 +12,8 @@ export const HomePageScreen = () => (
     <MainHeader />
     <HeroHeader />
     <BrandStatistics />
-    <About />
     <Product />
+    <About />
     <Footer />
   </>
 );
