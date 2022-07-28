@@ -45,7 +45,6 @@ const UsersHandlerScreen = () => {
   const { loading: loadingJobs, error: errorJobs } = useAsync(() =>
     dispatch(getJobsThunk({ token: token as string }))
   );
-  // TODO: ajouter le getUsersThunk"
 
   return (
     <div>
@@ -57,7 +56,6 @@ const UsersHandlerScreen = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={TabsEnum.users}>
-        <Typography>Inviter un nouvel utilisateur !</Typography>
         <InviteUserForm />
       </TabPanel>
       <TabPanel value={value} index={TabsEnum.teams}>

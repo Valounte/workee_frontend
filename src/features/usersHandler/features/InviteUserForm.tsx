@@ -58,56 +58,56 @@ export const InviteUserForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box display="flex" flexDirection="column" maxWidth="50vh">
-        <TextField
-          autoFocus
-          variant="outlined"
-          id="email"
-          name="email"
-          label="Email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={
-            formik.touched.email && formik.errors.email != null
-              ? formik.errors.email
-              : ' '
-          }
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-        <TextField
-          variant="outlined"
-          id="firstname"
-          name="firstname"
-          label="Prénom"
-          value={formik.values.firstname}
-          onChange={formik.handleChange}
-          error={formik.touched.firstname && Boolean(formik.errors.firstname)}
-          helperText={
-            formik.touched.firstname && formik.errors.firstname != null
-              ? formik.errors.firstname
-              : ' '
-          }
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-        <TextField
-          variant="outlined"
-          id="lastname"
-          name="lastname"
-          label="Nom"
-          value={formik.values.lastname}
-          onChange={formik.handleChange}
-          error={formik.touched.lastname && Boolean(formik.errors.lastname)}
-          helperText={
-            formik.touched.lastname && formik.errors.lastname != null
-              ? formik.errors.lastname
-              : ' '
-          }
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-        <Box textAlign="center">
+      <Box  width="50%" margin="0 auto" padding="30px">
+        <Box display="flex" flexDirection="column" maxWidth="70%" margin="0 auto">
+          <TextField
+              autoFocus
+              variant="outlined"
+              id="email"
+              name="email"
+              label="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={
+                formik.touched.email && formik.errors.email != null
+                    ? formik.errors.email
+                    : ' '
+              }
+              InputLabelProps={{ style: { fontSize: 15 } }}
+          />
+          <TextField
+              variant="outlined"
+              id="firstname"
+              name="firstname"
+              label="Prénom"
+              value={formik.values.firstname}
+              onChange={formik.handleChange}
+              error={formik.touched.firstname && Boolean(formik.errors.firstname)}
+              helperText={
+                formik.touched.firstname && formik.errors.firstname != null
+                    ? formik.errors.firstname
+                    : ' '
+              }
+              InputLabelProps={{ style: { fontSize: 15 } }}
+          />
+          <TextField
+              variant="outlined"
+              id="lastname"
+              name="lastname"
+              label="Nom"
+              value={formik.values.lastname}
+              onChange={formik.handleChange}
+              error={formik.touched.lastname && Boolean(formik.errors.lastname)}
+              helperText={
+                formik.touched.lastname && formik.errors.lastname != null
+                    ? formik.errors.lastname
+                    : ' '
+              }
+              InputLabelProps={{ style: { fontSize: 15 } }}
+          />
           <Button variant="contained" type="submit">
-            <Typography>Inviter</Typography>
+            <Typography textAlign="center">Inviter un nouvel utilisateur</Typography>
           </Button>
         </Box>
       </Box>
