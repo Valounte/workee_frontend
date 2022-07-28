@@ -12,6 +12,7 @@ import { Button, Typography } from '@ui-kit';
 import { HomePageScreen } from './features/homepage/Homepage.screen';
 import LoginScreen from './features/login/Login.screen';
 import RegisterScreen from './features/register/Register.Screen';
+import UsersHandlerScreen from './features/usersHandler/UsersHandler.screen';
 import { useAppDispatch } from './store/useAppDispatch';
 
 export const App = () => {
@@ -34,6 +35,7 @@ export const App = () => {
         <Route path={RoutesEnum.login} element={<LoginScreen />} />
         <Route path={RoutesEnum.home} element={<HomePageScreen />} />
         <Route path={RoutesEnum.register} element={<RegisterScreen />} />
+        <Route path={RoutesEnum.usersHandler} element={<UsersHandlerScreen />} />
       </Routes>
       {isAuthentificated && (
         <>

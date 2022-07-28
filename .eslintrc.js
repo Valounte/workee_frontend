@@ -27,6 +27,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'react-hooks', 'import'],
   rules: {
     'no-param-reassign': 'off',
+    'react/require-default-props': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['tsx'] }],
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
