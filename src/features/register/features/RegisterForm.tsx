@@ -120,7 +120,6 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
         <StyledTextField
-          autoFocus
           id="passwordConfirmation"
           name="passwordConfirmation"
           label="Confirmation Mot de passe"

@@ -8,6 +8,7 @@ export * from './components/Stack/Stack';
 export * from './components/Typography/Typography';
 export * from './components/Grid/Grid';
 export * from './components/TextField/TextField';
+export * from './components/Checkbox/Checkbox';
 
 // Utils
 export * from './styled';
