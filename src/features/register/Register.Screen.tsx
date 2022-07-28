@@ -3,9 +3,10 @@ import React from 'react';
 import { useJwt } from 'react-jwt';
 import { useLocation } from 'react-router-dom';
 
+import { ErrorPage } from '@common-features/error-page/ErrorPage';
 import { NotAuthentificatedRoute } from '@common-features/redirects/redirectIfAuthentificated/NotAuthentificatedRoute';
 import { SimpleHeader } from '@common-features/simpleHeader/SimpleHeader';
-import { Box, Grid, Typography } from '@ui-kit';
+import { Box, Grid } from '@ui-kit';
 import { ReactComponent as RegisterImage } from '@ui-kit/images/password-illustration.svg';
 
 import { RegisterForm } from './features/RegisterForm';
@@ -13,9 +14,6 @@ import { RegisterForm } from './features/RegisterForm';
 interface JWTDecoded {
   email: string;
 }
-
-// #TODO: replace by the new error component
-const ErrorPage = () => <Typography>your token is invalid</Typography>;
 
 const RegisterScreen = () => {
   const { search } = useLocation();
@@ -25,7 +23,12 @@ const RegisterScreen = () => {
 
   const { decodedToken } = useJwt<JWTDecoded>(token);
   if (!decodedToken) {
-    return <ErrorPage />;
+    return (
+      <>
+        <SimpleHeader />
+        <ErrorPage />
+      </>
+    );
   }
   const { email } = decodedToken;
 
