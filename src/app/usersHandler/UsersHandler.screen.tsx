@@ -61,7 +61,6 @@ const UsersHandlerScreen = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={TabsEnum.users}>
-        <Typography>Inviter un nouvel utilisateur !</Typography>
         <InviteUserForm />
         <DataGridUsers loading={loadingUsers} error={errorUsers} />
       </TabPanel>

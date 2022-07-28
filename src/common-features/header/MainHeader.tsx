@@ -24,6 +24,7 @@ import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
 import { MainRoutesEnum } from '../../RoutesEnum';
 import { useAppDispatch } from '../../store/useAppDispatch';
+const links = ['Invitation Utilisateurs', 'Link2', 'Link3'];
 
 export const MainHeader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
