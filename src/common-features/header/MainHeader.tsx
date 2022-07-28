@@ -17,7 +17,7 @@ import {
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
-const links = ['Link1', 'Link2', 'Link3'];
+const links = ['Invitation Utilisateurs', 'Link2', 'Link3'];
 
 export const MainHeader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -75,11 +75,11 @@ export const MainHeader = () => {
             spacing={2}
             display={{ xs: 'none', sm: 'flex' }}
             order={{ sm: '2' }}>
-            {links.map(link => (
-              <Typography key={link} textAlign="center">
-                {link}
+            <Link to="/usersHandler">
+              <Typography textAlign="center">
+                {links[0]}
               </Typography>
-            ))}
+            </Link>
           </Stack>
           <Stack order={{ xs: '3', sm: '2' }}>
             <Button href={RoutesEnum.login} variant="outlined" color="secondary">
