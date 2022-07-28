@@ -11,13 +11,13 @@ export const theme = createTheme({
       main: '#bf360c',
       light: '#f9683a',
       dark: '#870000',
-      contrastText: '#f9e6d6',
+      contrastText: 'white',
     },
     secondary: {
       main: '#ff7f27',
       light: '#ffb058',
       dark: '#c55000',
-      contrastText: '#3f1d01',
+      contrastText: 'white',
     },
     text: {
       primary: '#3f1d01',
@@ -73,4 +73,30 @@ export const theme = createTheme({
       xl: 1536,
     },
   },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        colorPrimary: {
+          backgroundColor: 'white',
+          color: 'black',
+        },
+      },
+    },
+  },
 });
+
+theme.typography.h3 = {
+  ...theme.typography.h3,
+  [theme.breakpoints.up('xs')]: {
+    fontSize: '2.4rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '3rem',
+  },
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '3.6rem',
+  },
+  [theme.breakpoints.up('xl')]: {
+    fontSize: '3.8rem',
+  },
+};

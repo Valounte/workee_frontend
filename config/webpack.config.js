@@ -309,6 +309,9 @@ module.exports = function (webpackEnv) {
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
         '@ui-kit': path.resolve(__dirname, '../src/ui-kit/'),
+        '@entities': path.resolve(__dirname, '../src/entities'),
+        '@helpers': path.resolve(__dirname, '../src/helpers'),
+        '@common-features': path.resolve(__dirname, '../src/common-features'),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',

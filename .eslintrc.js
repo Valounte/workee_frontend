@@ -27,6 +27,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'react-hooks', 'import'],
   rules: {
     'no-param-reassign': 'off',
+    'react/require-default-props': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['tsx'] }],
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
@@ -65,9 +66,12 @@ module.exports = {
       },
       alias: {
         map: [
-            [ "@ui-kit", "./src/ui-kit" ]
-        ]
-    }
+          ['@ui-kit', './src/ui-kit'],
+          ['@entities/*', './src/entities/*'],
+          ['@helpers/*', './src/helpers/*'],
+          ['@common-features/*', './src/common-features/*'],
+        ],
+      },
     },
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
@@ -80,6 +84,7 @@ module.exports = {
       files: ['*.test.ts'],
       rules: {
         'import/no-extraneous-dependencies': ['off'],
+        'no-console': 'off',
       },
     },
   ],
