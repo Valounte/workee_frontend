@@ -21,6 +21,9 @@ export * from './components/DialogActions/DialogActions';
 export * from './components/DialogContent/DialogContent';
 export * from './components/DialogContentText/DialogContentText';
 export * from './components/DialogTitle/DialogTitle';
+export * from './components/Chip/Chip';
+export * from './components/SelectInput/SelectInput';
+
 // Utils
 export * from './styled';
 

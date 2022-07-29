@@ -5,6 +5,8 @@ import { User } from '../User';
 export type InviteUserBody = Pick<User, 'email'> & {
   firstname: string;
   lastname: string;
+  job: number;
+  teams: number[];
   token: string;
 };
 
@@ -20,6 +22,8 @@ export const inviteService = (params: InviteUserBody) =>
       email: params.email,
       firstname: params.firstname,
       lastname: params.lastname,
+      jobId: params.job,
+      teamsId: params.teams,
     },
     {
       headers: {
