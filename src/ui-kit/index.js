@@ -16,7 +16,11 @@ export * from './components/Dropdown/Dropdown';
 export * from './components/Tab/Tab';
 export * from './components/Tabs/Tabs';
 export * from './components/TabPanel/TabPanel';
-
+export * from './components/Dialog/Dialog';
+export * from './components/DialogActions/DialogActions';
+export * from './components/DialogContent/DialogContent';
+export * from './components/DialogContentText/DialogContentText';
+export * from './components/DialogTitle/DialogTitle';
 // Utils
 export * from './styled';
 
