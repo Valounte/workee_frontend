@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
+import { useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { RoutesEnum } from '@entities/RoutesEnum';
+import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
+import { logoutThunk } from '@entities/user/store/thunks/logout.thunk';
 import {
   AppBar,
   Container,
@@ -17,10 +21,24 @@ import {
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
+import { useAppDispatch } from '../../store/useAppDispatch';
+
 const links = ['Link1', 'Link2', 'Link3'];
 
 export const MainHeader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const isAuthentificated = useSelector(selectIsAuthentificated);
+  const dispatch = useAppDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+  const handleLogoutButton = useCallback(() => {
+    dispatch(logoutThunk())
+      .then(() => {
+        enqueueSnackbar('Successfull disconected', {
+          variant: 'success',
+        });
+      })
+      .catch(() => {});
+  }, [dispatch, enqueueSnackbar]);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -82,9 +100,18 @@ export const MainHeader = () => {
             ))}
           </Stack>
           <Stack order={{ xs: '3', sm: '2' }}>
-            <Button href={RoutesEnum.login} variant="outlined" color="secondary">
-              Connexion
-            </Button>
+            {isAuthentificated ? (
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleLogoutButton}>
+                Déconnection
+              </Button>
+            ) : (
+              <Button href={RoutesEnum.login} variant="outlined" color="secondary">
+                Connexion
+              </Button>
+            )}
           </Stack>
         </Box>
       </Container>
