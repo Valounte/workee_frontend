@@ -26,7 +26,7 @@ import {
   MenuItem,
 } from '@ui-kit';
 
-import { useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppDispatch } from '../../../../store/useAppDispatch';
 
 const validationSchema = yupObject({
   email: yupString().email('Entrer un email valide').required('Email Obligatoire'),

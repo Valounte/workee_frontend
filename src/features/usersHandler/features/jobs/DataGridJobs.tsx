@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 import { selectJobs } from '@entities/jobs/store/selectors/getJobs.selector';
 
-import { jobCompanyDataGridCol } from './data-grid/jobCompanyDataGridCol';
-import { jobIdDataGridCol } from './data-grid/jobIdDataGridCol';
-import { jobNameDataGridCol } from './data-grid/jobNameDataGridCol';
+import { jobCompanyDataGridCol } from '../data-grid/jobCompanyDataGridCol';
+import { jobIdDataGridCol } from '../data-grid/jobIdDataGridCol';
+import { jobNameDataGridCol } from '../data-grid/jobNameDataGridCol';
 
 const columns: GridColDef[] = [
   jobIdDataGridCol,

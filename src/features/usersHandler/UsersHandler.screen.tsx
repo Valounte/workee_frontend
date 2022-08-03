@@ -11,10 +11,10 @@ import { getTeamsThunk } from '@entities/teams/store/thunks/getTeams.thunk';
 import { Typography, Tabs, Tab, Box, TabPanel } from '@ui-kit';
 
 import { useAppDispatch } from '../../store/useAppDispatch';
-import { CreateTeamForm } from './features/CreateTeamForm';
-import { DataGridJobs } from './features/DataGridJobs';
-import { DataGridTeams } from './features/DataGridTeams';
-import { InviteUserForm } from './features/InviteUserForm';
+import { DataGridJobs } from './features/jobs/DataGridJobs';
+import { CreateTeamForm } from './features/teams/CreateTeamForm';
+import { DataGridTeams } from './features/teams/DataGridTeams';
+import { InviteUserForm } from './features/users/InviteUserForm';
 
 /* eslint-disable no-unused-vars */
 enum TabsEnum {
