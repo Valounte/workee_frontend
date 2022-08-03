@@ -11,10 +11,10 @@ import {
   number as yupNumber,
 } from 'yup';
 
+import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { selectJobs } from '@entities/jobs/store/selectors/getJobs.selector';
 import { selectTeams } from '@entities/teams/store/selectors/getTeams.selector';
-import { selectToken } from '@entities/user/store/selectors/selectToken.selector';
-import { inviteThunk } from '@entities/user/store/thunks/invite.thunk';
+import { inviteThunk } from '@entities/users/store/thunks/invite.thunk';
 import {
   Box,
   Button,
@@ -41,7 +41,7 @@ const validationSchema = yupObject({
 
 export const InviteUserForm = () => {
   const dispatch = useAppDispatch();
-  const token = useSelector(selectToken) as string;
+  const token = useSelector(selectToken);
   const jobsFromStore = useSelector(selectJobs);
   const teamsFromStore = useSelector(selectTeams);
   const { enqueueSnackbar } = useSnackbar();

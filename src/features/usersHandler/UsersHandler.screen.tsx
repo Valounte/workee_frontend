@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAsync } from 'react-use';
 
+import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getJobsThunk } from '@entities/jobs/store/thunks/getJobs.thunk';
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { getTeamsThunk } from '@entities/teams/store/thunks/getTeams.thunk';
-import { selectToken } from '@entities/user/store/selectors/selectToken.selector';
 import { Typography, Tabs, Tab, Box, TabPanel } from '@ui-kit';
 
 import { useAppDispatch } from '../../store/useAppDispatch';
@@ -40,10 +40,10 @@ const UsersHandlerScreen = () => {
   };
 
   const { loading: loadingTeams, error: errorTeams } = useAsync(() =>
-    dispatch(getTeamsThunk({ token: token as string }))
+    dispatch(getTeamsThunk({ token }))
   );
   const { loading: loadingJobs, error: errorJobs } = useAsync(() =>
-    dispatch(getJobsThunk({ token: token as string }))
+    dispatch(getJobsThunk({ token }))
   );
   // TODO: ajouter le getUsersThunk"
 

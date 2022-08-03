@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { User } from '../User';
+import { User } from '../../users/User';
 import { loginThunk } from './thunks/login.thunk';
 import { logoutThunk } from './thunks/logout.thunk';
 import { registerThunk } from './thunks/register.thunk';
 
-export interface UserSlice {
+export interface AutentificationSlice {
   user?: User;
   token?: string;
 }
-const initialState: UserSlice = {
+const initialState: AutentificationSlice = {
   user: undefined,
   token: undefined,
 };
 
-export const userSlice = createSlice({
-  name: 'user',
+export const authentificationSlice = createSlice({
+  name: 'authentification',
   initialState,
   reducers: {},
   extraReducers: builder => {

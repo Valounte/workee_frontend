@@ -3,8 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
+import { selectIsAuthentificated } from '@entities/authentification/store/selectors/selectIsAuthentificated.selector';
 import { RoutesEnum } from '@entities/RoutesEnum';
-import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
 
 interface RedirectIfNotAuthentificatedProps {
   children: JSX.Element;

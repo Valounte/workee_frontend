@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { User } from '../User';
+import { User } from '../../users/User';
 
 export type InviteUserBody = Pick<User, 'email'> & {
   firstname: string;

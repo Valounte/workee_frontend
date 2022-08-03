@@ -6,8 +6,8 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { string as yupString, object as yupObject } from 'yup';
 
+import { loginThunk } from '@entities/authentification/store/thunks/login.thunk';
 import { RoutesEnum } from '@entities/RoutesEnum';
-import { loginThunk } from '@entities/user/store/thunks/login.thunk';
 import {
   Box,
   Button,
