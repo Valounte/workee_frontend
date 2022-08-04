@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { ErrorPage } from '@common-features/error-page/ErrorPage';
 import { NotAuthentificatedRoute } from '@common-features/redirects/redirectIfAuthentificated/NotAuthentificatedRoute';
 import { SimpleHeader } from '@common-features/simpleHeader/SimpleHeader';
-import { Box, Grid } from '@ui-kit';
+import { Container, Stack } from '@ui-kit';
 import { ReactComponent as RegisterImage } from '@ui-kit/images/password-illustration.svg';
 
 import { RegisterForm } from './features/RegisterForm';
@@ -36,24 +36,20 @@ const RegisterScreen = () => {
     <NotAuthentificatedRoute>
       <>
         <SimpleHeader />
-        <Grid container>
-          <Grid item xs={12} sm={6}>
-            <Box
-              minHeight="90vh"
-              minWidth="50vw"
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center">
+        <Container maxWidth="md">
+          <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center">
+            <Stack
+              direction="column"
+              alignItems="flex-start"
+              width={{ xs: '100%', sm: '50%' }}
+              display={{ xs: 'none', sm: 'flex' }}>
               <RegisterImage width="80%" />
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box minHeight="90vh" minWidth="50vw">
+            </Stack>
+            <Stack width={{ xs: '100%', sm: '50%' }} order={{ xs: 1, sm: 2 }}>
               <RegisterForm email={email} token={token} />
-            </Box>
-          </Grid>
-        </Grid>
+            </Stack>
+          </Stack>
+        </Container>
       </>
     </NotAuthentificatedRoute>
   );
