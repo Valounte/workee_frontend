@@ -8,12 +8,14 @@ import { selectToken } from '@entities/authentification/store/selectors/selectTo
 import { getJobsThunk } from '@entities/jobs/store/thunks/getJobs.thunk';
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { getTeamsThunk } from '@entities/teams/store/thunks/getTeams.thunk';
+import { getUsersThunk } from '@entities/users/store/thunks/getUsers.thunk';
 import { Typography, Tabs, Tab, Box, TabPanel } from '@ui-kit';
 
 import { useAppDispatch } from '../../store/useAppDispatch';
 import { DataGridJobs } from './features/jobs/DataGridJobs';
 import { CreateTeamForm } from './features/teams/CreateTeamForm';
 import { DataGridTeams } from './features/teams/DataGridTeams';
+import { DataGridUsers } from './features/users/DataGridUsers';
 import { InviteUserForm } from './features/users/InviteUserForm';
 
 /* eslint-disable no-unused-vars */
@@ -45,8 +47,9 @@ const UsersHandlerScreen = () => {
   const { loading: loadingJobs, error: errorJobs } = useAsync(() =>
     dispatch(getJobsThunk({ token }))
   );
-  // TODO: ajouter le getUsersThunk"
-
+  const { loading: loadingUsers, error: errorUsers } = useAsync(() =>
+    dispatch(getUsersThunk({ token }))
+  );
   return (
     <div>
       <Box display="flex" justifyContent="center">
@@ -59,6 +62,7 @@ const UsersHandlerScreen = () => {
       <TabPanel value={value} index={TabsEnum.users}>
         <Typography>Inviter un nouvel utilisateur !</Typography>
         <InviteUserForm />
+        <DataGridUsers loading={loadingUsers} error={errorUsers} />
       </TabPanel>
       <TabPanel value={value} index={TabsEnum.teams}>
         <Typography>Teams</Typography>
@@ -68,7 +72,6 @@ const UsersHandlerScreen = () => {
       <TabPanel value={value} index={TabsEnum.jobs}>
         <Typography>Jobs</Typography>
         <DataGridJobs loading={loadingJobs} error={errorJobs} />
-        {/* TODO: créer CreateJobs */}
       </TabPanel>
     </div>
   );
