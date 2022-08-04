@@ -7,8 +7,8 @@ import { string as yupString, object as yupObject } from 'yup';
 
 import {
   Typography,
-  Grid,
-  Box,
+  Container,
+  Stack,
   Button,
   styled,
   TextField,
@@ -91,41 +91,39 @@ export const ErrorPage = () => {
           </DialogActions>
         </form>
       </Dialog>
-      <Grid container>
-        <Grid item xs={12} sm={6}>
-          <Box
-            minHeight="90vh"
-            minWidth="50vw"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center">
+      <Container maxWidth="md">
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="center"
+          height={{ xs: '100vh' }}
+          justifyContent={{ xs: 'center' }}>
+          <Stack
+            direction="column"
+            alignItems="flex-start"
+            width={{ xs: '100%', sm: '50%' }}
+            display={{ xs: 'none', sm: 'flex' }}>
             <ErrorImage width="80%" />
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Box minHeight="90vh" minWidth="50vw">
-            <Box
-              display="flex"
-              flexDirection="column"
-              minHeight="90vh"
-              justifyContent="center">
-              <Typography variant="h2" fontWeight="500" paddingBottom={2}>
-                Problème recontré
-              </Typography>
-              <Typography variant="subtitle1" fontSize="25px">
-                Erreur, veuillez contacter le support.
-              </Typography>
-              <StyledButton
-                variant="contained"
-                color="secondary"
-                onClick={handleOpenDialogContact}>
-                <Typography>Contacter le support</Typography>
-              </StyledButton>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
+          </Stack>
+          <Stack
+            direction="column"
+            alignItems={{ xs: 'center', sm: 'flex-start' }}
+            width={{ xs: '100%', sm: '50%' }}
+            mt={{ xs: 3 }}>
+            <Typography variant="h2" fontWeight="500" paddingBottom={2}>
+              Problème recontré
+            </Typography>
+            <Typography variant="subtitle1" fontSize="25px">
+              Erreur, veuillez contacter le support.
+            </Typography>
+            <StyledButton
+              variant="contained"
+              color="secondary"
+              onClick={handleOpenDialogContact}>
+              <Typography>Contacter le support</Typography>
+            </StyledButton>
+          </Stack>
+        </Stack>
+      </Container>
     </>
   );
 };
