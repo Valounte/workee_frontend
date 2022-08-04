@@ -18,7 +18,7 @@ export const BrandStatistics = () => (
         </Box>
         <Stack direction="column">
           <Typography variant="h3">124 521</Typography>
-          <Typography>Workees dans la nature</Typography>
+          <Typography variant="body1">Workees dans la nature</Typography>
         </Stack>
       </Stack>
       <Stack direction="row" alignItems="center">
@@ -27,7 +27,7 @@ export const BrandStatistics = () => (
         </Box>
         <Stack direction="column">
           <Typography variant="h3">347</Typography>
-          <Typography>Entreprises partenaires</Typography>
+          <Typography variant="body1">Entreprises partenaires</Typography>
         </Stack>
       </Stack>
       <Stack direction="row" alignItems="center">
@@ -36,7 +36,7 @@ export const BrandStatistics = () => (
         </Box>
         <Stack direction="column">
           <Typography variant="h3">213 067</Typography>
-          <Typography>équipes créées</Typography>
+          <Typography variant="body1">Equipes managées</Typography>
         </Stack>
       </Stack>
     </Stack>

@@ -20,32 +20,39 @@ const PageNotFoundScreen = () => {
     <>
       <SimpleHeader />
       <Container maxWidth="md">
-        <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="center">
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems="center"
+          height={{ xs: '100vh' }}
+          justifyContent={{ xs: 'center' }}>
           <Stack
             direction="column"
             alignItems="flex-start"
             width={{ xs: '100%', sm: '50%' }}
             display={{ xs: 'none', sm: 'flex' }}>
-            <PageNotFoundImage width="100%" />
+            <PageNotFoundImage width="80%" />
           </Stack>
-        </Stack>
-        <Stack
-          direction="column"
-          alignItems={{ xs: 'center', sm: 'flex-start' }}
-          width={{ xs: '100%', sm: '50%' }}
-          mt={{ xs: 3 }}>
-          <Typography variant="h2" fontWeight="500" paddingBottom={2}>
-            Page introuvable
-          </Typography>
-          <Typography variant="subtitle1" fontSize="25px">
-            Désolé, la page que vous recherchez n&apos;existe pas.
-          </Typography>
-          <StyledButton
-            variant="contained"
-            color="secondary"
-            onClick={handleClickRedirect}>
-            <Typography>Retourner à l&apos;accueil</Typography>
-          </StyledButton>
+          <Stack
+            direction="column"
+            alignItems={{ xs: 'center', sm: 'flex-start' }}
+            width={{ xs: '100%', sm: '50%' }}
+            mt={{ xs: 3 }}>
+            <Typography variant="h2" fontWeight="500" paddingBottom={2}>
+              Page introuvable
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              fontSize="25px"
+              textAlign={{ xs: 'center', sm: 'left' }}>
+              Désolé, la page que vous recherchez n&apos;existe pas.
+            </Typography>
+            <StyledButton
+              variant="contained"
+              color="secondary"
+              onClick={handleClickRedirect}>
+              <Typography>Retourner à l&apos;accueil</Typography>
+            </StyledButton>
+          </Stack>
         </Stack>
       </Container>
     </>

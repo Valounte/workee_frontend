@@ -11,7 +11,7 @@ export const About = () => (
         alignItems="center"
         py={3}
         spacing={3}>
-        <Stack width={{ xs: '100%', sm: '50%' }}>
+        <Stack width={{ xs: '100%', sm: '50%' }} alignItems={{ xs: 'center' }}>
           <WorkeeFriendImage width="80%" />
         </Stack>
         <Stack
@@ -19,11 +19,13 @@ export const About = () => (
           alignItems={{ xs: 'center', sm: 'flex-start' }}
           width={{ xs: '100%', sm: '50%' }}
           mt={{ xs: 3 }}>
-          <Typography variant="h2">
+          <Typography variant="h3" marginBottom="3.5rem">
             Workee, un ami robotique à votre service
           </Typography>
-          <Typography>Besoin d&apos;une pause ? D&apos;hydratation ? </Typography>
-          <Typography>
+          <Typography variant="body1">
+            Besoin d&apos;une pause ? D&apos;hydratation ?{' '}
+          </Typography>
+          <Typography variant="body1">
             Workee vous accompagne lors de vos journées de télétravail et prend soin
             de vous.
           </Typography>

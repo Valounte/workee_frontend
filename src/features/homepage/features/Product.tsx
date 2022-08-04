@@ -15,7 +15,12 @@ export const Product = () => (
         alignItems={{ xs: 'center', sm: 'flex-start' }}
         width={{ xs: '100%', sm: '50%' }}
         mt={{ xs: 3 }}>
-        <Typography variant="h3">Un avant-goût de Workee ?</Typography>
+        <Typography
+          variant="h2"
+          marginBottom="3.5rem"
+          textAlign={{ xs: 'center', sm: 'left' }}>
+          Un avant-goût de Workee ?
+        </Typography>
         <Typography variant="body1">
           Nos équipes travaillent activement sur notre Workee 1.0.
         </Typography>
