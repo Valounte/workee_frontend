@@ -1,9 +1,12 @@
 // Components
 export * from './components/AppBar/AppBar';
+export * from './components/Avatar/Avatar';
 export * from './components/Container/Container';
 export * from './components/Box/Box';
 export * from './components/Menu/Menu';
+export * from './components/MenuList/MenuList';
 export * from './components/MenuItem/MenuItem';
+export * from './components/ListItemIcon/ListItemIcon';
 export * from './components/Button/Button';
 export * from './components/IconButton/IconButton';
 export * from './components/Stack/Stack';
@@ -21,6 +24,7 @@ export * from './components/DialogActions/DialogActions';
 export * from './components/DialogContent/DialogContent';
 export * from './components/DialogContentText/DialogContentText';
 export * from './components/DialogTitle/DialogTitle';
+export * from './components/Divider/Divider';
 export * from './components/Chip/Chip';
 export * from './components/SelectInput/SelectInput';
 
@@ -31,6 +35,7 @@ export * from './styled';
 export * from './theme';
 
 export * from './icons/Menu/Menu';
+export * from './icons/Signout/Signout';
 export * from './icons/Social/Facebook';
 export * from './icons/Social/Instagram';
 export * from './icons/Social/LinkedIn';
