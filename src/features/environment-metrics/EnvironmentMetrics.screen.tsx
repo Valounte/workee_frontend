@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { MainNavigation } from '@common-features/main-navigation/MainNavigation';
 import { NotAuthentificatedRoute } from '@common-features/redirects/redirectIfAuthentificated/NotAuthentificatedRoute';
+import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { RoutesEnum } from '@entities/RoutesEnum';
-import { selectToken } from '@entities/user/store/selectors/selectToken.selector';
 import { styled, Container, Stack } from '@ui-kit';
 
 import { EnvironmentMetrics } from './features/EnvironmentMetrics';
