@@ -17,10 +17,7 @@ export const App = () => (
     <Route path={RoutesEnum.home} element={<HomePageScreen />} />
     <Route path={RoutesEnum.register} element={<RegisterScreen />} />
     <Route path={RoutesEnum.usersHandler} element={<UsersHandlerScreen />} />
-    <Route
-      path={RoutesEnum.environmentMetrics}
-      element={<EnvironmentMetricsScreen />}
-    />
+    <Route path={RoutesEnum.environmentMetrics} element={<EnvironmentMetricsScreen />}/>
     <Route path="*" element={<PageNotFoundScreen />} />
   </Routes>
 );

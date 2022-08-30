@@ -2,6 +2,9 @@
 export * from './components/AppBar/AppBar';
 export * from './components/Avatar/Avatar';
 export * from './components/Container/Container';
+export * from './components/Card/Card';
+export * from './components/CardHeader/CardHeader';
+export * from './components/CardContent/CardContent';
 export * from './components/Box/Box';
 export * from './components/Menu/Menu';
 export * from './components/MenuList/MenuList';
@@ -36,6 +39,11 @@ export * from './theme';
 
 export * from './icons/Menu/Menu';
 export * from './icons/Signout/Signout';
+export * from './icons/Dashboard/Dashboard';
+export * from './icons/Analytics/Analytics';
+export * from './icons/Metrics/Metrics';
+export * from './icons/Admin/Admin';
+export * from './icons/Team/Team';
 export * from './icons/Social/Facebook';
 export * from './icons/Social/Instagram';
 export * from './icons/Social/LinkedIn';
