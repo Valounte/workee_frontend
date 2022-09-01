@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 
 import { selectTeams } from '@entities/teams/store/selectors/getTeams.selector';
 
-import { teamCompanyDataGridCol } from './data-grid/teamCompanyDataGridCol';
-import { teamIdDataGridCol } from './data-grid/teamIdDataGridCol';
-import { teamNameDataGridCol } from './data-grid/teamNameDataGridCol';
+import { teamCompanyDataGridCol } from '../data-grid/teamCompanyDataGridCol';
+import { teamIdDataGridCol } from '../data-grid/teamIdDataGridCol';
+import { teamNameDataGridCol } from '../data-grid/teamNameDataGridCol';
 
 const columns: GridColDef[] = [
   teamIdDataGridCol,

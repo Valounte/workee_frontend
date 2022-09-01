@@ -6,10 +6,10 @@ import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import { string as yupString, object as yupObject, ref as yupRef } from 'yup';
 
+import { registerThunk } from '@entities/authentification/store/thunks/register.thunk';
+import { RoutesEnum } from '@entities/RoutesEnum';
 import { Box, Button, styled, TextField, Typography } from '@ui-kit';
 
-import { RoutesEnum } from '../../../entities/RoutesEnum';
-import { registerThunk } from '../../../entities/user/store/thunks/register.thunk';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 
 interface RegisterFormProps {

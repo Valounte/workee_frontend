@@ -20,7 +20,7 @@ axios.defaults.baseURL = 'https://workee-back.brangers.eu';
 
 store.subscribe(
   debounce(() => {
-    saveStateToken(store.getState().user.token, LocalStorageKey.token);
+    saveStateToken(store.getState().authentification.token, LocalStorageKey.token);
   }, 800)
 );
 

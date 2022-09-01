@@ -4,17 +4,19 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAsync } from 'react-use';
 
+import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getJobsThunk } from '@entities/jobs/store/thunks/getJobs.thunk';
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { getTeamsThunk } from '@entities/teams/store/thunks/getTeams.thunk';
-import { selectToken } from '@entities/user/store/selectors/selectToken.selector';
+import { getUsersThunk } from '@entities/users/store/thunks/getUsers.thunk';
 import { Typography, Tabs, Tab, Box, TabPanel } from '@ui-kit';
 
 import { useAppDispatch } from '../../store/useAppDispatch';
-import { CreateTeamForm } from './features/CreateTeamForm';
-import { DataGridJobs } from './features/DataGridJobs';
-import { DataGridTeams } from './features/DataGridTeams';
-import { InviteUserForm } from './features/InviteUserForm';
+import { DataGridJobs } from './features/jobs/DataGridJobs';
+import { CreateTeamForm } from './features/teams/CreateTeamForm';
+import { DataGridTeams } from './features/teams/DataGridTeams';
+import { DataGridUsers } from './features/users/DataGridUsers';
+import { InviteUserForm } from './features/users/InviteUserForm';
 
 /* eslint-disable no-unused-vars */
 enum TabsEnum {
@@ -40,13 +42,14 @@ const UsersHandlerScreen = () => {
   };
 
   const { loading: loadingTeams, error: errorTeams } = useAsync(() =>
-    dispatch(getTeamsThunk({ token: token as string }))
+    dispatch(getTeamsThunk({ token }))
   );
   const { loading: loadingJobs, error: errorJobs } = useAsync(() =>
-    dispatch(getJobsThunk({ token: token as string }))
+    dispatch(getJobsThunk({ token }))
   );
-  // TODO: ajouter le getUsersThunk"
-
+  const { loading: loadingUsers, error: errorUsers } = useAsync(() =>
+    dispatch(getUsersThunk({ token }))
+  );
   return (
     <div>
       <Box display="flex" justifyContent="center">
@@ -59,6 +62,7 @@ const UsersHandlerScreen = () => {
       <TabPanel value={value} index={TabsEnum.users}>
         <Typography>Inviter un nouvel utilisateur !</Typography>
         <InviteUserForm />
+        <DataGridUsers loading={loadingUsers} error={errorUsers} />
       </TabPanel>
       <TabPanel value={value} index={TabsEnum.teams}>
         <Typography>Teams</Typography>
@@ -68,7 +72,6 @@ const UsersHandlerScreen = () => {
       <TabPanel value={value} index={TabsEnum.jobs}>
         <Typography>Jobs</Typography>
         <DataGridJobs loading={loadingJobs} error={errorJobs} />
-        {/* TODO: créer CreateJobs */}
       </TabPanel>
     </div>
   );

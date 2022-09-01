@@ -4,9 +4,9 @@ import { useSnackbar } from 'notistack';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { selectIsAuthentificated } from '@entities/authentification/store/selectors/selectIsAuthentificated.selector';
+import { logoutThunk } from '@entities/authentification/store/thunks/logout.thunk';
 import { RoutesEnum } from '@entities/RoutesEnum';
-import { selectIsAuthentificated } from '@entities/user/store/selectors/selectIsAuthentificated.selector';
-import { logoutThunk } from '@entities/user/store/thunks/logout.thunk';
 import {
   AppBar,
   Container,
