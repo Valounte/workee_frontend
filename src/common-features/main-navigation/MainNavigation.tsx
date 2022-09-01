@@ -18,7 +18,7 @@ import {
   MetricsIcon,
   AdminIcon
 } from '@ui-kit';
-import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
+// import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -29,17 +29,19 @@ const StyledLink = styled(Link)`
 
 export const MainNavigation = () => (
   <Stack spacing={1} justifyContent="space-between" p={4} borderRight="1px solid grey">
-    <MenuItem>
+    {/* <MenuItem>
       <Link to={RoutesEnum.home}>
         <Logo width={100} height="10%" />
       </Link>
-    </MenuItem>
+    </MenuItem> */}
     <Stack spacing={8}>
       <MenuItem disableRipple>
-        <Stack direction="column" alignItems="center" mt={0} spacing={1}>
+        <Stack direction="row" alignItems="center" mt={0} spacing={1}>
           <Avatar />
-          <Typography variant="body1">René Coty</Typography>
-          <Typography variant="body1">r.coty@gmail.com</Typography>
+          <Stack>
+            <Typography variant="body1">René Coty</Typography>
+            <Typography variant="body1">r.coty@gmail.com</Typography>
+          </Stack>
         </Stack>
       </MenuItem>
       <Stack spacing={3}>
