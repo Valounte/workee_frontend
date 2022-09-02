@@ -14,10 +14,17 @@ import {
   Button,
   IconButton,
   MenuIcon,
+  styled,
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
 const links = ['Invitation Utilisateurs', 'Link2', 'Link3'];
+
+const StyledLink = styled(Link)`
+display: flex;
+flex-direction: row;
+text-decoration: none;
+color: #3f1d01;`;
 
 export const MainHeader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -75,11 +82,11 @@ export const MainHeader = () => {
             spacing={2}
             display={{ xs: 'none', sm: 'flex' }}
             order={{ sm: '2' }}>
-            <Link to="/usersHandler">
-              <Typography textAlign="center">
-                {links[0]}
-              </Typography>
-            </Link>
+            <MenuItem>
+              <StyledLink to="/usersHandler">
+                <Typography textAlign="center">Invitation utilisateur</Typography>
+              </StyledLink>
+            </MenuItem>
           </Stack>
           <Stack order={{ xs: '3', sm: '2' }}>
             <Button href={RoutesEnum.login} variant="outlined" color="secondary">
