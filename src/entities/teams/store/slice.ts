@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import type { Team } from '../Team';
+import { createTeamThunk } from './thunks/createTeam.thunk';
 import { getTeamsThunk } from './thunks/getTeams.thunk';
 
 export const teamsAdapter = createEntityAdapter<Team>({
@@ -14,6 +15,9 @@ export const teamSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getTeamsThunk.fulfilled, (state, { payload }) => {
       teamsAdapter.setAll(state, payload);
+    });
+    builder.addCase(createTeamThunk.fulfilled, (state, { payload }) => {
+      teamsAdapter.addOne(state, payload);
     });
   },
 });
