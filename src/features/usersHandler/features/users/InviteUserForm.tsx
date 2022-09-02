@@ -32,11 +32,8 @@ const validationSchema = yupObject({
   email: yupString().email('Entrer un email valide').required('Email Obligatoire'),
   firstname: yupString().required('Prénom Obligatoire'),
   lastname: yupString().required('Nom Obligatoire'),
-  job: yupNumber().required('Poste Obligatoire'),
-  teams: yupArray()
-    .of(yupNumber())
-    .required('Team Obligatoire')
-    .min(1, 'Team Obligatoire'),
+  job: yupNumber(),
+  teams: yupArray(),
 });
 
 export const InviteUserForm = () => {
@@ -146,7 +143,7 @@ export const InviteUserForm = () => {
         <SelectInput
           id="job"
           name="job"
-          label="Job"
+          label="Job (Optionel)"
           value={formik.values.job}
           error={formik.touched.job && Boolean(formik.errors.job)}
           onChange={handleChangeJob}
@@ -166,7 +163,7 @@ export const InviteUserForm = () => {
         <SelectInput
           id="teams"
           name="teams"
-          label="Teams"
+          label="Teams (Optionel)"
           multiple
           value={formik.values.teams}
           onChange={handleChangeTeams}
