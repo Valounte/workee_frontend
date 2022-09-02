@@ -8,5 +8,5 @@ import type { Team } from '@entities/teams/Team';
 
 export const createTeamThunk = createAsyncThunk<Team, CreateTeamServiceParams>(
   'post/team',
-  async builder => (await createTeamService(builder)).data.data
+  async builder => (await createTeamService(builder)).data.team
 );

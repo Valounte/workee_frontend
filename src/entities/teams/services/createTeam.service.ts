@@ -9,7 +9,7 @@ export interface CreateTeamServiceParams {
 
 export interface CreateTeamServiceReturn {
   message: string;
-  data: Team;
+  team: Team;
 }
 
 export const createTeamService = ({ token, name }: CreateTeamServiceParams) =>
