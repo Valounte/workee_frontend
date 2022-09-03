@@ -11,9 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { useSelector } from 'react-redux';
 
-import { selectHumidity } from '@entities/metrics/store/selectors/getHumidity.selector';
 import {
   styled,
   Container,
@@ -90,64 +88,56 @@ const StyledGridContainer = styled(Grid)`
 
 const StyledCardContent = styled(Grid)``;
 
-export const EnvironmentMetrics = () => {
-  const humidity = useSelector(selectHumidity);
-  console.log(humidity);
+export const EnvironmentMetrics = () => (
+  <StyledContainer>
+    <Box height="15vh" p={2}>
+      <Stack direction="row" alignItems="center" spacing={2}>
+        <MetricsIcon fontSize="large" />
+        <Typography variant="h4">Workee</Typography>
+      </Stack>
+      <Typography variant="body1">
+        Données relevées le 30 août 2022 à 12:36
+      </Typography>
+    </Box>
 
-  return (
-    <StyledContainer>
-      <Box height="15vh" p={2}>
-        <Stack direction="row" alignItems="center" spacing={2}>
-          <MetricsIcon fontSize="large" />
-          <Typography variant="h4">Workee</Typography>
-        </Stack>
-        <Typography variant="body1">
-          Données relevées le 30 août 2022 à 12:36
-        </Typography>
-      </Box>
-
-      <StyledGridContainer
-        container
-        spacing={2}
-        columns={12}
-        py={4}
-        alignItems="stretch">
-        <Grid item sm={6}>
-          <Card>
-            <StyledCardContent container spacing={2}>
-              <Grid item sm={6}>
-                <Stack direction="row" alignItems="center" spacing={1} mx={2}>
-                  <ThermometerIcon fontSize="large" />
-                  <Typography variant="h5">Température</Typography>
-                </Stack>
-              </Grid>
-              <Grid item sm={6}>
-                <Chip label="Recommandation : 40% - 60%" />
-              </Grid>
-              <Grid item sm={4}>
-                <Box alignContent="center">
-                  <Line options={options} data={data} />
-                </Box>
-              </Grid>
-              <Grid item sm={8}>
-                <Typography
-                  variant="h1"
-                  textAlign="center"
-                  alignSelf="center"
-                  mx={2}>
-                  35°C
-                </Typography>
-              </Grid>
-              <Grid item sm={12}>
-                <Typography variant="body2" alignSelf="center" mx={2}>
-                  La température est élevée
-                </Typography>
-              </Grid>
-              {/* </Grid> */}
-            </StyledCardContent>
-          </Card>
-        </Grid>
-        {/* <StyledGridItem item sm={6}>
+    <StyledGridContainer
+      container
+      spacing={2}
+      columns={12}
+      py={4}
+      alignItems="stretch">
+      <Grid item sm={6}>
+        <Card>
+          <StyledCardContent container spacing={2}>
+            <Grid item sm={6}>
+              <Stack direction="row" alignItems="center" spacing={1} mx={2}>
+                <ThermometerIcon fontSize="large" />
+                <Typography variant="h5">Température</Typography>
+              </Stack>
+            </Grid>
+            <Grid item sm={6}>
+              <Chip label="Recommandation : 40% - 60%" />
+            </Grid>
+            <Grid item sm={4}>
+              <Box alignContent="center">
+                <Line options={options} data={data} />
+              </Box>
+            </Grid>
+            <Grid item sm={8}>
+              <Typography variant="h1" textAlign="center" alignSelf="center" mx={2}>
+                35°C
+              </Typography>
+            </Grid>
+            <Grid item sm={12}>
+              <Typography variant="body2" alignSelf="center" mx={2}>
+                La température est élevée
+              </Typography>
+            </Grid>
+            {/* </Grid> */}
+          </StyledCardContent>
+        </Card>
+      </Grid>
+      {/* <StyledGridItem item sm={6}>
           <Card>
             <Stack direction="row" alignItems="center" spacing={1} mx={2}>
               <ThermometerIcon fontSize="large"/>
@@ -162,7 +152,7 @@ export const EnvironmentMetrics = () => {
           </Card>
         </StyledGridItem> */}
 
-        {/* <StyledGridItem item sm={6}>
+      {/* <StyledGridItem item sm={6}>
           <Card>
             <Stack direction="row" alignItems="center" spacing={1} mx={2}>
               <HumidityIcon fontSize="large"/>
@@ -198,7 +188,6 @@ export const EnvironmentMetrics = () => {
               <Typography variant="body2" alignSelf="center" mx={2}>La luminosité est ok</Typography>
           </Card>
         </StyledGridItem> */}
-      </StyledGridContainer>
-    </StyledContainer>
-  );
-};
+    </StyledGridContainer>
+  </StyledContainer>
+);
