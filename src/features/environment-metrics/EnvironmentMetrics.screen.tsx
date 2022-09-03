@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { MainNavigation } from '@common-features/main-navigation/MainNavigation';
-import { NotAuthentificatedRoute } from '@common-features/redirects/redirectIfAuthentificated/NotAuthentificatedRoute';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { RoutesEnum } from '@entities/RoutesEnum';
 import { styled, Container, Stack } from '@ui-kit';
@@ -25,14 +24,12 @@ const EnvironmentMetricsScreen = () => {
     navigate(RoutesEnum.login);
   }
   return (
-    <NotAuthentificatedRoute>
-      <StyledContainer>
-        <Stack direction="row" height="100vh" spacing={0}>
-          <MainNavigation />
-          <EnvironmentMetrics/>
-        </Stack>
-      </StyledContainer>
-    </NotAuthentificatedRoute>
+    <StyledContainer>
+      <Stack direction="row" height="100vh" spacing={0}>
+        <MainNavigation />
+        <EnvironmentMetrics />
+      </Stack>
+    </StyledContainer>
   );
 };
 

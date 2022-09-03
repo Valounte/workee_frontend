@@ -6,7 +6,9 @@ import {
   styled,
 } from '@mui/material';
 
-const StyledListItemIcon = styled(MuiListItemIcon)``;
+const StyledListItemIcon = styled(MuiListItemIcon)`
+  // justify-content: center;
+`;
 
 export const ListItemIcon = memo((props: ListItemIconProps) => {
   const { children, ...otherProps } = props;
