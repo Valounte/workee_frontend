@@ -26,7 +26,6 @@ import {
   IconButton,
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
-// import { ReactComponent as SmallLogo } from '@ui-kit/images/workee-small-logo.svg';
 
 export const MainNavigation = () => {
   const isAuthentificated = useSelector(selectIsAuthentificated);

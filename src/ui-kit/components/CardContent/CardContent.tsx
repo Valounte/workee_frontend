@@ -1,6 +1,10 @@
 import React, { memo } from 'react';
 
-import { CardContent as MuiCardContent, CardContentProps, styled } from '@mui/material';
+import {
+  CardContent as MuiCardContent,
+  CardContentProps,
+  styled,
+} from '@mui/material';
 
 const StyledCardContent = styled(MuiCardContent)``;
 
