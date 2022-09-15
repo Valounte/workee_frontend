@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { RoutesEnum } from '@entities/RoutesEnum';
 
+import EnvironmentMetricsScreen from './features/environment-metrics/EnvironmentMetrics.screen';
 import { HomePageScreen } from './features/homepage/Homepage.screen';
 import LoginScreen from './features/login/Login.screen';
 import PageNotFoundScreen from './features/page-not-found/PageNotFound.screen';
@@ -16,6 +17,10 @@ export const App = () => (
     <Route path={RoutesEnum.home} element={<HomePageScreen />} />
     <Route path={RoutesEnum.register} element={<RegisterScreen />} />
     <Route path={RoutesEnum.usersHandler} element={<UsersHandlerScreen />} />
+    <Route
+      path={RoutesEnum.environmentMetrics}
+      element={<EnvironmentMetricsScreen />}
+    />
     <Route path="*" element={<PageNotFoundScreen />} />
   </Routes>
 );
