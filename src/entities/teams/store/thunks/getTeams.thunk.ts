@@ -5,6 +5,6 @@ import type { getTeamsServiceParams } from '../../services/getTeams.service';
 import type { Team } from '../../Team';
 
 export const getTeamsThunk = createAsyncThunk<Team[], getTeamsServiceParams>(
-  '/teams',
+  'get/teams',
   async builder => (await getTeamsService(builder)).data
 );
