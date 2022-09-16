@@ -17,16 +17,16 @@ interface JWTDecoded {
 
 const RegisterScreen = () => {
   const { search } = useLocation();
+
   const searchParams = new URLSearchParams(search);
   const token =
     searchParams.get('token') !== null ? (searchParams.get('token') as string) : '';
-
-  const { decodedToken } = useJwt<JWTDecoded>(token);
+  const { decodedToken, isExpired } = useJwt<JWTDecoded>(token);
   if (!decodedToken) {
     return (
       <>
         <SimpleHeader />
-        <ErrorPage />
+        {isExpired && <ErrorPage />}
       </>
     );
   }

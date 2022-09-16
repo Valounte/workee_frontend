@@ -1,21 +1,25 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
-import { string as yupString, object as yupObject, ref as yupRef } from 'yup';
+import { string as yupString, object as yupObject } from 'yup';
 
-import { registerThunk } from '@entities/authentification/store/thunks/register.thunk';
-import { RoutesEnum } from '@entities/RoutesEnum';
-import { Box, Button, styled, TextField, Typography } from '@ui-kit';
+import { loginThunk } from '@entities/authentification/store/thunks/login.thunk';
+import {
+  Box,
+  Button,
+  styled,
+  Typography,
+  TextField,
+  Grid,
+  Stack,
+  Checkbox,
+} from '@ui-kit';
 
+import { MainRoutesEnum } from '../../../RoutesEnum';
 import { useAppDispatch } from '../../../store/useAppDispatch';
-
-interface RegisterFormProps {
-  email: string;
-  token: string;
-}
 
 const StyledTextField = styled(TextField)`
   width: 70%;
@@ -25,57 +29,42 @@ const StyledButton = styled(Button)`
   width: 70%;
 `;
 
+const StyledCheckBox = styled(Checkbox)`
+  padding: 0px;
+  padding-right: 3px;
+`;
+
 const validationSchema = yupObject({
   email: yupString().email('Enter a valid email').required('Email is required'),
-  password: yupString()
-    .required('Password is required')
-    .min(8, 'Password must be at least 8 characters')
-    .max(20, 'Password must be less than 20 characters')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
-      'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character'
-    ),
-  passwordConfirmation: yupString().oneOf(
-    [yupRef('password'), null],
-    'Passwords must match'
-  ),
+  password: yupString().required('Password is required'),
 });
 
-export const RegisterForm = memo((props: RegisterFormProps) => {
-  const { email, token } = props;
-
+export const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
-
   const formik = useFormik({
     initialValues: {
-      email,
+      email: '',
       password: '',
-      passwordConfirmation: '',
     },
     validationSchema,
     onSubmit: values => {
-      const registerValues = {
-        password: values.password,
-        token,
-      };
-      dispatch(registerThunk(registerValues))
+      dispatch(loginThunk(values))
         .then(unwrapResult)
         .then(() => {
-          enqueueSnackbar('Successfull registered and connected', {
+          enqueueSnackbar('Successfull connected', {
             variant: 'success',
           });
-          navigate(RoutesEnum.home);
+          navigate(MainRoutesEnum.app);
         })
         .catch(() => {
-          enqueueSnackbar('Account already created', {
+          enqueueSnackbar('Password or email incorrect', {
             variant: 'error',
           });
         });
     },
   });
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <Box
@@ -85,10 +74,10 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
         justifyContent="center"
         alignItems="center">
         <Typography variant="h3" paddingBottom={6}>
-          Finaliser mon inscription
+          Content de vous revoir !
         </Typography>
         <StyledTextField
-          disabled
+          autoFocus
           variant="outlined"
           id="email"
           name="email"
@@ -104,7 +93,6 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
         <StyledTextField
-          autoFocus
           id="password"
           name="password"
           label="Mot de passe"
@@ -119,27 +107,26 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
           }
           InputLabelProps={{ style: { fontSize: 15 } }}
         />
-        <StyledTextField
-          id="passwordConfirmation"
-          name="passwordConfirmation"
-          label="Confirmation Mot de passe"
-          type="password"
-          value={formik.values.passwordConfirmation}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.passwordConfirmation &&
-            Boolean(formik.errors.passwordConfirmation)
-          }
-          helperText={
-            formik.touched.passwordConfirmation && formik.errors.passwordConfirmation
-          }
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          width="70%">
+          <Grid item>
+            <Stack direction="row" alignItems="center">
+              <StyledCheckBox disableRipple size="small" />
+              <Typography>Rester connecté</Typography>
+            </Stack>
+          </Grid>
+          <Grid item>
+            <Typography>Mot de passe oublié ?</Typography>
+          </Grid>
+        </Grid>
         <StyledButton variant="contained" color="secondary" type="submit">
-          <Typography>Inscription</Typography>
+          <Typography>Connexion</Typography>
         </StyledButton>
       </Box>
     </form>
   );
-});
+};

@@ -1,7 +1,7 @@
-export const RoutesEnum = {
+export const MainAppRoutesEnum = {
   home: '/',
   login: '/login',
   register: '/finalize-registration',
-  usersHandler: '/usersHandler', // TO DO : changes url to '/users-handlers'
+  usersHandler: '/users-handlers',
   environmentMetrics: '/environment-metrics',
 };

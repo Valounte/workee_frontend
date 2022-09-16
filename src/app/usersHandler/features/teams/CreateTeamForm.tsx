@@ -9,7 +9,8 @@ import { string as yupString, object as yupObject } from 'yup';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { createTeamThunk } from '@entities/teams/store/thunks/createTeam.thunk';
 import { Box, Button, Typography, TextField } from '@ui-kit';
-import { useAppDispatch } from 'src/store/useAppDispatch';
+
+import { useAppDispatch } from '../../../../store/useAppDispatch';
 
 const validationSchema = yupObject({
   name: yupString().required('name is required'),

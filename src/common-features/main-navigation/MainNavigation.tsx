@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { selectIsAuthentificated } from '@entities/authentification/store/selectors/selectIsAuthentificated.selector';
-import { RoutesEnum } from '@entities/RoutesEnum';
 import {
   Stack,
   Menu,
@@ -26,6 +25,9 @@ import {
   IconButton,
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
+
+import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
+import { MainRoutesEnum } from '../../RoutesEnum';
 
 export const MainNavigation = () => {
   const isAuthentificated = useSelector(selectIsAuthentificated);
@@ -128,7 +130,7 @@ export const MainNavigation = () => {
                   <Typography>Profile</Typography>
                 </ListItem>
                 <Divider />
-                <StyledLink to={RoutesEnum.home}>
+                <StyledLink to={MainRoutesEnum.siteVitrine}>
                   <ListItem>
                     <ListItemIcon>
                       <SignoutIcon fontSize="large" />
@@ -157,7 +159,7 @@ export const MainNavigation = () => {
               <Typography>Statistiques</Typography>
             </ListItem>
             <ListItem>
-              <StyledLink to={RoutesEnum.environmentMetrics}>
+              <StyledLink to={MainAppRoutesEnum.environmentMetrics}>
                 <ListItemIcon>
                   <MetricsIcon fontSize="large" />
                 </ListItemIcon>
@@ -165,7 +167,7 @@ export const MainNavigation = () => {
               </StyledLink>
             </ListItem>
             <ListItem>
-              <StyledLink to={RoutesEnum.usersHandler}>
+              <StyledLink to={MainAppRoutesEnum.usersHandler}>
                 <ListItemIcon>
                   <TeamIcon fontSize="large" />
                 </ListItemIcon>
@@ -173,7 +175,7 @@ export const MainNavigation = () => {
               </StyledLink>
             </ListItem>
             <Divider />
-            <StyledLink to={RoutesEnum.home}>
+            <StyledLink to={MainRoutesEnum.siteVitrine}>
               <ListItem>
                 <ListItemIcon>
                   <SignoutIcon fontSize="large" />
@@ -210,21 +212,21 @@ export const MainNavigation = () => {
               </StyledListItemIcon>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink to={RoutesEnum.environmentMetrics}>
+              <StyledLink to={MainAppRoutesEnum.environmentMetrics}>
                 <StyledListItemIcon>
                   <MetricsIcon fontSize="large" />
                 </StyledListItemIcon>
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink to={RoutesEnum.usersHandler}>
+              <StyledLink to={MainAppRoutesEnum.usersHandler}>
                 <StyledListItemIcon>
                   <TeamIcon fontSize="large" />
                 </StyledListItemIcon>
               </StyledLink>
             </StyledListItem>
             <Divider />
-            <StyledLink to={RoutesEnum.home}>
+            <StyledLink to={MainRoutesEnum.siteVitrine}>
               <StyledListItem>
                 <StyledListItemIcon>
                   <SignoutIcon fontSize="large" />
