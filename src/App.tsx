@@ -2,11 +2,13 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import PageNotFoundScreen from '@common-features/page-not-found/PageNotFound.screen';
-
 import { AppRoutes } from './app/AppRoutes';
 import { MainRoutesEnum } from './RoutesEnum';
 import { SiteVitrineRoutes } from './site-vitrine/SiteVitrineRoutes';
+
+const PageNotFoundScreen = React.lazy(
+  () => import('@common-features/page-not-found/PageNotFound.screen')
+);
 
 export const App = () => (
   <Routes>

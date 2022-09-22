@@ -2,8 +2,9 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import { HomePageScreen } from './homepage/Homepage.screen';
 import { MainSiteVitrineRoutesEnum } from './MainSiteVitrineRoutesEnum';
+
+const HomePageScreen = React.lazy(() => import('./homepage/Homepage.screen'));
 
 export const SiteVitrineRoutes = () => (
   <Routes>
