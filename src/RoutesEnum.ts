@@ -1,6 +1,4 @@
 export const MainRoutesEnum = {
-  siteVitrine: '/',
+  landingPage: '/',
   app: '/app',
 };
-
-

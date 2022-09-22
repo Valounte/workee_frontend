@@ -2,13 +2,19 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import PageNotFoundScreen from '@common-features/page-not-found/PageNotFound.screen';
-
-import EnvironmentMetricsScreen from './environment-metrics/EnvironmentMetrics.screen';
-import LoginScreen from './login/Login.screen';
 import { MainAppRoutesEnum } from './MainAppRoutesEnum';
-import RegisterScreen from './register/Register.Screen';
-import UsersHandlerScreen from './usersHandler/UsersHandler.screen';
+
+const LoginScreen = React.lazy(() => import('./login/Login.screen'));
+const RegisterScreen = React.lazy(() => import('./register/Register.Screen'));
+const EnvironmentMetricsScreen = React.lazy(
+  () => import('./environment-metrics/EnvironmentMetrics.screen')
+);
+const UsersHandlerScreen = React.lazy(
+  () => import('./usersHandler/UsersHandler.screen')
+);
+const PageNotFoundScreen = React.lazy(
+  () => import('@common-features/page-not-found/PageNotFound.screen')
+);
 
 export const AppRoutes = () => (
   <Routes>

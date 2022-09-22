@@ -9,7 +9,7 @@ import { MainRoutesEnum } from '../../RoutesEnum';
 
 export const SimpleHeader = () => (
   <Box display="flex" justifyContent="center" minHeight="10vh" width="100vw">
-    <Link to={MainRoutesEnum.siteVitrine}>
+    <Link to={MainRoutesEnum.landingPage}>
       <Logo height="100%" width={180} />
     </Link>
   </Box>

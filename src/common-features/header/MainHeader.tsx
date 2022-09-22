@@ -54,7 +54,7 @@ export const MainHeader = () => {
       <Container maxWidth="lg">
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Stack order={{ xs: '2', sm: '1' }} flexGrow={{ xs: 1, sm: 0 }}>
-            <Link to={MainRoutesEnum.siteVitrine}>
+            <Link to={MainRoutesEnum.landingPage}>
               <Logo height="100%" width={180} />
             </Link>
           </Stack>

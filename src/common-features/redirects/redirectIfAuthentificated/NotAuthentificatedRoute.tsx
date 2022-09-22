@@ -17,5 +17,5 @@ export const NotAuthentificatedRoute = (
   const { children } = props;
   const isAuthentificated = useSelector(selectIsAuthentificated);
 
-  return isAuthentificated ? <Navigate to={MainRoutesEnum.siteVitrine} /> : children;
+  return isAuthentificated ? <Navigate to={MainRoutesEnum.landingPage} /> : children;
 };

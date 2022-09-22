@@ -66,7 +66,7 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
           enqueueSnackbar('Successfull registered and connected', {
             variant: 'success',
           });
-          navigate(MainRoutesEnum.siteVitrine);
+          navigate(MainRoutesEnum.landingPage);
         })
         .catch(() => {
           enqueueSnackbar('Account already created', {
