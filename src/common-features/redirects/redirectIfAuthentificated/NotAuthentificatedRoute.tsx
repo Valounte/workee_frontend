@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { selectIsAuthentificated } from '@entities/authentification/store/selectors/selectIsAuthentificated.selector';
-import { RoutesEnum } from '@entities/RoutesEnum';
+
+import { MainRoutesEnum } from '../../../RoutesEnum';
 
 interface RedirectIfNotAuthentificatedProps {
   children: JSX.Element;
@@ -16,5 +17,5 @@ export const NotAuthentificatedRoute = (
   const { children } = props;
   const isAuthentificated = useSelector(selectIsAuthentificated);
 
-  return isAuthentificated ? <Navigate to={RoutesEnum.home} /> : children;
+  return isAuthentificated ? <Navigate to={MainRoutesEnum.landingPage} /> : children;
 };

@@ -7,7 +7,7 @@ import { BrandStatistics } from './features/BrandStatistics';
 import { HeroHeader } from './features/HeroHeader';
 import { Product } from './features/Product';
 
-export const HomePageScreen = () => (
+const HomePageScreen = () => (
   <>
     <MainHeader />
     <HeroHeader />
@@ -17,3 +17,5 @@ export const HomePageScreen = () => (
     <Footer />
   </>
 );
+
+export default HomePageScreen;

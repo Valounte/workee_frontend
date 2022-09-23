@@ -6,12 +6,13 @@ import { useAsync } from 'react-use';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getJobsThunk } from '@entities/jobs/store/thunks/getJobs.thunk';
-import { RoutesEnum } from '@entities/RoutesEnum';
 import { getTeamsThunk } from '@entities/teams/store/thunks/getTeams.thunk';
 import { getUsersThunk } from '@entities/users/store/thunks/getUsers.thunk';
 import { Typography, Tabs, Tab, Box, TabPanel } from '@ui-kit';
 
+import { MainRoutesEnum } from '../../RoutesEnum';
 import { useAppDispatch } from '../../store/useAppDispatch';
+import { MainAppRoutesEnum } from '../MainAppRoutesEnum';
 import { DataGridJobs } from './features/jobs/DataGridJobs';
 import { CreateTeamForm } from './features/teams/CreateTeamForm';
 import { DataGridTeams } from './features/teams/DataGridTeams';
@@ -34,7 +35,7 @@ const UsersHandlerScreen = () => {
 
   if (!token) {
     // TODO: rediriger plutot sur la page "tu n'as pas access a cette page"
-    navigate(RoutesEnum.login);
+    navigate(`${MainRoutesEnum.app}${MainAppRoutesEnum.login}`);
   }
 
   const handleChangeTab = (event: React.SyntheticEvent, newValue: TabsEnum) => {

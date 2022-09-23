@@ -1,10 +1,7 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { selectIsAuthentificated } from '@entities/authentification/store/selectors/selectIsAuthentificated.selector';
-import { RoutesEnum } from '@entities/RoutesEnum';
 import {
   Stack,
   Menu,
@@ -27,8 +24,10 @@ import {
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
+import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
+import { MainRoutesEnum } from '../../RoutesEnum';
+
 export const MainNavigation = () => {
-  const isAuthentificated = useSelector(selectIsAuthentificated);
   const [isShow, setIsShow] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -38,8 +37,6 @@ export const MainNavigation = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  console.log(isAuthentificated);
 
   const toggleMenu = () => {
     setIsShow(!isShow);
@@ -128,7 +125,7 @@ export const MainNavigation = () => {
                   <Typography>Profile</Typography>
                 </ListItem>
                 <Divider />
-                <StyledLink to={RoutesEnum.home}>
+                <StyledLink to={MainRoutesEnum.landingPage}>
                   <ListItem>
                     <ListItemIcon>
                       <SignoutIcon fontSize="large" />
@@ -157,7 +154,7 @@ export const MainNavigation = () => {
               <Typography>Statistiques</Typography>
             </ListItem>
             <ListItem>
-              <StyledLink to={RoutesEnum.environmentMetrics}>
+              <StyledLink to={MainAppRoutesEnum.environmentMetrics}>
                 <ListItemIcon>
                   <MetricsIcon fontSize="large" />
                 </ListItemIcon>
@@ -165,7 +162,7 @@ export const MainNavigation = () => {
               </StyledLink>
             </ListItem>
             <ListItem>
-              <StyledLink to={RoutesEnum.usersHandler}>
+              <StyledLink to={MainAppRoutesEnum.usersHandler}>
                 <ListItemIcon>
                   <TeamIcon fontSize="large" />
                 </ListItemIcon>
@@ -173,7 +170,7 @@ export const MainNavigation = () => {
               </StyledLink>
             </ListItem>
             <Divider />
-            <StyledLink to={RoutesEnum.home}>
+            <StyledLink to={MainRoutesEnum.landingPage}>
               <ListItem>
                 <ListItemIcon>
                   <SignoutIcon fontSize="large" />
@@ -210,21 +207,21 @@ export const MainNavigation = () => {
               </StyledListItemIcon>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink to={RoutesEnum.environmentMetrics}>
+              <StyledLink to={MainAppRoutesEnum.environmentMetrics}>
                 <StyledListItemIcon>
                   <MetricsIcon fontSize="large" />
                 </StyledListItemIcon>
               </StyledLink>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink to={RoutesEnum.usersHandler}>
+              <StyledLink to={MainAppRoutesEnum.usersHandler}>
                 <StyledListItemIcon>
                   <TeamIcon fontSize="large" />
                 </StyledListItemIcon>
               </StyledLink>
             </StyledListItem>
             <Divider />
-            <StyledLink to={RoutesEnum.home}>
+            <StyledLink to={MainRoutesEnum.landingPage}>
               <StyledListItem>
                 <StyledListItemIcon>
                   <SignoutIcon fontSize="large" />

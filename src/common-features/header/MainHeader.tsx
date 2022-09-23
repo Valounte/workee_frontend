@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 import { selectIsAuthentificated } from '@entities/authentification/store/selectors/selectIsAuthentificated.selector';
 import { logoutThunk } from '@entities/authentification/store/thunks/logout.thunk';
-import { RoutesEnum } from '@entities/RoutesEnum';
 import {
   AppBar,
   Container,
@@ -21,6 +20,8 @@ import {
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
+import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
+import { MainRoutesEnum } from '../../RoutesEnum';
 import { useAppDispatch } from '../../store/useAppDispatch';
 
 const links = ['Link1', 'Link2', 'Link3'];
@@ -53,7 +54,7 @@ export const MainHeader = () => {
       <Container maxWidth="lg">
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Stack order={{ xs: '2', sm: '1' }} flexGrow={{ xs: 1, sm: 0 }}>
-            <Link to={RoutesEnum.home}>
+            <Link to={MainRoutesEnum.landingPage}>
               <Logo height="100%" width={180} />
             </Link>
           </Stack>
@@ -108,7 +109,10 @@ export const MainHeader = () => {
                 Déconnection
               </Button>
             ) : (
-              <Button href={RoutesEnum.login} variant="outlined" color="secondary">
+              <Button
+                href={`${MainRoutesEnum.app}${MainAppRoutesEnum.login}`}
+                variant="outlined"
+                color="secondary">
                 Connexion
               </Button>
             )}
