@@ -8,6 +8,7 @@ import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
 import { usersSlice } from '../entities/users/store/slice';
 
+
 export const store = configureStore({
   reducer: {
     [authentificationSlice.name]: authentificationSlice.reducer,

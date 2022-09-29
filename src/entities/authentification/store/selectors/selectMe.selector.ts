@@ -4,5 +4,5 @@ import { RootState } from '../../../../store/store';
 
 export const selectMe = createSelector(
   (state: RootState) => state.authentification,
-  entity => entity.user
+  entity => entity.user,
 );

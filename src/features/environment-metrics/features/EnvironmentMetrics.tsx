@@ -88,8 +88,20 @@ export const EnvironmentMetrics = () => {
             La température est élevée
           </Typography>
         </Grid>
+        {/* </Grid> */}
       </Card>
-
+      {/* <StyledGridItem item container sm={6}>
+          <Grid item>
+            <Stack direction="row" alignItems="center" spacing={1} mx={2}>
+              <ThermometerIcon fontSize="large"/>
+              <Typography variant='h5'>Température</Typography>
+            </Stack>
+            <StyledChip label="Recommandation : 40% - 60%"/>
+            <Box alignSelf="center" mx={2}>Graphique</Box>
+            <Typography variant="h1" textAlign="center" alignSelf="center" mx={2}>35°C</Typography>
+            <Typography variant="body2" alignSelf="center" mx={2}>La température est élevée</Typography>
+          </Grid>
+        </StyledGridItem> */}
       <StyledGridItem item sm={6}>
         <StyledCard>
           <Stack direction="row" alignItems="center" spacing={1} mx={2}>
