@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { getMeThunk } from '@entities/authentification/store/thunks/getMe.thunk';
+
 import { User } from '../../users/User';
 import { loginThunk } from './thunks/login.thunk';
 import { logoutThunk } from './thunks/logout.thunk';
@@ -25,6 +27,9 @@ export const authentificationSlice = createSlice({
     builder.addCase(registerThunk.fulfilled, (state, { payload }) => ({
       token: payload.token,
     }));
+    builder.addCase(getMeThunk.fulfilled, (state, { payload }) => {
+      state.user = payload;
+    });
     builder.addCase(logoutThunk.fulfilled, () => initialState);
   },
 });
