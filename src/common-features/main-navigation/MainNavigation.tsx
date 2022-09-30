@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { selectMe } from '@entities/authentification/store/selectors/selectMe.selector';
 import {
   Stack,
   Menu,
@@ -27,7 +29,31 @@ import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
 import { MainRoutesEnum } from '../../RoutesEnum';
 
+const StyledLink = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: #3f1d01;
+`;
+
+const StyledAvatar = styled(Avatar)`
+  margin-right: 0;
+`;
+
+const StyledListItemLogo = styled(ListItem)`
+  justify-content: space-between;
+`;
+
+const StyledListItem = styled(ListItem)`
+  justify-content: center;
+`;
+
+const StyledListItemIcon = styled(ListItemIcon)`
+  justify-content: center;
+`;
+
 export const MainNavigation = () => {
+  const me = useSelector(selectMe);
   const [isShow, setIsShow] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -42,28 +68,11 @@ export const MainNavigation = () => {
     setIsShow(!isShow);
   };
 
-  const StyledLink = styled(Link)`
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
-    color: #3f1d01;
-  `;
+  if (!me) {
+    return <>loading</>;
+  }
 
-  const StyledAvatar = styled(Avatar)`
-    margin-right: 0;
-  `;
-
-  const StyledListItemLogo = styled(ListItem)`
-    justify-content: space-between;
-  `;
-
-  const StyledListItem = styled(ListItem)`
-    justify-content: center;
-  `;
-
-  const StyledListItemIcon = styled(ListItemIcon)`
-    justify-content: center;
-  `;
+  const { firstname, lastname, email } = me;
 
   return (
     <Stack justifyContent="flex-start" borderRight="1px solid grey">
@@ -78,8 +87,10 @@ export const MainNavigation = () => {
               <Stack direction="row" alignItems="center" spacing={1} mr={2}>
                 <Avatar />
                 <Stack>
-                  <Typography variant="body1">René Coty</Typography>
-                  <Typography variant="body1">r.coty@gmail.com</Typography>
+                  <Typography variant="body1">
+                    {firstname} {lastname}
+                  </Typography>
+                  <Typography variant="body1">{email}</Typography>
                 </Stack>
               </Stack>
               <IconButton
