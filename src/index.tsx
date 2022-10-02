@@ -16,7 +16,7 @@ import { store } from './store/store';
 
 import './index.css';
 
-axios.defaults.baseURL = 'https://workee-back.brangers.eu';
+axios.defaults.baseURL = 'http://localhost:8000';
 
 store.subscribe(
   debounce(() => {
