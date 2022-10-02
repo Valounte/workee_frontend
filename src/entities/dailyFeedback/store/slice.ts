@@ -1,18 +1,28 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { LastWeekDailyFeedback } from '../LastWeekDailyFeedback';
+import { createSlice } from '@reduxjs/toolkit';
+
+import { Team } from '@entities/teams/Team';
+
+import { DailyFeedback } from '../DailyFeedback';
 import { getDailyFeedbackThunk } from './thunks/getDailyFeedback.thunk';
 
-export const dailyFeedbackAdapter = createEntityAdapter<LastWeekDailyFeedback>({
-  selectId: dailyFeedback => dailyFeedback.id,
-});
+export interface DailyFeedbackSlice {
+  averageSatisfactionDegree?: number;
+  dailyFeedback?: DailyFeedback[];
+  team?: Team;
+}
+const initialState: DailyFeedbackSlice = {
+  averageSatisfactionDegree: undefined,
+  dailyFeedback: undefined,
+  team: undefined,
+};
 
 export const dailyFeedbackSlice = createSlice({
   name: 'dailyFeedback',
-  initialState: dailyFeedbackAdapter.getInitialState(),
+  initialState,
   reducers: {},
   extraReducers: builder => {
     builder.addCase(getDailyFeedbackThunk.fulfilled, (state, { payload }) => {
-        dailyFeedbackAdapter.setAll(state, payload);
+      state.team = payload.team;
     });
   },
 });

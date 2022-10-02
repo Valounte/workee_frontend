@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { authentificationSlice } from '@entities/authentification/store/slice';
+import { dailyFeedbackSlice } from '@entities/dailyFeedback/store/slice';
 import { jobSlice } from '@entities/jobs/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
 import { usersSlice } from '../entities/users/store/slice';
-import { dailyFeedbackSlice } from '@entities/dailyFeedback/store/slice';
 
 export const store = configureStore({
   reducer: {

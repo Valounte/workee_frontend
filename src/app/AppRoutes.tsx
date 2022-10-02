@@ -40,6 +40,7 @@ export const AppRoutes = () => {
       <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
       <Route path={MainAppRoutesEnum.login} element={<LoginScreen />} />
       <Route path={MainAppRoutesEnum.register} element={<RegisterScreen />} />
+      <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
       <Route
         path={MainAppRoutesEnum.usersHandler}
         element={<UsersHandlerScreen />}
