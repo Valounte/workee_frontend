@@ -12,6 +12,7 @@ import { MainAppRoutesEnum } from './MainAppRoutesEnum';
 
 const LoginScreen = React.lazy(() => import('./login/Login.screen'));
 const RegisterScreen = React.lazy(() => import('./register/Register.Screen'));
+const FeedbackScreen = React.lazy(() => import('./feedback/Feedback.screen'));
 const EnvironmentMetricsScreen = React.lazy(
   () => import('./environment-metrics/EnvironmentMetrics.screen')
 );
@@ -39,6 +40,7 @@ export const AppRoutes = () => {
       <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
       <Route path={MainAppRoutesEnum.login} element={<LoginScreen />} />
       <Route path={MainAppRoutesEnum.register} element={<RegisterScreen />} />
+      <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
       <Route
         path={MainAppRoutesEnum.usersHandler}
         element={<UsersHandlerScreen />}
