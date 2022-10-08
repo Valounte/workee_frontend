@@ -12,7 +12,7 @@ import {
   MetricsIcon,
   ThermometerIcon,
   HumidityIcon,
-  VolumeIcon,
+  SoundIcon,
   LuminosityIcon,
 } from '@ui-kit';
 
@@ -123,7 +123,7 @@ export const EnvironmentMetrics = () => {
       <StyledGridItem item sm={6}>
         <StyledCard>
           <Stack direction="row" alignItems="center" spacing={1} mx={2}>
-            <VolumeIcon fontSize="large" />
+            <SoundIcon fontSize="large" />
             <Typography variant="h5">Volume sonore</Typography>
           </Stack>
           <StyledChip label="Recommandation : 40% - 60%" />

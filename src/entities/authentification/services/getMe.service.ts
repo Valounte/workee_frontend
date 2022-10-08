@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import type{ User } from '@entities/users/User';
+import type { User } from '@entities/users/User';
 
 export interface getMeServiceParams {
   token: string;
