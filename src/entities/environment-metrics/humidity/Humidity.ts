@@ -4,6 +4,6 @@ export interface Humidity {
   id: number;
   value: number;
   userId: number;
-  alert: Alert;
+  humidityAlert: Alert;
   createdAt: Date;
 }

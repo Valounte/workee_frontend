@@ -42,6 +42,8 @@ export * from './styled';
 // Theme
 export * from './theme';
 
+export * from './icons/Alerts/Warning';
+export * from './icons/Alerts/Good';
 export * from './icons/Arrows/DropDown';
 export * from './icons/Menu/Menu';
 export * from './icons/Signout/Signout';

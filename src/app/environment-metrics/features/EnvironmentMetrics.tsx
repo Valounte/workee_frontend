@@ -12,9 +12,9 @@ import {
   MetricsIcon,
 } from '@ui-kit';
 
-import { Humidity } from './humidity/Humidity';
-import { Luminosity } from './luminosity/Luminosity';
-import { Sound } from './sound/Sound';
+// import { Humidity } from './humidity/Humidity';
+// import { Luminosity } from './luminosity/Luminosity';
+// import { Sound } from './sound/Sound';
 import { Temperature } from './temperature/Temperature';
 
 const StyledContainer = styled(Container)`
@@ -49,7 +49,7 @@ export const EnvironmentMetrics = () => (
       <Grid item sm={6}>
         <Temperature />
       </Grid>
-      <Grid item sm={6}>
+      {/* <Grid item sm={6}>
         <Humidity />
       </Grid>
       <Grid item sm={6}>
@@ -57,7 +57,7 @@ export const EnvironmentMetrics = () => (
       </Grid>
       <Grid item sm={6}>
         <Luminosity />
-      </Grid>
+      </Grid> */}
     </StyledGridContainer>
   </StyledContainer>
 );

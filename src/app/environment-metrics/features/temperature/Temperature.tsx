@@ -1,5 +1,6 @@
 import React from 'react';
 
+// import { unwrapResult } from '@reduxjs/toolkit';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -15,6 +16,8 @@ import { useSelector } from 'react-redux';
 import { useAsync } from 'react-use';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
+import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
+import { selectTemperatureAlert } from '@entities/environment-metrics/alert/store/selectors/selectTemperatureAlert.selector';
 import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/store/selectors/selectCurrentTemperature.selector';
 import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/store/thunks/getCurrentTemperature.thunk';
 import {
@@ -26,6 +29,9 @@ import {
   Card,
   CardContent,
   CardActions,
+  WarningIcon,
+  Divider,
+  GoodIcon,
 } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
@@ -84,9 +90,13 @@ export const Temperature = () => {
   const token = useSelector(selectToken);
 
   const currentTemperature = useSelector(selectCurrentTemperature);
-  console.log(currentTemperature);
+  const isConformValue = useSelector(selectIsConform);
+  const alert = useSelector(selectTemperatureAlert);
 
   useAsync(() => dispatch(getCurrentTemperatureThunk({ token })));
+
+  const { recommendationMessage, recommendedTemperature } = alert;
+  const { value } = currentTemperature;
 
   return (
     <Card>
@@ -96,23 +106,34 @@ export const Temperature = () => {
             <ThermometerIcon fontSize="large" />
             <Typography variant="h5">Température</Typography>
           </Stack>
-          <Chip label="Recommandation : (alert.recommendedTemperature)" />
+          <Chip label={recommendedTemperature} />
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Box alignContent="center" width="50%">
             <Line options={options} data={data} />
           </Box>
           <Box alignSelf="center" width="50%">
-            <Typography variant="h1" textAlign="center">
-              (value)°C
+            <Typography
+              variant="h1"
+              textAlign="center"
+              color={isConformValue ? 'success.main' : 'warning.main'}>
+              {value}°C
             </Typography>
           </Box>
         </Box>
       </CardContent>
+      <Divider />
       <CardActions>
-        <Typography variant="body2" alignSelf="center" mx={2}>
-          (alert.recommendationMessage)
-        </Typography>
+        <Stack direction="row" alignItems="center" spacing={1} px={1}>
+          {isConformValue ? (
+            <GoodIcon fontSize="large" />
+          ) : (
+            <WarningIcon fontSize="large" />
+          )}
+          <Typography variant="body2" alignSelf="center" mx={2}>
+            {recommendationMessage}
+          </Typography>
+        </Stack>
       </CardActions>
     </Card>
   );
