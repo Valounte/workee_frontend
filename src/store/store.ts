@@ -3,10 +3,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import { authentificationSlice } from '@entities/authentification/store/slice';
 import { dailyFeedbackSlice } from '@entities/dailyFeedback/store/slice';
 import { jobSlice } from '@entities/jobs/store/slice';
+import { notificationsSlice } from '@entities/notifications/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
+import { usersSlice } from '@entities/users/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
-import { usersSlice } from '../entities/users/store/slice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     [jobSlice.name]: jobSlice.reducer,
     [usersSlice.name]: usersSlice.reducer,
     [dailyFeedbackSlice.name]: dailyFeedbackSlice.reducer,
+    [notificationsSlice.name]: notificationsSlice.reducer,
   },
   preloadedState: {
     authentification: {
