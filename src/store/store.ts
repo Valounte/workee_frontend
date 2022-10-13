@@ -12,14 +12,15 @@ import { currentTemperatureSlice } from '@entities/environment-metrics/temperatu
 import { temperatureSlice } from '@entities/environment-metrics/temperature/store/slice';
 import { HealthAndSafetyNewsSlice } from '@entities/health-and-safety-news/store/slice';
 import { jobSlice } from '@entities/jobs/store/slice';
+import { notificationsSlice } from '@entities/notifications/store/slice';
 import {
   environmentMetricsPreferencesSlice,
   notificationPreferencesSlice,
 } from '@entities/settings/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
+import { usersSlice } from '@entities/users/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
-import { usersSlice } from '../entities/users/store/slice';
 
 export const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ export const store = configureStore({
     [jobSlice.name]: jobSlice.reducer,
     [usersSlice.name]: usersSlice.reducer,
     [dailyFeedbackSlice.name]: dailyFeedbackSlice.reducer,
+    [notificationsSlice.name]: notificationsSlice.reducer,
     [temperatureSlice.name]: temperatureSlice.reducer,
     [currentTemperatureSlice.name]: currentTemperatureSlice.reducer,
     [humiditySlice.name]: humiditySlice.reducer,

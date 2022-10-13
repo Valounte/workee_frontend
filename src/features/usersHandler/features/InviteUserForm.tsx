@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { string as yupString, object as yupObject } from 'yup';
 
 import { RoutesEnum } from '@entities/RoutesEnum';
-import { selectToken } from '@entities/user/store/selectors/selectToken.selector';
-import { inviteThunk } from '@entities/user/store/thunks/invite.thunk';
+import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
+import { inviteThunk } from '@entities/users/store/thunks/invite.thunk';
 import { Box, Button, Typography, TextField } from '@ui-kit';
 
 import { useAppDispatch } from '../../../store/useAppDispatch';
@@ -30,6 +30,8 @@ export const InviteUserForm = () => {
       email: '',
       firstname: '',
       lastname: '',
+      job: '',
+      teams: '',
     },
     validationSchema,
     onSubmit: values => {
@@ -37,6 +39,8 @@ export const InviteUserForm = () => {
         email: values.email,
         firstname: values.firstname,
         lastname: values.lastname,
+        job: 1,
+        teams: [1],
         // envoyer les team
         // envoyer les jobs
         token,
