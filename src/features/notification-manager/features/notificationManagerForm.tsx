@@ -110,7 +110,7 @@ export const NotificationManagerForm = () => {
                         multiple
                         id="teamsId"
                         options={teamsFromStore.map(team => `${team.name}`)}
-                        renderInput={(params) => <TextField {...params} label="Equipe(s) à notifier"/>}
+                        renderInput={(params) => <TextField style={{marginBottom: 25}} {...params} label="Equipe(s) à notifier"/>}
                     />
 
                     <Autocomplete
@@ -118,7 +118,7 @@ export const NotificationManagerForm = () => {
                         id="usersId"
                         disablePortal
                         options={usersFromStore.map(user => `${user.firstname   } ${  user.lastname}`)}
-                        renderInput={(params) => <TextField {...params} label="Personne(s) à notifer"/>}
+                        renderInput={(params) => <TextField style={{marginBottom: 25}} {...params} label="Personne(s) à notifer"/>}
                     />
 
                     <SelectInput
