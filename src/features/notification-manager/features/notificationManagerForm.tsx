@@ -6,8 +6,9 @@ import {unwrapResult} from "@reduxjs/toolkit";
 import {useFormik} from 'formik';
 import {useSnackbar} from "notistack";
 import {useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
 import {useAsync} from "react-use";
-import {object as yupObject, string as yupString} from 'yup';
+import {array as yupArray, object as yupObject, string as yupString} from 'yup';
 
 import {selectToken} from "@entities/authentification/store/selectors/selectToken.selector";
 import {sendNotificationThunk} from "@entities/notifications/store/thunks/sendNotification.thunk";
@@ -20,8 +21,8 @@ import {Box, Button, SelectChangeEvent, SelectInput, TextField, Typography} from
 import {useAppDispatch} from "../../../store/useAppDispatch";
 
 const validationSchema = yupObject({
-    teamsId: yupString(),
-    usersId: yupString(),
+    teamsId: yupArray(),
+    usersId: yupArray(),
     alertLevel: yupString().required('Status Obligatoire'),
     message: yupString().required('Message Obligatoire'),
 });
@@ -33,6 +34,10 @@ const statusLevel = [
 
 
 export const NotificationManagerForm = () => {
+    const { search } = useLocation();
+    const searchParams = new URLSearchParams(search);
+    const tokenT =
+        searchParams.get('token') !== null ? (searchParams.get('token') as string) : '';
     let usersFromStore = useSelector(selectUsers);
     let teamsFromStore = useSelector(selectTeams);
     const token = useSelector(selectToken);
@@ -52,7 +57,7 @@ export const NotificationManagerForm = () => {
                 usersId: values.usersId,
                 alertLevel: values.alertLevel,
                 message: values.message,
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiY29tcGFueSI6MX0.eOe0BAe5N9aCCdwB7ETFrrOpQaHSWJUsejayELA-SmU",
+                token: tokenT,
             };
             if (!values.teamsId && !values.usersId) {
                 enqueueSnackbar('You need to add at least !', {
