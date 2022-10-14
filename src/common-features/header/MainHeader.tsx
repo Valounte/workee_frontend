@@ -17,14 +17,13 @@ import {
   Button,
   IconButton,
   MenuIcon,
+  AppRouterLink,
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
 import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
 import { MainRoutesEnum } from '../../RoutesEnum';
 import { useAppDispatch } from '../../store/useAppDispatch';
-
-const links = ['Link1', 'Link2', 'Link3'];
 
 export const MainHeader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -59,47 +58,53 @@ export const MainHeader = () => {
             </Link>
           </Stack>
           <Box flexGrow="1" display={{ xs: 'flex', sm: 'none' }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit">
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}>
-              {links.map(link => (
-                <MenuItem key={link} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{link}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {isAuthentificated && (
+              <>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleOpenNavMenu}
+                  color="inherit">
+                  <MenuIcon />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorElNav}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  open={Boolean(anchorElNav)}
+                  onClose={handleCloseNavMenu}>
+                  <MenuItem key="environment-metrics" onClick={handleCloseNavMenu}>
+                    <AppRouterLink
+                      to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
+                      <Typography textAlign="center">Accès à la solution</Typography>
+                    </AppRouterLink>
+                  </MenuItem>
+                </Menu>
+              </>
+            )}
           </Box>
-          <Stack
-            direction="row"
-            spacing={2}
-            display={{ xs: 'none', sm: 'flex' }}
-            order={{ sm: '2' }}>
-            {links.map(link => (
-              <Typography key={link} textAlign="center">
-                {link}
-              </Typography>
-            ))}
-          </Stack>
+          {isAuthentificated && (
+            <Stack
+              direction="row"
+              spacing={2}
+              display={{ xs: 'none', sm: 'flex' }}
+              order={{ sm: '2' }}>
+              <AppRouterLink
+                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
+                <Typography textAlign="center">Accès à la solution</Typography>
+              </AppRouterLink>
+            </Stack>
+          )}
           <Stack order={{ xs: '3', sm: '2' }}>
             {isAuthentificated ? (
               <Button
