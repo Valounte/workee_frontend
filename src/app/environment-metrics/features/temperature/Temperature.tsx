@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import { unwrapResult } from '@reduxjs/toolkit';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,14 +16,15 @@ import { useAsync } from 'react-use';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
-import { selectTemperatureAlert } from '@entities/environment-metrics/alert/store/selectors/selectTemperatureAlert.selector';
-import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/store/selectors/selectCurrentTemperature.selector';
-import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/store/thunks/getCurrentTemperature.thunk';
+// import { selectTemperatureAlert } from '@entities/environment-metrics/alert/store/selectors/selectTemperatureAlert.selector';
+// import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector';
+import { selectTemperatures } from '@entities/environment-metrics/temperature/store/selectors/selectTemperaturesHistoric.selector';
+import { getTemperaturesHistoricThunk } from '@entities/environment-metrics/temperature/store/thunks/getTemperaturesHistoric.thunk';
 import {
   Box,
   Stack,
   Typography,
-  Chip,
+  // Chip,
   ThermometerIcon,
   Card,
   CardContent,
@@ -44,19 +44,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const data = {
-  labels: ['10:36', '11:36', '12:36', '13:36', '14:36'],
-  datasets: [
-    {
-      label: '',
-      data: [23.3, 23.5, 23.7, 23.9, 23.5],
-      fill: false,
-      backgroundColor: 'rgba(75,192,192,0.2)',
-      borderColor: 'rgb(255,127,39)',
-    },
-  ],
-};
 
 export const options = {
   responsive: true,
@@ -89,14 +76,35 @@ export const Temperature = () => {
   const dispatch = useAppDispatch();
   const token = useSelector(selectToken);
 
-  const currentTemperature = useSelector(selectCurrentTemperature);
+  const temperaturesHistoric = useSelector(selectTemperatures);
+  const temperatureValues = temperaturesHistoric.map(({ value }) => value).reverse();
+  const temperatureTime = temperaturesHistoric
+    .map(({ createdAt }) => createdAt)
+    .reverse();
+
+  const data = {
+    labels: temperatureTime,
+    datasets: [
+      {
+        label: '',
+        data: temperatureValues,
+        fill: false,
+        backgroundColor: 'rgba(75,192,192,0.2)',
+        borderColor: 'rgb(255,127,39)',
+      },
+    ],
+  };
+
+  // const currentTemperature = useSelector(selectCurrentTemperature);
+  // console.log(currentTemperature);
+
   const isConformValue = useSelector(selectIsConform);
-  const alert = useSelector(selectTemperatureAlert);
+  // const temperatureAlert = useSelector(selectTemperatureAlert);
 
-  useAsync(() => dispatch(getCurrentTemperatureThunk({ token })));
+  // const { recommendationMessage, recommendedTemperature } = temperatureAlert;
+  // const { value } = currentTemperature;
 
-  const { recommendationMessage, recommendedTemperature } = alert;
-  const { value } = currentTemperature;
+  useAsync(() => dispatch(getTemperaturesHistoricThunk({ token })));
 
   return (
     <Card>
@@ -106,7 +114,7 @@ export const Temperature = () => {
             <ThermometerIcon fontSize="large" />
             <Typography variant="h5">Température</Typography>
           </Stack>
-          <Chip label={recommendedTemperature} />
+          {/* <Chip label={recommendedTemperature} /> */}
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Box alignContent="center" width="50%">
@@ -117,7 +125,7 @@ export const Temperature = () => {
               variant="h1"
               textAlign="center"
               color={isConformValue ? 'success.main' : 'warning.main'}>
-              {value}°C
+              {/* {value}°C */}
             </Typography>
           </Box>
         </Box>
@@ -131,7 +139,7 @@ export const Temperature = () => {
             <WarningIcon fontSize="large" />
           )}
           <Typography variant="body2" alignSelf="center" mx={2}>
-            {recommendationMessage}
+            {/* {recommendationMessage} */}
           </Typography>
         </Stack>
       </CardActions>

@@ -5,6 +5,7 @@ import { dailyFeedbackSlice } from '@entities/dailyFeedback/store/slice';
 import { humiditySlice } from '@entities/environment-metrics/humidity/store/slice';
 import { luminositySlice } from '@entities/environment-metrics/luminosity/store/slice';
 import { soundSlice } from '@entities/environment-metrics/sound/store/slice';
+import { currentTemperatureSlice } from '@entities/environment-metrics/temperature/current/store/slice';
 import { temperatureSlice } from '@entities/environment-metrics/temperature/store/slice';
 import { jobSlice } from '@entities/jobs/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
@@ -20,6 +21,7 @@ export const store = configureStore({
     [usersSlice.name]: usersSlice.reducer,
     [dailyFeedbackSlice.name]: dailyFeedbackSlice.reducer,
     [temperatureSlice.name]: temperatureSlice.reducer,
+    [currentTemperatureSlice.name]: currentTemperatureSlice.reducer,
     [humiditySlice.name]: humiditySlice.reducer,
     [soundSlice.name]: soundSlice.reducer,
     [luminositySlice.name]: luminositySlice.reducer,

@@ -1,37 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import type { Alert } from '@entities/environment-metrics/alert/Alert';
-import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/store/thunks/getCurrentTemperature.thunk';
+import { Temperature } from '../Temperature';
+import { getTemperaturesHistoricThunk } from './thunks/getTemperaturesHistoric.thunk';
 
-export interface TemperatureSlice {
-  id?: number;
-  alert: Alert;
-  value?: number;
-  createdAt?: Date;
-  token?: string;
-}
-
-const initialState: TemperatureSlice = {
-  id: undefined,
-  alert: {
-    alertLevel: "",
-    recommendedTemperature: "",
-    recommendationMessage: ""
-  },
-  value: undefined,
-  createdAt: undefined,
-  token: undefined,
-};
+export const temperaturesAdapter = createEntityAdapter<Temperature>({
+  selectId: temperature => temperature.id,
+});
 
 export const temperatureSlice = createSlice({
   name: 'temperature',
-  initialState,
+  initialState: temperaturesAdapter.getInitialState(),
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getCurrentTemperatureThunk.fulfilled, (state, { payload }) => {
-      state.alert = payload.alert;
-      state.value = payload.value;
-      state.createdAt = payload.createdAt;
+    builder.addCase(getTemperaturesHistoricThunk.fulfilled, (state, { payload }) => {
+      temperaturesAdapter.setAll(state, payload);
     });
   },
 });
