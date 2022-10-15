@@ -16,15 +16,14 @@ import { useAsync } from 'react-use';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
-// import { selectTemperatureAlert } from '@entities/environment-metrics/alert/store/selectors/selectTemperatureAlert.selector';
-// import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector';
+import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector';
+import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { selectTemperatures } from '@entities/environment-metrics/temperature/store/selectors/selectTemperaturesHistoric.selector';
-import { getTemperaturesHistoricThunk } from '@entities/environment-metrics/temperature/store/thunks/getTemperaturesHistoric.thunk';
 import {
   Box,
   Stack,
   Typography,
-  // Chip,
+  Chip,
   ThermometerIcon,
   Card,
   CardContent,
@@ -95,16 +94,12 @@ export const Temperature = () => {
     ],
   };
 
-  // const currentTemperature = useSelector(selectCurrentTemperature);
-  // console.log(currentTemperature);
-
+  const currentTemperature = useSelector(selectCurrentTemperature);
   const isConformValue = useSelector(selectIsConform);
-  // const temperatureAlert = useSelector(selectTemperatureAlert);
+  const { value } = currentTemperature;
+  const recommendedTemperature = `Recommandation : ${currentTemperature.alert.recommendedTemperature}`;
 
-  // const { recommendationMessage, recommendedTemperature } = temperatureAlert;
-  // const { value } = currentTemperature;
-
-  useAsync(() => dispatch(getTemperaturesHistoricThunk({ token })));
+  useAsync(() => dispatch(getCurrentTemperatureThunk({ token })));
 
   return (
     <Card>
@@ -114,7 +109,7 @@ export const Temperature = () => {
             <ThermometerIcon fontSize="large" />
             <Typography variant="h5">Température</Typography>
           </Stack>
-          {/* <Chip label={recommendedTemperature} /> */}
+          <Chip label={recommendedTemperature} />
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Box alignContent="center" width="50%">
@@ -125,7 +120,7 @@ export const Temperature = () => {
               variant="h1"
               textAlign="center"
               color={isConformValue ? 'success.main' : 'warning.main'}>
-              {/* {value}°C */}
+              {value}°C
             </Typography>
           </Box>
         </Box>
@@ -139,7 +134,7 @@ export const Temperature = () => {
             <WarningIcon fontSize="large" />
           )}
           <Typography variant="body2" alignSelf="center" mx={2}>
-            {/* {recommendationMessage} */}
+            {currentTemperature.alert.recommendationMessage}
           </Typography>
         </Stack>
       </CardActions>

@@ -1,16 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { Alert } from '@entities/environment-metrics/alert/Alert';
 import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 
-import { Temperature } from '../../Temperature';
-
 export interface CurrentTemperatureSlice {
-  temperature?: Temperature;
+  id?: number;
+  alert: Alert;
+  value?: number;
+  createdAt?: Date;
   token?: string;
 }
 
 const initialState: CurrentTemperatureSlice = {
-  temperature: undefined,
+  id: undefined,
+  alert: {
+    alertLevel: "",
+    recommendedTemperature: "",
+    recommendationMessage: ""
+  },
+  value: undefined,
+  createdAt: undefined,
   token: undefined,
 };
 
@@ -20,7 +29,9 @@ export const currentTemperatureSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(getCurrentTemperatureThunk.fulfilled, (state, { payload }) => {
-      state.temperature = payload;
+      state.alert = payload.alert;
+      state.value = payload.value;
+      state.createdAt = payload.createdAt;
     });
   },
 });
