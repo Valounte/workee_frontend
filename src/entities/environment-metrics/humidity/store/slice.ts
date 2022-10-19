@@ -1,31 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { Alert } from '@entities/environment-metrics/alert/Alert';
-import { getCurrentHumidityThunk } from '@entities/environment-metrics/humidity/store/thunks/getCurrentHumidity.thunk';
+import { Humidity } from '../Humidity';
+import { getHumidityHistoricThunk } from './thunks/getHumidityHistoric.thunk';
 
-export interface HumiditySlice {
-  id?: number;
-  alert?: Alert;
-  value?: number;
-  createdAt?: Date;
-  token?: string;
-}
-
-const initialState: HumiditySlice = {
-  id: undefined,
-  alert: undefined,
-  value: undefined,
-  createdAt: undefined,
-  token: undefined,
-};
+export const humidityAdapter = createEntityAdapter<Humidity>({
+  selectId: humidity => humidity.id,
+});
 
 export const humiditySlice = createSlice({
   name: 'humidity',
-  initialState,
+  initialState: humidityAdapter.getInitialState(),
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getCurrentHumidityThunk.fulfilled, (state, { payload }) => {
-      state.id = payload.id;
+    builder.addCase(getHumidityHistoricThunk.fulfilled, (state, { payload }) => {
+      humidityAdapter.setAll(state, payload);
     });
   },
 });

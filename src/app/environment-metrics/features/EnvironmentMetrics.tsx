@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 // import { getCurrentHumidityThunk } from '@entities/environment-metrics/humidity/store/thunks/getCurrentHumidity.thunk';
+import { getHumidityHistoricThunk } from '@entities/environment-metrics/humidity/store/thunks/getHumidityHistoric.thunk';
 import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector'; // TODO : les données auront la même heure de relevé
 // import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { getTemperaturesHistoricThunk } from '@entities/environment-metrics/temperature/store/thunks/getTemperaturesHistoric.thunk';
@@ -23,7 +24,7 @@ import { useAppDispatch } from 'src/store/useAppDispatch';
 
 import { Humidity } from './humidity/Humidity';
 // import { Luminosity } from './luminosity/Luminosity';
-// import { Sound } from './sound/Sound';
+import { Sound } from './sound/Sound';
 import { Temperature } from './temperature/Temperature';
 
 const StyledContainer = styled(Container)`
@@ -43,6 +44,14 @@ export const EnvironmentMetrics = () => {
 
   useEffect(() => {
     dispatch(getTemperaturesHistoricThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
+  });
+
+  useEffect(() => {
+    dispatch(getHumidityHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');
@@ -86,10 +95,10 @@ export const EnvironmentMetrics = () => {
         <Grid item sm={6}>
           <Humidity />
         </Grid>
+        <Grid item sm={6}>
+          <Sound />
+        </Grid>
         {/* <Grid item sm={6}>
-        <Sound />
-      </Grid>
-      <Grid item sm={6}>
         <Luminosity />
       </Grid> */}
       </StyledGridContainer>
