@@ -15,17 +15,22 @@ import { useSelector } from 'react-redux';
 import { useAsync } from 'react-use';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { selectCurrentSound } from '@entities/environment-metrics/sound/store/selectors/selectCurrentSound.selector';
-import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/store/thunks/getCurrentSound.thunk';
+import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
+import { selectCurrentSound } from '@entities/environment-metrics/sound/current/store/selectors/selectCurrentSound.selector';
+import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/current/store/thunks/getCurrentSound.thunk';
+import { selectSound } from '@entities/environment-metrics/sound/store/selectors/selectSoundHistoric.selector';
 import {
   Box,
   Stack,
   Typography,
   Chip,
-  SoundIcon,
   Card,
   CardContent,
   CardActions,
+  WarningIcon,
+  Divider,
+  GoodIcon,
+  SoundIcon,
 } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
@@ -38,19 +43,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-const data = {
-  labels: ['10:36', '11:36', '12:36', '13:36', '14:36'],
-  datasets: [
-    {
-      label: '',
-      data: [23.3, 23.5, 23.7, 23.9, 23.5],
-      fill: false,
-      backgroundColor: 'rgba(75,192,192,0.2)',
-      borderColor: 'rgb(255,127,39)',
-    },
-  ],
-};
 
 export const options = {
   responsive: true,
@@ -83,8 +75,27 @@ export const Sound = () => {
   const dispatch = useAppDispatch();
   const token = useSelector(selectToken);
 
+  const soundHistoric = useSelector(selectSound);
+  const soundValues = soundHistoric.map(({ value }) => value).reverse();
+  const soundTime = soundHistoric.map(({ createdAt }) => createdAt).reverse();
+
+  const data = {
+    labels: soundTime,
+    datasets: [
+      {
+        label: '',
+        data: soundValues,
+        fill: false,
+        backgroundColor: 'rgba(75,192,192,0.2)',
+        borderColor: 'rgb(255,127,39)',
+      },
+    ],
+  };
+
   const currentSound = useSelector(selectCurrentSound);
-  console.log(currentSound);
+  const isConformValue = useSelector(selectIsConform);
+  const { value } = currentSound;
+  const recommendedSound = `Recommandation : ${currentSound.alert.recommendedValue}`;
 
   useAsync(() => dispatch(getCurrentSoundThunk({ token })));
 
@@ -96,23 +107,34 @@ export const Sound = () => {
             <SoundIcon fontSize="large" />
             <Typography variant="h5">Son ambiant</Typography>
           </Stack>
-          <Chip label="Recommandation : (alert.recommendedTemperature)" />
+          <Chip label={recommendedSound} />
         </Box>
         <Box display="flex" justifyContent="space-between">
           <Box alignContent="center" width="50%">
             <Line options={options} data={data} />
           </Box>
           <Box alignSelf="center" width="50%">
-            <Typography variant="h1" textAlign="center">
-              (value)dB
+            <Typography
+              variant="h1"
+              textAlign="center"
+              color={isConformValue ? 'success.main' : 'warning.main'}>
+              {value}dB
             </Typography>
           </Box>
         </Box>
       </CardContent>
+      <Divider />
       <CardActions>
-        <Typography variant="body2" alignSelf="center" mx={2}>
-          (alert.recommendationMessage)
-        </Typography>
+        <Stack direction="row" alignItems="center" spacing={1} px={1}>
+          {isConformValue ? (
+            <GoodIcon fontSize="large" />
+          ) : (
+            <WarningIcon fontSize="large" />
+          )}
+          <Typography variant="body2" alignSelf="center" mx={2}>
+            {currentSound.alert.recommendationMessage}
+          </Typography>
+        </Stack>
       </CardActions>
     </Card>
   );

@@ -8,4 +8,7 @@ import { getCurrentSoundService } from '../../services/getCurrentSound.service';
 export const getCurrentSoundThunk = createAsyncThunk<
   Sound,
   getCurrentSoundServiceParams
->('/current_sound', async builder => (await getCurrentSoundService(builder)).data);
+>(
+  '/current_sound',
+  async builder => (await getCurrentSoundService(builder)).data
+);

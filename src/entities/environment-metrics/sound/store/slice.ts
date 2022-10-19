@@ -1,31 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { Alert } from '@entities/environment-metrics/alert/Alert';
-import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/store/thunks/getCurrentSound.thunk';
+import { Sound } from '../Sound';
+import { getSoundHistoricThunk } from './thunks/getSoundHistoric.thunk';
 
-export interface SoundSlice {
-  id?: number;
-  alert?: Alert;
-  value?: number;
-  createdAt?: Date;
-  token?: string;
-}
-
-const initialState: SoundSlice = {
-  id: undefined,
-  alert: undefined,
-  value: undefined,
-  createdAt: undefined,
-  token: undefined,
-};
+export const soundAdapter = createEntityAdapter<Sound>({
+  selectId: sound => sound.id,
+});
 
 export const soundSlice = createSlice({
   name: 'sound',
-  initialState,
+  initialState: soundAdapter.getInitialState(),
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getCurrentSoundThunk.fulfilled, (state, { payload }) => {
-      state.id = payload.id;
+    builder.addCase(getSoundHistoricThunk.fulfilled, (state, { payload }) => {
+      soundAdapter.setAll(state, payload);
     });
   },
 });

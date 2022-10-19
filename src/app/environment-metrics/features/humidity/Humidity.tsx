@@ -24,13 +24,13 @@ import {
   Stack,
   Typography,
   Chip,
-  ThermometerIcon,
   Card,
   CardContent,
   CardActions,
   WarningIcon,
   Divider,
   GoodIcon,
+  HumidityIcon,
 } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
@@ -104,8 +104,8 @@ export const Humidity = () => {
       <CardContent>
         <Box display="flex" justifyContent="space-between" mb={4}>
           <Stack direction="row" alignItems="center" spacing={1} width="50%">
-            <ThermometerIcon fontSize="large" />
-            <Typography variant="h5">Température</Typography>
+            <HumidityIcon fontSize="large" />
+            <Typography variant="h5">Humidité</Typography>
           </Stack>
           <Chip label={recommendedHumidity} />
         </Box>
@@ -118,7 +118,7 @@ export const Humidity = () => {
               variant="h1"
               textAlign="center"
               color={isConformValue ? 'success.main' : 'warning.main'}>
-              {value}°C
+              {value}%
             </Typography>
           </Box>
         </Box>
