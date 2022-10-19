@@ -1,6 +1,6 @@
 import type { Alert } from '../alert/Alert';
 
-export interface Humidity{
+export interface Humidity {
   id: number;
   value: number;
   userId: number;

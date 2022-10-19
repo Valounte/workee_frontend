@@ -4,7 +4,10 @@ import { getTemperaturesHistoricService } from '../../services/getTemperaturesHi
 import type { getTemperaturesHistoricServiceParams } from '../../services/getTemperaturesHistoric.service';
 import { Temperature } from '../../Temperature';
 
-export const getTemperaturesHistoricThunk = createAsyncThunk<Temperature[], getTemperaturesHistoricServiceParams>(
+export const getTemperaturesHistoricThunk = createAsyncThunk<
+  Temperature[],
+  getTemperaturesHistoricServiceParams
+>(
   '/temperature_historic',
   async builder => (await getTemperaturesHistoricService(builder)).data
 );

@@ -1,31 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { Alert } from '@entities/environment-metrics/alert/Alert';
-import { getCurrentLuminosityThunk } from '@entities/environment-metrics/luminosity/store/thunks/getCurrentLuminosity.thunk';
+import { Luminosity } from '../Luminosity';
+import { getLuminosityHistoricThunk } from './thunks/getLuminosityHistoric.thunk';
 
-export interface LuminositySlice {
-  id?: number;
-  alert?: Alert;
-  value?: number;
-  createdAt?: Date;
-  token?: string;
-}
-
-const initialState: LuminositySlice = {
-  id: undefined,
-  alert: undefined,
-  value: undefined,
-  createdAt: undefined,
-  token: undefined,
-};
+export const luminosityAdapter = createEntityAdapter<Luminosity>({
+  selectId: luminosity => luminosity.id,
+});
 
 export const luminositySlice = createSlice({
   name: 'luminosity',
-  initialState,
+  initialState: luminosityAdapter.getInitialState(),
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getCurrentLuminosityThunk.fulfilled, (state, { payload }) => {
-      state.id = payload.id;
+    builder.addCase(getLuminosityHistoricThunk.fulfilled, (state, { payload }) => {
+      luminosityAdapter.setAll(state, payload);
     });
   },
 });

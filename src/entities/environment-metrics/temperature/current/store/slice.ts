@@ -14,9 +14,9 @@ export interface CurrentTemperatureSlice {
 const initialState: CurrentTemperatureSlice = {
   id: undefined,
   alert: {
-    alertLevel: "",
-    recommendedValue: "",
-    recommendationMessage: ""
+    alertLevel: '',
+    recommendedValue: '',
+    recommendationMessage: '',
   },
   value: undefined,
   createdAt: undefined,

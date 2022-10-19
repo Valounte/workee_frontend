@@ -6,10 +6,9 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-// import { getCurrentHumidityThunk } from '@entities/environment-metrics/humidity/store/thunks/getCurrentHumidity.thunk';
 import { getHumidityHistoricThunk } from '@entities/environment-metrics/humidity/store/thunks/getHumidityHistoric.thunk';
+import { getSoundHistoricThunk } from '@entities/environment-metrics/sound/store/thunks/getSoundHistoric.thunk';
 import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector'; // TODO : les données auront la même heure de relevé
-// import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { getTemperaturesHistoricThunk } from '@entities/environment-metrics/temperature/store/thunks/getTemperaturesHistoric.thunk';
 import {
   styled,
@@ -23,7 +22,7 @@ import {
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 import { Humidity } from './humidity/Humidity';
-// import { Luminosity } from './luminosity/Luminosity';
+import { Luminosity } from './luminosity/Luminosity';
 import { Sound } from './sound/Sound';
 import { Temperature } from './temperature/Temperature';
 
@@ -52,6 +51,14 @@ export const EnvironmentMetrics = () => {
 
   useEffect(() => {
     dispatch(getHumidityHistoricThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
+  });
+
+  useEffect(() => {
+    dispatch(getSoundHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');
@@ -98,9 +105,9 @@ export const EnvironmentMetrics = () => {
         <Grid item sm={6}>
           <Sound />
         </Grid>
-        {/* <Grid item sm={6}>
-        <Luminosity />
-      </Grid> */}
+        <Grid item sm={6}>
+          <Luminosity />
+        </Grid>
       </StyledGridContainer>
     </StyledContainer>
   );

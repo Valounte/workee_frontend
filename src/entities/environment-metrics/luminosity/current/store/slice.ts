@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { Alert } from '@entities/environment-metrics/alert/Alert';
-import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/current/store/thunks/getCurrentSound.thunk';
+import { getCurrentLuminosityThunk } from '@entities/environment-metrics/luminosity/current/store/thunks/getCurrentLuminosity.thunk';
 
-export interface CurrentSoundSlice {
+export interface CurrentLuminositySlice {
   id?: number;
   alert: Alert;
   value?: number;
@@ -11,7 +11,7 @@ export interface CurrentSoundSlice {
   token?: string;
 }
 
-const initialState: CurrentSoundSlice = {
+const initialState: CurrentLuminositySlice = {
   id: undefined,
   alert: {
     alertLevel: '',
@@ -23,12 +23,12 @@ const initialState: CurrentSoundSlice = {
   token: undefined,
 };
 
-export const currentSoundSlice = createSlice({
-  name: 'currentSound',
+export const currentLuminositySlice = createSlice({
+  name: 'currentLuminosity',
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getCurrentSoundThunk.fulfilled, (state, { payload }) => {
+    builder.addCase(getCurrentLuminosityThunk.fulfilled, (state, { payload }) => {
       state.alert = payload.alert;
       state.value = payload.value;
       state.createdAt = payload.createdAt;

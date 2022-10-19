@@ -5,7 +5,7 @@ import { RootState } from '../../../../../store/store';
 export const selectIsConform = createSelector(
   (state: RootState) => state.currentTemperature,
   entity => {
-    if (entity.alert.alertLevel === "CONFORM_VALUE") {
+    if (entity.alert.alertLevel === 'CONFORM_VALUE') {
       return true;
     }
     return false;

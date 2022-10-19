@@ -4,7 +4,7 @@ import type { getSoundHistoricServiceParams } from '../../services/getSoundHisto
 import { getSoundHistoricService } from '../../services/getSoundHistoric.service';
 import { Sound } from '../../Sound';
 
-export const getSoundHistoricThunk = createAsyncThunk<Sound[], getSoundHistoricServiceParams>(
-  '/sound_historic',
-  async builder => (await getSoundHistoricService(builder)).data
-);
+export const getSoundHistoricThunk = createAsyncThunk<
+  Sound[],
+  getSoundHistoricServiceParams
+>('/sound_historic', async builder => (await getSoundHistoricService(builder)).data);

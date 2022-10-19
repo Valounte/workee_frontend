@@ -4,6 +4,7 @@ import { authentificationSlice } from '@entities/authentification/store/slice';
 import { dailyFeedbackSlice } from '@entities/dailyFeedback/store/slice';
 import { currentHumiditySlice } from '@entities/environment-metrics/humidity/current/store/slice';
 import { humiditySlice } from '@entities/environment-metrics/humidity/store/slice';
+import { currentLuminositySlice } from '@entities/environment-metrics/luminosity/current/store/slice';
 import { luminositySlice } from '@entities/environment-metrics/luminosity/store/slice';
 import { currentSoundSlice } from '@entities/environment-metrics/sound/current/store/slice';
 import { soundSlice } from '@entities/environment-metrics/sound/store/slice';
@@ -29,6 +30,7 @@ export const store = configureStore({
     [soundSlice.name]: soundSlice.reducer,
     [currentSoundSlice.name]: currentSoundSlice.reducer,
     [luminositySlice.name]: luminositySlice.reducer,
+    [currentLuminositySlice.name]: currentLuminositySlice.reducer,
   },
   preloadedState: {
     authentification: {

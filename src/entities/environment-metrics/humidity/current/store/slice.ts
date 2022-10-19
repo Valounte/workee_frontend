@@ -14,9 +14,9 @@ export interface CurrentHumiditySlice {
 const initialState: CurrentHumiditySlice = {
   id: undefined,
   alert: {
-    alertLevel: "",
-    recommendedValue: "",
-    recommendationMessage: ""
+    alertLevel: '',
+    recommendedValue: '',
+    recommendationMessage: '',
   },
   value: undefined,
   createdAt: undefined,
