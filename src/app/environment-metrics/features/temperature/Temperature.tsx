@@ -97,7 +97,7 @@ export const Temperature = () => {
   const currentTemperature = useSelector(selectCurrentTemperature);
   const isConformValue = useSelector(selectIsConform);
   const { value } = currentTemperature;
-  const recommendedTemperature = `Recommandation : ${currentTemperature.alert.recommendedTemperature}`;
+  const recommendedTemperature = `Recommandation : ${currentTemperature.alert.recommendedValue}`;
 
   useAsync(() => dispatch(getCurrentTemperatureThunk({ token })));
 

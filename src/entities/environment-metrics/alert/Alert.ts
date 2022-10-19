@@ -1,5 +1,5 @@
 export interface Alert {
   alertLevel: string;
-  recommendedTemperature: string;
+  recommendedValue: string;
   recommendationMessage: string;
 }

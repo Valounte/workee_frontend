@@ -15,7 +15,7 @@ const initialState: CurrentTemperatureSlice = {
   id: undefined,
   alert: {
     alertLevel: "",
-    recommendedTemperature: "",
+    recommendedValue: "",
     recommendationMessage: ""
   },
   value: undefined,
