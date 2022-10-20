@@ -6,6 +6,7 @@ export * from './components/Button/Button';
 export * from './components/Card/Card';
 export * from './components/CardHeader/CardHeader';
 export * from './components/CardContent/CardContent';
+export * from './components/CardActions/CardActions';
 export * from './components/Checkbox/Checkbox';
 export * from './components/Chip/Chip';
 export * from './components/Container/Container';
@@ -41,6 +42,8 @@ export * from './styled';
 // Theme
 export * from './theme';
 
+export * from './icons/Alerts/Warning';
+export * from './icons/Alerts/Good';
 export * from './icons/Arrows/DropDown';
 export * from './icons/Menu/Menu';
 export * from './icons/Signout/Signout';
@@ -49,7 +52,7 @@ export * from './icons/Analytics/Analytics';
 export * from './icons/Metrics/Metrics';
 export * from './icons/Metrics/Thermometer';
 export * from './icons/Metrics/Humidity';
-export * from './icons/Metrics/Volume';
+export * from './icons/Metrics/Sound';
 export * from './icons/Metrics/Luminosity';
 export * from './icons/More/More';
 export * from './icons/Admin/Admin';
