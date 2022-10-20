@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getHumidityHistoricThunk } from '@entities/environment-metrics/humidity/store/thunks/getHumidityHistoric.thunk';
+import { getLuminosityHistoricThunk } from '@entities/environment-metrics/luminosity/store/thunks/getLuminosityHistoric.thunk';
 import { getSoundHistoricThunk } from '@entities/environment-metrics/sound/store/thunks/getSoundHistoric.thunk';
 import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector'; // TODO : les données auront la même heure de relevé
 import { getTemperaturesHistoricThunk } from '@entities/environment-metrics/temperature/store/thunks/getTemperaturesHistoric.thunk';
@@ -59,6 +60,14 @@ export const EnvironmentMetrics = () => {
 
   useEffect(() => {
     dispatch(getSoundHistoricThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
+  });
+
+  useEffect(() => {
+    dispatch(getLuminosityHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');
