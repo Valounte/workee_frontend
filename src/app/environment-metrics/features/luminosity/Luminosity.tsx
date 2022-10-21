@@ -12,12 +12,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { useAsync } from 'react-use';
 
-import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
+import { selectLuminosityIsConform } from '@entities/environment-metrics/alert/store/selectors/selectLuminosityIsConform.selector';
 import { selectCurrentLuminosity } from '@entities/environment-metrics/luminosity/current/store/selectors/selectCurrentLuminosity.selector';
-import { getCurrentLuminosityThunk } from '@entities/environment-metrics/luminosity/current/store/thunks/getCurrentLuminosity.thunk';
 import { selectLuminosity } from '@entities/environment-metrics/luminosity/store/selectors/selectLuminosityHistoric.selector';
 import {
   Box,
@@ -32,7 +29,6 @@ import {
   GoodIcon,
   LuminosityIcon,
 } from '@ui-kit';
-import { useAppDispatch } from 'src/store/useAppDispatch';
 
 ChartJS.register(
   CategoryScale,
@@ -72,9 +68,6 @@ export const options = {
 };
 
 export const Luminosity = () => {
-  const dispatch = useAppDispatch();
-  const token = useSelector(selectToken);
-
   const luminosityHistoric = useSelector(selectLuminosity);
   const luminosityValues = luminosityHistoric.map(({ value }) => value).reverse();
   const luminosityTime = luminosityHistoric
@@ -95,11 +88,13 @@ export const Luminosity = () => {
   };
 
   const currentLuminosity = useSelector(selectCurrentLuminosity);
-  const isConformValue = useSelector(selectIsConform);
+  const isConformValue = useSelector(selectLuminosityIsConform);
   const { value } = currentLuminosity;
-  const recommendedLuminosity = `Recommandation : ${currentLuminosity.alert.recommendedValue}`;
-
-  useAsync(() => dispatch(getCurrentLuminosityThunk({ token })));
+  const recommendedLuminosity = `Recommandation : ${
+    currentLuminosity.alert.recommendedValue !== ''
+      ? currentLuminosity.alert.recommendedValue
+      : '200lx - 500lx'
+  }`;
 
   return (
     <Card>
@@ -115,29 +110,32 @@ export const Luminosity = () => {
           <Box alignContent="center" width="50%">
             <Line options={options} data={data} />
           </Box>
-          <Box alignSelf="center" width="50%">
+          <Box alignSelf="center" width={value !== undefined ? '50%' : '30%'}>
             <Typography
-              variant="h1"
+              variant={value !== undefined ? 'h1' : 'body1'}
               textAlign="center"
               color={isConformValue ? 'success.main' : 'warning.main'}>
-              {value}lx
+              {value ?? 'Pas de données récentes'}
+              {value !== undefined ? 'lx' : ''}
             </Typography>
           </Box>
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
-        <Stack direction="row" alignItems="center" spacing={1} px={1}>
-          {isConformValue ? (
-            <GoodIcon fontSize="large" />
-          ) : (
-            <WarningIcon fontSize="large" />
-          )}
-          <Typography variant="body2" alignSelf="center" mx={2}>
-            {currentLuminosity.alert.recommendationMessage}
-          </Typography>
-        </Stack>
-      </CardActions>
+      {currentLuminosity.alert.recommendationMessage !== '' && (
+        <CardActions>
+          <Stack direction="row" alignItems="center" spacing={1} px={1}>
+            {isConformValue ? (
+              <GoodIcon fontSize="large" />
+            ) : (
+              <WarningIcon fontSize="large" />
+            )}
+            <Typography variant="body2" alignSelf="center" mx={2}>
+              {currentLuminosity.alert.recommendationMessage}
+            </Typography>
+          </Stack>
+        </CardActions>
+      )}
     </Card>
   );
 };

@@ -12,12 +12,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { useAsync } from 'react-use';
 
-import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
+import { selectHumidityIsConform } from '@entities/environment-metrics/alert/store/selectors/selectHumidityIsConform.selector';
 import { selectCurrentHumidity } from '@entities/environment-metrics/humidity/current/store/selectors/selectCurrentHumidityselector';
-import { getCurrentHumidityThunk } from '@entities/environment-metrics/humidity/current/store/thunks/getCurrentHumidity.thunk';
 import { selectHumidity } from '@entities/environment-metrics/humidity/store/selectors/selectHumidityHistoric.selector';
 import {
   Box,
@@ -32,7 +29,6 @@ import {
   GoodIcon,
   HumidityIcon,
 } from '@ui-kit';
-import { useAppDispatch } from 'src/store/useAppDispatch';
 
 ChartJS.register(
   CategoryScale,
@@ -72,9 +68,7 @@ export const options = {
 };
 
 export const Humidity = () => {
-  const dispatch = useAppDispatch();
-  const token = useSelector(selectToken);
-
+  const currentHumidity = useSelector(selectCurrentHumidity);
   const humidityHistoric = useSelector(selectHumidity);
   const humidityValues = humidityHistoric.map(({ value }) => value).reverse();
   const humidityTime = humidityHistoric.map(({ createdAt }) => createdAt).reverse();
@@ -92,12 +86,13 @@ export const Humidity = () => {
     ],
   };
 
-  const currentHumidity = useSelector(selectCurrentHumidity);
-  const isConformValue = useSelector(selectIsConform);
+  const isConformValue = useSelector(selectHumidityIsConform);
   const { value } = currentHumidity;
-  const recommendedHumidity = `Recommandation : ${currentHumidity.alert.recommendedValue}`;
-
-  useAsync(() => dispatch(getCurrentHumidityThunk({ token })));
+  const recommendedHumidity = `Recommandation : ${
+    currentHumidity.alert.recommendedValue !== ''
+      ? currentHumidity.alert.recommendedValue
+      : '40% - 60%'
+  }`;
 
   return (
     <Card>
@@ -113,29 +108,32 @@ export const Humidity = () => {
           <Box alignContent="center" width="50%">
             <Line options={options} data={data} />
           </Box>
-          <Box alignSelf="center" width="50%">
+          <Box alignSelf="center" width={value !== undefined ? '50%' : '30%'}>
             <Typography
-              variant="h1"
+              variant={value !== undefined ? 'h1' : 'body1'}
               textAlign="center"
               color={isConformValue ? 'success.main' : 'warning.main'}>
-              {value}%
+              {value ?? 'Pas de données récentes'}
+              {value !== undefined ? '%' : ''}
             </Typography>
           </Box>
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
-        <Stack direction="row" alignItems="center" spacing={1} px={1}>
-          {isConformValue ? (
-            <GoodIcon fontSize="large" />
-          ) : (
-            <WarningIcon fontSize="large" />
-          )}
-          <Typography variant="body2" alignSelf="center" mx={2}>
-            {currentHumidity.alert.recommendationMessage}
-          </Typography>
-        </Stack>
-      </CardActions>
+      {currentHumidity.alert.recommendationMessage !== '' && (
+        <CardActions>
+          <Stack direction="row" alignItems="center" spacing={1} px={1}>
+            {isConformValue ? (
+              <GoodIcon fontSize="large" />
+            ) : (
+              <WarningIcon fontSize="large" />
+            )}
+            <Typography variant="body2" alignSelf="center" mx={2}>
+              {currentHumidity.alert.recommendationMessage}
+            </Typography>
+          </Stack>
+        </CardActions>
+      )}
     </Card>
   );
 };

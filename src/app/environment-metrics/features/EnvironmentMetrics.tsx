@@ -6,10 +6,13 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
+import { getCurrentHumidityThunk } from '@entities/environment-metrics/humidity/current/store/thunks/getCurrentHumidity.thunk';
 import { getHumidityHistoricThunk } from '@entities/environment-metrics/humidity/store/thunks/getHumidityHistoric.thunk';
+import { getCurrentLuminosityThunk } from '@entities/environment-metrics/luminosity/current/store/thunks/getCurrentLuminosity.thunk';
 import { getLuminosityHistoricThunk } from '@entities/environment-metrics/luminosity/store/thunks/getLuminosityHistoric.thunk';
+import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/current/store/thunks/getCurrentSound.thunk';
 import { getSoundHistoricThunk } from '@entities/environment-metrics/sound/store/thunks/getSoundHistoric.thunk';
-import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector'; // TODO : les données auront la même heure de relevé
+import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { getTemperaturesHistoricThunk } from '@entities/environment-metrics/temperature/store/thunks/getTemperaturesHistoric.thunk';
 import {
   styled,
@@ -41,51 +44,77 @@ const StyledGridContainer = styled(Grid)`
 export const EnvironmentMetrics = () => {
   const dispatch = useAppDispatch();
   const token = useSelector(selectToken);
+  const [date, setDate] = React.useState('');
 
   useEffect(() => {
+    fetchQuote();
+    getCurrentDate();
+    const myInterval = setInterval(fetchQuote, 60000);
+    const dateInterval = setInterval(getCurrentDate, 60000);
+
+    return () => {
+      // should clear the interval when the component unmounts
+      clearInterval(myInterval);
+      clearInterval(dateInterval);
+    };
+  });
+
+  const fetchQuote = () => {
     dispatch(getTemperaturesHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');
       });
-  });
 
-  useEffect(() => {
     dispatch(getHumidityHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');
       });
-  });
 
-  useEffect(() => {
     dispatch(getSoundHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');
       });
-  });
 
-  useEffect(() => {
     dispatch(getLuminosityHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');
       });
-  });
 
-  const lastDataFeedbackTime = useSelector(selectCurrentTemperature); // TODO : Sélectionner la véritable heure
-  let formattedDataFeedbackDate;
-  let dataFeedbackDate;
-  let dataFeedbackTime;
+    dispatch(getCurrentHumidityThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
 
-  if (lastDataFeedbackTime.createdAt) {
-    formattedDataFeedbackDate = lastDataFeedbackTime.createdAt.toString().split(' ');
-    const [date, time] = formattedDataFeedbackDate;
-    const [year, month, day] = date.split('-');
-    dataFeedbackDate = [day, month, year].join('-');
-    dataFeedbackTime = time;
-  }
+    dispatch(getCurrentLuminosityThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
+
+    dispatch(getCurrentSoundThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
+
+    dispatch(getCurrentTemperatureThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
+  };
+
+  const getCurrentDate = () => {
+    const today = new Date();
+    const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+    const time = `${today.getHours()}h${today.getMinutes()}`;
+    setDate(`${date} à ${time}`);
+  };
 
   return (
     <StyledContainer>
@@ -94,9 +123,7 @@ export const EnvironmentMetrics = () => {
           <MetricsIcon fontSize="large" />
           <Typography variant="h4">Workee</Typography>
         </Stack>
-        <Typography variant="body1">
-          Données relevées le {dataFeedbackDate} à {dataFeedbackTime}
-        </Typography>
+        <Typography variant="body1">Données relevées le {date}</Typography>
       </Box>
 
       <StyledGridContainer
