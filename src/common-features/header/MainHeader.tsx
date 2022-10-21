@@ -89,6 +89,12 @@ export const MainHeader = () => {
                       <Typography textAlign="center">Accès à la solution</Typography>
                     </AppRouterLink>
                   </MenuItem>
+                  <MenuItem key="notification-manager" onClick={handleCloseNavMenu}>
+                    <AppRouterLink
+                        to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notificationManager}`}>
+                      <Typography textAlign="center">Notification manager</Typography>
+                    </AppRouterLink>
+                  </MenuItem>
                 </Menu>
               </>
             )}
@@ -102,6 +108,10 @@ export const MainHeader = () => {
               <AppRouterLink
                 to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
                 <Typography textAlign="center">Accès à la solution</Typography>
+              </AppRouterLink>
+              <AppRouterLink
+                  to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notificationManager}`}>
+                <Typography textAlign="center">Notification manager</Typography>
               </AppRouterLink>
             </Stack>
           )}

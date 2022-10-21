@@ -6,7 +6,6 @@ import {unwrapResult} from "@reduxjs/toolkit";
 import {useFormik} from 'formik';
 import {useSnackbar} from "notistack";
 import {useSelector} from "react-redux";
-import {useLocation} from "react-router-dom";
 import {useAsync} from "react-use";
 import {array as yupArray, object as yupObject, string as yupString} from 'yup';
 
@@ -34,13 +33,9 @@ const statusLevel = [
 
 
 export const NotificationManagerForm = () => {
-    const { search } = useLocation();
-    const searchParams = new URLSearchParams(search);
-    const tokenT =
-        searchParams.get('token') !== null ? (searchParams.get('token') as string) : '';
+    const token = useSelector(selectToken);
     let usersFromStore = useSelector(selectUsers);
     let teamsFromStore = useSelector(selectTeams);
-    const token = useSelector(selectToken);
     const dispatch = useAppDispatch();
     const {enqueueSnackbar} = useSnackbar();
     const formik = useFormik({
@@ -57,14 +52,16 @@ export const NotificationManagerForm = () => {
                 usersId: values.usersId,
                 alertLevel: values.alertLevel,
                 message: values.message,
-                token: tokenT,
+                token,
             };
-            if (!values.teamsId && !values.usersId) {
+            if (values.teamsId === [] && values.usersId === []) {
                 enqueueSnackbar('You need to add at least !', {
                     variant: 'error',
                 });
                 return;
             }
+
+            console.log(sendNotifValues);
             dispatch(sendNotificationThunk(sendNotifValues))
                 .then(unwrapResult)
                 .then(() => {
@@ -92,7 +89,6 @@ export const NotificationManagerForm = () => {
     if (errorTeams) {
         teamsFromStore = [];
     }
-    
     const handleLevelChange = useCallback(
         (event: SelectChangeEvent<unknown>) => {
             formik.setFieldValue('alertLevel', event.target.value).catch(() => {
@@ -105,23 +101,23 @@ export const NotificationManagerForm = () => {
         <form onSubmit={formik.handleSubmit}>
             <Box width="50%" margin="0 auto" padding="30px">
                 <Box display="flex" flexDirection="column" maxWidth="70%" margin="0 auto">
-
                     <Autocomplete
+                        key="teamsId"
                         multiple
                         id="teamsId"
                         options={teamsFromStore.map(team => `${team.name}`)}
-                        renderInput={(params) => <TextField style={{marginBottom: 25}} {...params} label="Equipe(s) à notifier"/>}
+                        renderInput={(params) => <TextField key="team" style={{marginBottom: 25}} {...params} label="Equipe(s) à notifier"/>}
                     />
-
                     <Autocomplete
+                        key="usersId"
                         multiple
                         id="usersId"
                         disablePortal
                         options={usersFromStore.map(user => `${user.firstname   } ${  user.lastname}`)}
-                        renderInput={(params) => <TextField style={{marginBottom: 25}} {...params} label="Personne(s) à notifer"/>}
+                        renderInput={(params) => <TextField key="user" style={{marginBottom: 25}} {...params} label="Personne(s) à notifer"/>}
                     />
-
                     <SelectInput
+                        key="status"
                         id="status"
                         name="status"
                         label="Niveau d'importance"
@@ -132,13 +128,14 @@ export const NotificationManagerForm = () => {
                             formik.touched.alertLevel && formik.errors.alertLevel != null ? formik.errors.alertLevel : ' '
                         }>
                         {statusLevel.map(level => (
-                            <MenuItem value={level}>
+                            <MenuItem key={`item${  level}`} value={level}>
                                 {level}
                             </MenuItem>
                         ))}
                     </SelectInput>
                     <TextField
                         variant="outlined"
+                        key="message"
                         id="message"
                         name="message"
                         label="Message"
@@ -153,7 +150,7 @@ export const NotificationManagerForm = () => {
                         InputLabelProps={{style: {fontSize: 15}}}
                     />
 
-                    <Button variant="contained" type="submit">
+                    <Button key="submit" variant="contained" type="submit">
                         <Typography textAlign="center">Envoyer la notification</Typography>
                     </Button>
                 </Box>

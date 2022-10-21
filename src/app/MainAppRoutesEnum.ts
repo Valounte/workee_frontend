@@ -5,4 +5,5 @@ export const MainAppRoutesEnum = {
   usersHandler: '/users-handlers',
   environmentMetrics: '/environment-metrics',
   feedback: '/feedback',
+  notificationManager: '/notification-manager',
 };
