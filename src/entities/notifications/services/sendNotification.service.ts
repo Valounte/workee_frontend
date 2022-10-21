@@ -23,7 +23,7 @@ export const sendNotificationService = (params: NotifSendBody) =>
     },
     {
       headers: {
-        Authorization: `Bearer ${params.token}`,
+        Authorization: ` ${params.token}`,
       },
     }
   );

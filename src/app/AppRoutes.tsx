@@ -14,16 +14,20 @@ import { MainAppRoutesEnum } from './MainAppRoutesEnum';
 
 const FeedbackScreen = React.lazy(() => import('./feedback/Feedback.screen'));
 const Settings = React.lazy(() => import('./settings/Settings.Screen'));
-const EnvironmentMetricsScreen = React.lazy(
-  () => import('./environment-metrics/EnvironmentMetrics.screen')
+
+const NotificationManagerScreen = React.lazy(
+  () => import('../features/notification-manager/notificationManager.screen')
 );
+
 const UsersHandlerScreen = React.lazy(
   () => import('./usersHandler/UsersHandler.screen')
 );
 const PageNotFoundScreen = React.lazy(
   () => import('@common-features/page-not-found/PageNotFound.screen')
 );
-
+const EnvironmentMetricsScreen = React.lazy(
+    () => import('./environment-metrics/EnvironmentMetrics.screen')
+);
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
   const token = useSelector(selectToken);
@@ -52,9 +56,13 @@ export const AppRoutes = () => {
             path={MainAppRoutesEnum.environmentMetrics}
             element={<EnvironmentMetricsScreen />}
           />
+               <Route
+        path={MainAppRoutesEnum.notificationManager}
+        element={<NotificationManagerScreen />}
+      />
           <Route path="*" element={<PageNotFoundScreen />} />
         </Routes>
       </Suspense>
     </Stack>
   );
-};
+  };
