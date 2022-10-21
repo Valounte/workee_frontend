@@ -12,12 +12,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { useAsync } from 'react-use';
 
-import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
+import { selectTemperatureIsConform } from '@entities/environment-metrics/alert/store/selectors/selectTemperatureIsConform.selector';
 import { selectCurrentTemperature } from '@entities/environment-metrics/temperature/current/store/selectors/selectCurrentTemperature.selector';
-import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { selectTemperatures } from '@entities/environment-metrics/temperature/store/selectors/selectTemperaturesHistoric.selector';
 import {
   Box,
@@ -32,7 +29,6 @@ import {
   Divider,
   GoodIcon,
 } from '@ui-kit';
-import { useAppDispatch } from 'src/store/useAppDispatch';
 
 ChartJS.register(
   CategoryScale,
@@ -72,9 +68,6 @@ export const options = {
 };
 
 export const Temperature = () => {
-  const dispatch = useAppDispatch();
-  const token = useSelector(selectToken);
-
   const temperaturesHistoric = useSelector(selectTemperatures);
   const temperatureValues = temperaturesHistoric.map(({ value }) => value).reverse();
   const temperatureTime = temperaturesHistoric
@@ -95,11 +88,13 @@ export const Temperature = () => {
   };
 
   const currentTemperature = useSelector(selectCurrentTemperature);
-  const isConformValue = useSelector(selectIsConform);
+  const isConformValue = useSelector(selectTemperatureIsConform);
   const { value } = currentTemperature;
-  const recommendedTemperature = `Recommandation : ${currentTemperature.alert.recommendedValue}`;
-
-  useAsync(() => dispatch(getCurrentTemperatureThunk({ token })));
+  const recommendedTemperature = `Recommandation : ${
+    currentTemperature.alert.recommendedValue !== ''
+      ? currentTemperature.alert.recommendedValue
+      : '20°C - 23.5°C'
+  }`;
 
   return (
     <Card>
@@ -115,29 +110,33 @@ export const Temperature = () => {
           <Box alignContent="center" width="50%">
             <Line options={options} data={data} />
           </Box>
-          <Box alignSelf="center" width="50%">
+          <Box alignSelf="center" width={value !== undefined ? '50%' : '30%'}>
             <Typography
-              variant="h1"
+              variant={value !== undefined ? 'h1' : 'body1'}
               textAlign="center"
               color={isConformValue ? 'success.main' : 'warning.main'}>
-              {value}°C
+              {value ?? 'Pas de données récentes'}
+              {value !== undefined ? '°C' : ''}
             </Typography>
           </Box>
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
-        <Stack direction="row" alignItems="center" spacing={1} px={1}>
-          {isConformValue ? (
-            <GoodIcon fontSize="large" />
-          ) : (
-            <WarningIcon fontSize="large" />
-          )}
-          <Typography variant="body2" alignSelf="center" mx={2}>
-            {currentTemperature.alert.recommendationMessage}
-          </Typography>
-        </Stack>
-      </CardActions>
+      {}
+      {currentTemperature.alert.recommendationMessage !== '' && (
+        <CardActions>
+          <Stack direction="row" alignItems="center" spacing={1} px={1}>
+            {isConformValue ? (
+              <GoodIcon fontSize="large" />
+            ) : (
+              <WarningIcon fontSize="large" />
+            )}
+            <Typography variant="body2" alignSelf="center" mx={2}>
+              {currentTemperature.alert.recommendationMessage ?? '-'}
+            </Typography>
+          </Stack>
+        </CardActions>
+      )}
     </Card>
   );
 };

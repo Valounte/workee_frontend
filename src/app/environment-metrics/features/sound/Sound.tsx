@@ -12,12 +12,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { useAsync } from 'react-use';
 
-import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { selectIsConform } from '@entities/environment-metrics/alert/store/selectors/selectIsConform.selector';
+import { selectSoundIsConform } from '@entities/environment-metrics/alert/store/selectors/selectSoundIsConform.selector';
 import { selectCurrentSound } from '@entities/environment-metrics/sound/current/store/selectors/selectCurrentSound.selector';
-import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/current/store/thunks/getCurrentSound.thunk';
 import { selectSound } from '@entities/environment-metrics/sound/store/selectors/selectSoundHistoric.selector';
 import {
   Box,
@@ -32,7 +29,6 @@ import {
   GoodIcon,
   SoundIcon,
 } from '@ui-kit';
-import { useAppDispatch } from 'src/store/useAppDispatch';
 
 ChartJS.register(
   CategoryScale,
@@ -72,9 +68,6 @@ export const options = {
 };
 
 export const Sound = () => {
-  const dispatch = useAppDispatch();
-  const token = useSelector(selectToken);
-
   const soundHistoric = useSelector(selectSound);
   const soundValues = soundHistoric.map(({ value }) => value).reverse();
   const soundTime = soundHistoric.map(({ createdAt }) => createdAt).reverse();
@@ -93,11 +86,13 @@ export const Sound = () => {
   };
 
   const currentSound = useSelector(selectCurrentSound);
-  const isConformValue = useSelector(selectIsConform);
+  const isConformValue = useSelector(selectSoundIsConform);
   const { value } = currentSound;
-  const recommendedSound = `Recommandation : ${currentSound.alert.recommendedValue}`;
-
-  useAsync(() => dispatch(getCurrentSoundThunk({ token })));
+  const recommendedSound = `Recommandation : ${
+    currentSound.alert.recommendedValue !== ''
+      ? currentSound.alert.recommendedValue
+      : ' < 80dB'
+  }`;
 
   return (
     <Card>
@@ -113,29 +108,32 @@ export const Sound = () => {
           <Box alignContent="center" width="50%">
             <Line options={options} data={data} />
           </Box>
-          <Box alignSelf="center" width="50%">
+          <Box alignSelf="center" width={value !== undefined ? '50%' : '30%'}>
             <Typography
-              variant="h1"
+              variant={value !== undefined ? 'h1' : 'body1'}
               textAlign="center"
               color={isConformValue ? 'success.main' : 'warning.main'}>
-              {value}dB
+              {value ?? 'Pas de données récentes'}
+              {value !== undefined ? 'dB' : ''}
             </Typography>
           </Box>
         </Box>
       </CardContent>
       <Divider />
-      <CardActions>
-        <Stack direction="row" alignItems="center" spacing={1} px={1}>
-          {isConformValue ? (
-            <GoodIcon fontSize="large" />
-          ) : (
-            <WarningIcon fontSize="large" />
-          )}
-          <Typography variant="body2" alignSelf="center" mx={2}>
-            {currentSound.alert.recommendationMessage}
-          </Typography>
-        </Stack>
-      </CardActions>
+      {currentSound.alert.recommendationMessage !== '' && (
+        <CardActions>
+          <Stack direction="row" alignItems="center" spacing={1} px={1}>
+            {isConformValue ? (
+              <GoodIcon fontSize="large" />
+            ) : (
+              <WarningIcon fontSize="large" />
+            )}
+            <Typography variant="body2" alignSelf="center" mx={2}>
+              {currentSound.alert.recommendationMessage}
+            </Typography>
+          </Stack>
+        </CardActions>
+      )}
     </Card>
   );
 };
