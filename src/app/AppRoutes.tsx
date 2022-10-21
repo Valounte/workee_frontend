@@ -7,7 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { MainNavigation } from '@common-features/main-navigation/MainNavigation';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getMeThunk } from '@entities/authentification/store/thunks/getMe.thunk';
-import { Stack } from '@ui-kit';
+import { LinearProgress, Stack } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 import { MainAppRoutesEnum } from './MainAppRoutesEnum';
@@ -38,7 +38,7 @@ export const AppRoutes = () => {
   return (
     <Stack direction="row" height="100vh" spacing={0}>
       <MainNavigation />
-      <Suspense fallback={<>loading</>}>
+      <Suspense fallback={<LinearProgress color="secondary" />}>
         <Routes>
           <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
           <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />

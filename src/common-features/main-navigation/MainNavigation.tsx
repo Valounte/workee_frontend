@@ -23,6 +23,7 @@ import {
   DropdownIcon,
   IconButton,
   AppRouterLink,
+  LinearProgress,
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
@@ -62,7 +63,7 @@ export const MainNavigation = () => {
   };
 
   if (!me) {
-    return <>loading</>;
+    return <LinearProgress color="secondary" />;
   }
 
   const { firstname, lastname, email } = me;

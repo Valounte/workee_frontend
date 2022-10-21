@@ -2,6 +2,8 @@ import React, { Suspense } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
+import { LinearProgress } from '@ui-kit';
+
 import { AppRoutes } from './app/AppRoutes';
 import { LandingPageRoutes } from './landing-page/LandingPageRoutes';
 import { MainRoutesEnum } from './RoutesEnum';
@@ -11,7 +13,7 @@ const PageNotFoundScreen = React.lazy(
 );
 
 export const App = () => (
-  <Suspense fallback={<>loading</>}>
+  <Suspense fallback={<LinearProgress color="secondary" />}>
     <Routes>
       <Route
         path={`${MainRoutesEnum.landingPage}/*`}
