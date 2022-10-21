@@ -3,9 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { MainNavigation } from '@common-features/main-navigation/MainNavigation';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { styled, Container, Stack } from '@ui-kit';
+import { styled, Container } from '@ui-kit';
 
 import { MainRoutesEnum } from '../../RoutesEnum';
 import { MainAppRoutesEnum } from '../MainAppRoutesEnum';
@@ -26,10 +25,7 @@ const EnvironmentMetricsScreen = () => {
   }
   return (
     <StyledContainer>
-      <Stack direction="row" height="100vh" spacing={0}>
-        <MainNavigation />
-        <EnvironmentMetrics />
-      </Stack>
+      <EnvironmentMetrics />
     </StyledContainer>
   );
 };
