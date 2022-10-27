@@ -35,6 +35,7 @@ export * from './components/TextField/TextField';
 export * from './components/Typography/Typography';
 export * from './components/Tooltip/Tooltip';
 export * from './components/AppRouterLink/AppRouterLink';
+export * from './components/LinearProgress/LinearProgress';
 
 // Utils
 export * from './styled';

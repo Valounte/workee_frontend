@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { selectMe } from '@entities/authentification/store/selectors/selectMe.selector';
 import {
@@ -23,18 +22,13 @@ import {
   MoreIcon,
   DropdownIcon,
   IconButton,
+  AppRouterLink,
+  LinearProgress,
 } from '@ui-kit';
 import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
 import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
 import { MainRoutesEnum } from '../../RoutesEnum';
-
-const StyledLink = styled(Link)`
-  display: flex;
-  flex-direction: row;
-  text-decoration: none;
-  color: #3f1d01;
-`;
 
 const StyledAvatar = styled(Avatar)`
   margin-right: 0;
@@ -69,7 +63,7 @@ export const MainNavigation = () => {
   };
 
   if (!me) {
-    return <>loading</>;
+    return <LinearProgress color="secondary" />;
   }
 
   const { firstname, lastname, email } = me;
@@ -136,14 +130,14 @@ export const MainNavigation = () => {
                   <Typography>Profile</Typography>
                 </ListItem>
                 <Divider />
-                <StyledLink to={MainRoutesEnum.landingPage}>
+                <AppRouterLink to={MainRoutesEnum.landingPage}>
                   <ListItem>
                     <ListItemIcon>
                       <SignoutIcon fontSize="large" />
                     </ListItemIcon>
                     <Typography>Déconnexion</Typography>
                   </ListItem>
-                </StyledLink>
+                </AppRouterLink>
               </Menu>
             </ListItem>
             <ListItem>
@@ -165,30 +159,32 @@ export const MainNavigation = () => {
               <Typography>Statistiques</Typography>
             </ListItem>
             <ListItem>
-              <StyledLink to={MainAppRoutesEnum.environmentMetrics}>
+              <AppRouterLink
+                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
                 <ListItemIcon>
                   <MetricsIcon fontSize="large" />
                 </ListItemIcon>
                 <Typography>Workee</Typography>
-              </StyledLink>
+              </AppRouterLink>
             </ListItem>
             <ListItem>
-              <StyledLink to={MainAppRoutesEnum.usersHandler}>
+              <AppRouterLink
+                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.usersHandler}`}>
                 <ListItemIcon>
                   <TeamIcon fontSize="large" />
                 </ListItemIcon>
                 <Typography>Gestion</Typography>
-              </StyledLink>
+              </AppRouterLink>
             </ListItem>
             <Divider />
-            <StyledLink to={MainRoutesEnum.landingPage}>
+            <AppRouterLink to={MainRoutesEnum.landingPage}>
               <ListItem>
                 <ListItemIcon>
                   <SignoutIcon fontSize="large" />
                 </ListItemIcon>
                 <Typography>Déconnexion</Typography>
               </ListItem>
-            </StyledLink>
+            </AppRouterLink>
           </>
         ) : (
           <>
@@ -218,27 +214,29 @@ export const MainNavigation = () => {
               </StyledListItemIcon>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink to={MainAppRoutesEnum.environmentMetrics}>
+              <AppRouterLink
+                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
                 <StyledListItemIcon>
                   <MetricsIcon fontSize="large" />
                 </StyledListItemIcon>
-              </StyledLink>
+              </AppRouterLink>
             </StyledListItem>
             <StyledListItem>
-              <StyledLink to={MainAppRoutesEnum.usersHandler}>
+              <AppRouterLink
+                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.usersHandler}`}>
                 <StyledListItemIcon>
                   <TeamIcon fontSize="large" />
                 </StyledListItemIcon>
-              </StyledLink>
+              </AppRouterLink>
             </StyledListItem>
             <Divider />
-            <StyledLink to={MainRoutesEnum.landingPage}>
+            <AppRouterLink to={MainRoutesEnum.landingPage}>
               <StyledListItem>
                 <StyledListItemIcon>
                   <SignoutIcon fontSize="large" />
                 </StyledListItemIcon>
               </StyledListItem>
-            </StyledLink>
+            </AppRouterLink>
           </>
         )}
       </List>

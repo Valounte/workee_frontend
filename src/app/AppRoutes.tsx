@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
+import { MainNavigation } from '@common-features/main-navigation/MainNavigation';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getMeThunk } from '@entities/authentification/store/thunks/getMe.thunk';
+import { LinearProgress, Stack } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 import { MainAppRoutesEnum } from './MainAppRoutesEnum';
 
-const LoginScreen = React.lazy(() => import('./login/Login.screen'));
-const RegisterScreen = React.lazy(() => import('./register/Register.Screen'));
 const FeedbackScreen = React.lazy(() => import('./feedback/Feedback.screen'));
 const EnvironmentMetricsScreen = React.lazy(
   () => import('./environment-metrics/EnvironmentMetrics.screen')
@@ -36,20 +36,23 @@ export const AppRoutes = () => {
   });
 
   return (
-    <Routes>
-      <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
-      <Route path={MainAppRoutesEnum.login} element={<LoginScreen />} />
-      <Route path={MainAppRoutesEnum.register} element={<RegisterScreen />} />
-      <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
-      <Route
-        path={MainAppRoutesEnum.usersHandler}
-        element={<UsersHandlerScreen />}
-      />
-      <Route
-        path={MainAppRoutesEnum.environmentMetrics}
-        element={<EnvironmentMetricsScreen />}
-      />
-      <Route path="*" element={<PageNotFoundScreen />} />
-    </Routes>
+    <Stack direction="row" height="100vh" spacing={0}>
+      <MainNavigation />
+      <Suspense fallback={<LinearProgress color="secondary" />}>
+        <Routes>
+          <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
+          <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
+          <Route
+            path={MainAppRoutesEnum.usersHandler}
+            element={<UsersHandlerScreen />}
+          />
+          <Route
+            path={MainAppRoutesEnum.environmentMetrics}
+            element={<EnvironmentMetricsScreen />}
+          />
+          <Route path="*" element={<PageNotFoundScreen />} />
+        </Routes>
+      </Suspense>
+    </Stack>
   );
 };
