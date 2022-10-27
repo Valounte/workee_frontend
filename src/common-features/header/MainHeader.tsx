@@ -115,7 +115,7 @@ export const MainHeader = () => {
               </Button>
             ) : (
               <Button
-                href={`${MainRoutesEnum.app}${MainAppRoutesEnum.login}`}
+                href={`${MainAppRoutesEnum.login}`}
                 variant="outlined"
                 color="secondary">
                 Connexion
