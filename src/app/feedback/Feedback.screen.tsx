@@ -1,39 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { useSelector } from 'react-redux';
-import { useAsync } from 'react-use';
+import { Button, Box, Dialog, DialogContent, DialogTitle } from '@ui-kit';
 
-import { MainNavigation } from '@common-features/main-navigation/MainNavigation';
-import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { getDailyFeedbackThunk } from '@entities/dailyFeedback/store/thunks/getDailyFeedback.thunk';
-import { styled, Container, Stack } from '@ui-kit';
-
-import { useAppDispatch } from '../../store/useAppDispatch';
-import { DailyFeedbackDataGrid } from './features/DailyFeedbackDataGrid';
-
-const StyledContainer = styled(Container)`
-  max-width: 100%;
-  padding: 0;
-`;
+import { FeedbackForm } from './features/feedbackForm/FeedbackForm';
 
 const FeedbackScreen = () => {
-  const dispatch = useAppDispatch();
-  const token = useSelector(selectToken);
-
-  // TODO : use loading and errors
-  useAsync(() => dispatch(getDailyFeedbackThunk({ teamId: 1, token })));
-
-  // const lastWeekDailyFeedback = useSelector(selectDailyFeedback);
-
-  // console.log(lastWeekDailyFeedback);
-
+  const [openDialoFeedback, setOpenDialoFeedback] = useState(false);
   return (
-    <StyledContainer>
-      <DailyFeedbackDataGrid />
-      <Stack direction="row" height="100vh" spacing={0}>
-        <MainNavigation />
-      </Stack>
-    </StyledContainer>
+    <Box maxWidth="100%">
+      <Dialog
+        open={openDialoFeedback}
+        onClose={() => {
+          setOpenDialoFeedback(false);
+        }}>
+        <DialogTitle>Envoyer un feedback</DialogTitle>
+        <DialogContent>
+          <FeedbackForm onClose={setOpenDialoFeedback} />
+        </DialogContent>
+      </Dialog>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => {
+          setOpenDialoFeedback(true);
+        }}>
+        Envoyer un feedback
+      </Button>
+    </Box>
   );
 };
 

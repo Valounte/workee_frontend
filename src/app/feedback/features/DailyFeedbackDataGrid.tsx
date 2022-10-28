@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const DailyFeedbackDataGrid = () => <p>coucou</p>;
+export const DailyFeedbackDataGrid = () => <>data grid</>;
