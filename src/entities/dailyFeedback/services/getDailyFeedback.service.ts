@@ -4,13 +4,9 @@ import { LastWeekDailyFeedback } from '../LastWeekDailyFeedback';
 
 export interface getDailyFeedbackParams {
   token: string;
-  teamId: number;
 }
-export const getDailyFeedbackService = ({ token, teamId }: getDailyFeedbackParams) =>
-  axios.get<LastWeekDailyFeedback>('api/last-week-daily-feedback', {
-    params: {
-      teamId,
-    },
+export const getDailyFeedbackService = ({ token }: getDailyFeedbackParams) =>
+  axios.get<LastWeekDailyFeedback>('api/teams-daily-feedback', {
     headers: {
       Authorization: `${token}`,
     },

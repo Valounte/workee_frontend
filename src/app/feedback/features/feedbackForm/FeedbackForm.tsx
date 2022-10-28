@@ -54,7 +54,7 @@ export const FeedbackForm = memo((props: FeedbackFormProps) => {
       })
         .then(() => {
           onClose(false);
-          enqueueSnackbar('Feedback envoyé avec succes', {
+          enqueueSnackbar('Feedback envoyé avec succès', {
             variant: 'success',
           });
         })
