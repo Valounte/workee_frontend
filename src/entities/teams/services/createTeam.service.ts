@@ -5,6 +5,7 @@ import type { Team } from '../Team';
 export interface CreateTeamServiceParams {
   token: string;
   name: string;
+  description: string;
 }
 
 export interface CreateTeamServiceReturn {
@@ -12,10 +13,10 @@ export interface CreateTeamServiceReturn {
   team: Team;
 }
 
-export const createTeamService = ({ token, name }: CreateTeamServiceParams) =>
+export const createTeamService = ({ token, name, description }: CreateTeamServiceParams) =>
   axios.post<CreateTeamServiceReturn>(
     'api/team',
-    { name },
+    { name, description },
     {
       headers: {
         Authorization: `${token}`,
