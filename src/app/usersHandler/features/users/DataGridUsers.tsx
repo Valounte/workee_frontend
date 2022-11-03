@@ -7,14 +7,16 @@ import { selectUsers } from '@entities/users/store/selectors/getUsers.selector';
 
 import { userEmailDataGridCol } from './data-grid/userEmailDataGridCol';
 import { userFirstnameDataGridCol } from './data-grid/userFirstnameDataGridCol';
-import { userIdDataGridCol } from './data-grid/userIdDataGridCol';
+import { userJobDataGridCol } from './data-grid/userJobDataGridCol';
 import { userLastnameDataGridCol } from './data-grid/userLastnameDataGridCol';
+import { userTeamsDataGridCol } from './data-grid/userTeamsDataGridCol';
 
 const columns: GridColDef[] = [
-  userIdDataGridCol,
-  userEmailDataGridCol,
   userLastnameDataGridCol,
   userFirstnameDataGridCol,
+  userEmailDataGridCol,
+  userJobDataGridCol,
+  userTeamsDataGridCol,
 ];
 
 interface DataGridUsersProps {
@@ -31,6 +33,8 @@ export const DataGridUsers = memo(({ loading, error }: DataGridUsersProps) => {
         email: user.email,
         lastname: user.lastname,
         firstname: user.firstname,
+        job: user.job.name,
+        teams: user.teams,
       })),
     [users]
   );
@@ -43,6 +47,14 @@ export const DataGridUsers = memo(({ loading, error }: DataGridUsersProps) => {
       autoHeight
       pageSize={5}
       rowsPerPageOptions={[5]}
+      sx={{
+        '& .MuiDataGrid-main': {
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+        },
+        '& .MuiDataGrid-footerContainer': {
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+        },
+      }}
     />
   );
 });

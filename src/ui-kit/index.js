@@ -58,6 +58,8 @@ export * from './icons/Metrics/Luminosity';
 export * from './icons/More/More';
 export * from './icons/Admin/Admin';
 export * from './icons/Team/Team';
+export * from './icons/Users/AddUser';
 export * from './icons/Social/Facebook';
 export * from './icons/Social/Instagram';
 export * from './icons/Social/LinkedIn';
+export * from './icons/Work/Work';
