@@ -1,6 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import type { Job } from '../Job';
+import { createJobThunk } from './thunks/createJob.thunk';
 import { getJobsThunk } from './thunks/getJobs.thunk';
 
 export const jobsAdapter = createEntityAdapter<Job>({
@@ -14,6 +15,9 @@ export const jobSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getJobsThunk.fulfilled, (state, { payload }) => {
       jobsAdapter.setAll(state, payload);
+    });
+    builder.addCase(createJobThunk.fulfilled, (state, { payload }) => {
+      jobsAdapter.addOne(state, payload);
     });
   },
 });
