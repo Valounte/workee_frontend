@@ -13,7 +13,11 @@ export interface CreateTeamServiceReturn {
   team: Team;
 }
 
-export const createTeamService = ({ token, name, description }: CreateTeamServiceParams) =>
+export const createTeamService = ({
+  token,
+  name,
+  description,
+}: CreateTeamServiceParams) =>
   axios.post<CreateTeamServiceReturn>(
     'api/team',
     { name, description },

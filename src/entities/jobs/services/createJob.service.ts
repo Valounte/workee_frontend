@@ -13,7 +13,11 @@ export interface CreateJobServiceReturn {
   job: Job;
 }
 
-export const createJobService = ({ token, name, description }: CreateJobServiceParams) =>
+export const createJobService = ({
+  token,
+  name,
+  description,
+}: CreateJobServiceParams) =>
   axios.post<CreateJobServiceReturn>(
     'api/job',
     { name, description },
