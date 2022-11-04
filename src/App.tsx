@@ -16,7 +16,7 @@ export const App = () => (
   <Suspense fallback={<LinearProgress color="secondary" />}>
     <Routes>
       <Route
-        path={`${MainRoutesEnum.landingPage}/*`}
+        path={`${MainRoutesEnum.landingPage}*`}
         element={<LandingPageRoutes />}
       />
 
