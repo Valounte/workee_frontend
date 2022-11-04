@@ -24,6 +24,11 @@ import {
   SelectInput,
   SelectChangeEvent,
   MenuItem,
+  Card,
+  CardContent,
+  CardActions,
+  Stack,
+  AddUserIcon,
 } from '@ui-kit';
 
 import { useAppDispatch } from '../../../../store/useAppDispatch';
@@ -91,113 +96,125 @@ export const InviteUserForm = () => {
   );
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <Box display="flex" flexDirection="column" maxWidth="50vh">
-        <TextField
-          autoFocus
-          variant="outlined"
-          id="email"
-          name="email"
-          label="Email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={
-            formik.touched.email && formik.errors.email != null
-              ? formik.errors.email
-              : ' '
-          }
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-        <TextField
-          variant="outlined"
-          id="firstname"
-          name="firstname"
-          label="Prénom"
-          value={formik.values.firstname}
-          onChange={formik.handleChange}
-          error={formik.touched.firstname && Boolean(formik.errors.firstname)}
-          helperText={
-            formik.touched.firstname && formik.errors.firstname != null
-              ? formik.errors.firstname
-              : ' '
-          }
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
-        <TextField
-          variant="outlined"
-          id="lastname"
-          name="lastname"
-          label="Nom"
-          value={formik.values.lastname}
-          onChange={formik.handleChange}
-          error={formik.touched.lastname && Boolean(formik.errors.lastname)}
-          helperText={
-            formik.touched.lastname && formik.errors.lastname != null
-              ? formik.errors.lastname
-              : ' '
-          }
-          InputLabelProps={{ style: { fontSize: 15 } }}
-        />
+    <Card>
+      <form onSubmit={formik.handleSubmit}>
+        <CardContent>
+          <Stack direction="row" alignItems="center" spacing={1} mb={2}>
+            <AddUserIcon fontSize="large" />
+            <Typography variant="h5">Inviter un utilisateur</Typography>
+          </Stack>
+          <Box display="flex" flexDirection="column" width="50vh">
+            <TextField
+              autoFocus
+              variant="outlined"
+              id="email"
+              name="email"
+              label="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={
+                formik.touched.email && formik.errors.email != null
+                  ? formik.errors.email
+                  : ' '
+              }
+              InputLabelProps={{ style: { fontSize: 15 } }}
+            />
+            <TextField
+              variant="outlined"
+              id="firstname"
+              name="firstname"
+              label="Prénom"
+              value={formik.values.firstname}
+              onChange={formik.handleChange}
+              error={formik.touched.firstname && Boolean(formik.errors.firstname)}
+              helperText={
+                formik.touched.firstname && formik.errors.firstname != null
+                  ? formik.errors.firstname
+                  : ' '
+              }
+              InputLabelProps={{ style: { fontSize: 15 } }}
+            />
+            <TextField
+              variant="outlined"
+              id="lastname"
+              name="lastname"
+              label="Nom"
+              value={formik.values.lastname}
+              onChange={formik.handleChange}
+              error={formik.touched.lastname && Boolean(formik.errors.lastname)}
+              helperText={
+                formik.touched.lastname && formik.errors.lastname != null
+                  ? formik.errors.lastname
+                  : ' '
+              }
+              InputLabelProps={{ style: { fontSize: 15 } }}
+            />
 
-        <SelectInput
-          id="job"
-          name="job"
-          label="Job (Optionel)"
-          value={formik.values.job}
-          error={formik.touched.job && Boolean(formik.errors.job)}
-          onChange={handleChangeJob}
-          errorMessage={
-            formik.touched.job && formik.errors.job != null ? formik.errors.job : ' '
-          }>
-          {jobsFromStore.map(jobFromStore => {
-            const { id, name } = jobFromStore;
-            return (
-              <MenuItem key={id} value={id}>
-                {name}
-              </MenuItem>
-            );
-          })}
-        </SelectInput>
+            <SelectInput
+              id="job"
+              name="job"
+              label="Job (Optionel)"
+              value={formik.values.job}
+              error={formik.touched.job && Boolean(formik.errors.job)}
+              onChange={handleChangeJob}
+              errorMessage={
+                formik.touched.job && formik.errors.job != null
+                  ? formik.errors.job
+                  : ' '
+              }>
+              {jobsFromStore.map(jobFromStore => {
+                const { id, name } = jobFromStore;
+                return (
+                  <MenuItem key={id} value={id}>
+                    {name}
+                  </MenuItem>
+                );
+              })}
+            </SelectInput>
 
-        <SelectInput
-          id="teams"
-          name="teams"
-          label="Teams (Optionel)"
-          multiple
-          value={formik.values.teams}
-          onChange={handleChangeTeams}
-          error={formik.touched.teams && Boolean(formik.errors.teams)}
-          renderValue={() => {
-            const teamsNameSelected = formik.values.teams.map(teamId => {
-              const team = teamsFromStore.find(team => team.id === teamId);
-              return team ? team.name : teamId;
-            });
-            return (
-              <Box display="flex" flexWrap="wrap" gap={0.5}>
-                {teamsNameSelected.map(teamSelectedRender => (
-                  <Chip key={teamSelectedRender} label={teamSelectedRender} />
-                ))}
-              </Box>
-            );
-          }}
-          errorMessage={
-            formik.touched.teams && formik.errors.teams != null
-              ? formik.errors.teams.toString()
-              : ' '
-          }>
-          {teamsFromStore.map(team => (
-            <MenuItem key={team.id} value={team.id}>
-              {team.name}
-            </MenuItem>
-          ))}
-        </SelectInput>
-        <Box textAlign="center">
-          <Button variant="contained" type="submit">
-            <Typography>Inviter</Typography>
-          </Button>
-        </Box>
-      </Box>
-    </form>
+            <SelectInput
+              id="teams"
+              name="teams"
+              label="Teams (Optionel)"
+              multiple
+              value={formik.values.teams}
+              onChange={handleChangeTeams}
+              error={formik.touched.teams && Boolean(formik.errors.teams)}
+              renderValue={() => {
+                const teamsNameSelected = formik.values.teams.map(teamId => {
+                  const team = teamsFromStore.find(team => team.id === teamId);
+                  return team ? team.name : teamId;
+                });
+                return (
+                  <Box display="flex" flexWrap="wrap" gap={0.5}>
+                    {teamsNameSelected.map(teamSelectedRender => (
+                      <Chip key={teamSelectedRender} label={teamSelectedRender} />
+                    ))}
+                  </Box>
+                );
+              }}
+              errorMessage={
+                formik.touched.teams && formik.errors.teams != null
+                  ? formik.errors.teams.toString()
+                  : ' '
+              }>
+              {teamsFromStore.map(team => (
+                <MenuItem key={team.id} value={team.id}>
+                  {team.name}
+                </MenuItem>
+              ))}
+            </SelectInput>
+          </Box>
+        </CardContent>
+        <CardActions>
+          <Box px={1} textAlign="center" width="100%">
+            <Button variant="contained" type="submit">
+              <Typography>Inviter</Typography>
+            </Button>
+          </Box>
+        </CardActions>
+      </form>
+    </Card>
   );
 };

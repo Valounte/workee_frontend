@@ -25,4 +25,5 @@ export interface Job {
   name: string;
   company: Company;
   permissions: Permission[];
+  description: string;
 }

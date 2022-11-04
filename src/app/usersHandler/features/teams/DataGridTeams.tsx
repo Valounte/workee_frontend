@@ -5,15 +5,10 @@ import { useSelector } from 'react-redux';
 
 import { selectTeams } from '@entities/teams/store/selectors/getTeams.selector';
 
-import { teamCompanyDataGridCol } from '../data-grid/teamCompanyDataGridCol';
-import { teamIdDataGridCol } from '../data-grid/teamIdDataGridCol';
-import { teamNameDataGridCol } from '../data-grid/teamNameDataGridCol';
+import { teamDescriptionDataGridCol } from './data-grid/teamDescriptionDataGridCol';
+import { teamNameDataGridCol } from './data-grid/teamNameDataGridCol';
 
-const columns: GridColDef[] = [
-  teamIdDataGridCol,
-  teamNameDataGridCol,
-  teamCompanyDataGridCol,
-];
+const columns: GridColDef[] = [teamNameDataGridCol, teamDescriptionDataGridCol];
 
 interface DataGridTeamsProps {
   loading: boolean;
@@ -28,6 +23,7 @@ export const DataGridTeams = memo(({ loading, error }: DataGridTeamsProps) => {
         id: team.id,
         name: team.name,
         company: team.company.name,
+        description: team.description,
       })),
     [teams]
   );
@@ -40,6 +36,14 @@ export const DataGridTeams = memo(({ loading, error }: DataGridTeamsProps) => {
       autoHeight
       pageSize={5}
       rowsPerPageOptions={[5]}
+      sx={{
+        '& .MuiDataGrid-main': {
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+        },
+        '& .MuiDataGrid-footerContainer': {
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+        },
+      }}
     />
   );
 });

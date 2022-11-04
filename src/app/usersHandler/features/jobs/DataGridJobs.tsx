@@ -5,15 +5,10 @@ import { useSelector } from 'react-redux';
 
 import { selectJobs } from '@entities/jobs/store/selectors/getJobs.selector';
 
-import { jobCompanyDataGridCol } from '../data-grid/jobCompanyDataGridCol';
-import { jobIdDataGridCol } from '../data-grid/jobIdDataGridCol';
-import { jobNameDataGridCol } from '../data-grid/jobNameDataGridCol';
+import { jobDescriptionDataGridCol } from './data-grid/jobDescriptionDataGridCol';
+import { jobNameDataGridCol } from './data-grid/jobNameDataGridCol';
 
-const columns: GridColDef[] = [
-  jobIdDataGridCol,
-  jobNameDataGridCol,
-  jobCompanyDataGridCol,
-];
+const columns: GridColDef[] = [jobNameDataGridCol, jobDescriptionDataGridCol];
 
 interface DataGridJobsProps {
   loading: boolean;
@@ -28,6 +23,7 @@ export const DataGridJobs = memo(({ loading, error }: DataGridJobsProps) => {
         id: job.id,
         name: job.name,
         company: job.company.name,
+        description: job.description,
       })),
     [jobs]
   );
@@ -40,6 +36,14 @@ export const DataGridJobs = memo(({ loading, error }: DataGridJobsProps) => {
       autoHeight
       pageSize={5}
       rowsPerPageOptions={[5]}
+      sx={{
+        '& .MuiDataGrid-main': {
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+        },
+        '& .MuiDataGrid-footerContainer': {
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+        },
+      }}
     />
   );
 });

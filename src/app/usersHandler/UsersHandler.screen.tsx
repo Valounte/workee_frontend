@@ -8,11 +8,22 @@ import { selectToken } from '@entities/authentification/store/selectors/selectTo
 import { getJobsThunk } from '@entities/jobs/store/thunks/getJobs.thunk';
 import { getTeamsThunk } from '@entities/teams/store/thunks/getTeams.thunk';
 import { getUsersThunk } from '@entities/users/store/thunks/getUsers.thunk';
-import { Typography, Tabs, Tab, Box, TabPanel } from '@ui-kit';
+import {
+  Typography,
+  Tabs,
+  Tab,
+  Box,
+  TabPanel,
+  Stack,
+  styled,
+  Container,
+  TeamIcon,
+} from '@ui-kit';
 
 import { MainRoutesEnum } from '../../RoutesEnum';
 import { useAppDispatch } from '../../store/useAppDispatch';
 import { MainAppRoutesEnum } from '../MainAppRoutesEnum';
+import { CreateJobForm } from './features/jobs/CreateJobForm';
 import { DataGridJobs } from './features/jobs/DataGridJobs';
 import { CreateTeamForm } from './features/teams/CreateTeamForm';
 import { DataGridTeams } from './features/teams/DataGridTeams';
@@ -26,6 +37,19 @@ enum TabsEnum {
   jobs = 'jobs',
 }
 /* eslint-enable no-unused-vars */
+
+const StyledContainer = styled(Container)`
+  margin: 0;
+  background-color: #f3f3f3;
+`;
+
+const StyledTabs = styled(Tabs)`
+  border-bottom: '1px solid grey';
+`;
+
+const StyledTab = styled(Tab)`
+  margin: 2px 0 !important;
+`;
 
 const UsersHandlerScreen = () => {
   const [value, setValue] = React.useState(TabsEnum.users);
@@ -52,29 +76,39 @@ const UsersHandlerScreen = () => {
     dispatch(getUsersThunk({ token }))
   );
   return (
-    <div>
-      <Box display="flex" justifyContent="center">
-        <Tabs value={value} onChange={handleChangeTab} variant="scrollable">
-          <Tab disableRipple value={TabsEnum.users} label="Users" />
-          <Tab disableRipple value={TabsEnum.teams} label="Teams" />
-          <Tab disableRipple value={TabsEnum.jobs} label="Jobs" />
-        </Tabs>
+    <StyledContainer>
+      <Box height="15vh" p={2}>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <TeamIcon fontSize="large" />
+          <Typography variant="h4">Gestion</Typography>
+        </Stack>
+        <StyledTabs value={value} onChange={handleChangeTab}>
+          <StyledTab disableRipple value={TabsEnum.users} label="Utilisateurs" />
+          <StyledTab disableRipple value={TabsEnum.teams} label="Équipes" />
+          <StyledTab disableRipple value={TabsEnum.jobs} label="Métiers" />
+        </StyledTabs>
       </Box>
-      <TabPanel value={value} index={TabsEnum.users}>
-        <Typography>Inviter un nouvel utilisateur !</Typography>
-        <InviteUserForm />
-        <DataGridUsers loading={loadingUsers} error={errorUsers} />
-      </TabPanel>
-      <TabPanel value={value} index={TabsEnum.teams}>
-        <Typography>Teams</Typography>
-        <CreateTeamForm />
-        <DataGridTeams loading={loadingTeams} error={errorTeams} />
-      </TabPanel>
-      <TabPanel value={value} index={TabsEnum.jobs}>
-        <Typography>Jobs</Typography>
-        <DataGridJobs loading={loadingJobs} error={errorJobs} />
-      </TabPanel>
-    </div>
+      <Box p={2}>
+        <TabPanel value={value} index={TabsEnum.users}>
+          <Stack direction="row" spacing={2}>
+            <InviteUserForm />
+            <DataGridUsers loading={loadingUsers} error={errorUsers} />
+          </Stack>
+        </TabPanel>
+        <TabPanel value={value} index={TabsEnum.teams}>
+          <Stack direction="row" spacing={2}>
+            <CreateTeamForm />
+            <DataGridTeams loading={loadingTeams} error={errorTeams} />
+          </Stack>
+        </TabPanel>
+        <TabPanel value={value} index={TabsEnum.jobs}>
+          <Stack direction="row" spacing={2}>
+            <CreateJobForm />
+            <DataGridJobs loading={loadingJobs} error={errorJobs} />
+          </Stack>
+        </TabPanel>
+      </Box>
+    </StyledContainer>
   );
 };
 
