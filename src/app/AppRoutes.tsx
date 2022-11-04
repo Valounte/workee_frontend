@@ -13,6 +13,7 @@ import { useAppDispatch } from 'src/store/useAppDispatch';
 import { MainAppRoutesEnum } from './MainAppRoutesEnum';
 
 const FeedbackScreen = React.lazy(() => import('./feedback/Feedback.screen'));
+const Settings = React.lazy(() => import('./settings/Settings.Screen'));
 const EnvironmentMetricsScreen = React.lazy(
   () => import('./environment-metrics/EnvironmentMetrics.screen')
 );
@@ -42,6 +43,7 @@ export const AppRoutes = () => {
         <Routes>
           <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
           <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
+          <Route path={MainAppRoutesEnum.settings} element={<Settings />} />
           <Route
             path={MainAppRoutesEnum.usersHandler}
             element={<UsersHandlerScreen />}
