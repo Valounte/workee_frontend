@@ -18,6 +18,7 @@ import {
   Tooltip,
   styled,
 } from '@ui-kit';
+import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 
 import { MainRoutesEnum } from '../../../RoutesEnum';
 
@@ -96,9 +97,19 @@ export const AccountUserMenu = () => {
           <Typography variant="body1">Profile</Typography>
         </ListItem>
         <Divider />
+        <AppRouterLink
+          onClick={closeUserMenu}
+          to={`${MainRoutesEnum.app}${MainAppRoutesEnum.settings}`}>
+          <ListItem>
+            <Typography variant="body1">Paramètres</Typography>
+          </ListItem>
+        </AppRouterLink>
+        <Divider />
         <AppRouterLink to={MainRoutesEnum.landingPage}>
           <ListItem>
-            <Typography variant="body1">Déconnexion</Typography>
+            <Typography onClick={closeUserMenu} variant="body1">
+              Déconnexion
+            </Typography>
           </ListItem>
         </AppRouterLink>
       </Popover>

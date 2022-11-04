@@ -12,6 +12,10 @@ import { currentTemperatureSlice } from '@entities/environment-metrics/temperatu
 import { temperatureSlice } from '@entities/environment-metrics/temperature/store/slice';
 import { HealthAndSafetyNewsSlice } from '@entities/health-and-safety-news/store/slice';
 import { jobSlice } from '@entities/jobs/store/slice';
+import {
+  environmentMetricsPreferencesSlice,
+  notificationPreferencesSlice,
+} from '@entities/settings/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
@@ -33,6 +37,9 @@ export const store = configureStore({
     [luminositySlice.name]: luminositySlice.reducer,
     [currentLuminositySlice.name]: currentLuminositySlice.reducer,
     [HealthAndSafetyNewsSlice.name]: HealthAndSafetyNewsSlice.reducer,
+    [notificationPreferencesSlice.name]: notificationPreferencesSlice.reducer,
+    [environmentMetricsPreferencesSlice.name]:
+      environmentMetricsPreferencesSlice.reducer,
   },
   preloadedState: {
     authentification: {
