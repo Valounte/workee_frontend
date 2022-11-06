@@ -13,6 +13,7 @@ export * from './components/Container/Container';
 export * from './components/Dialog/Dialog';
 export * from './components/DialogActions/DialogActions';
 export * from './components/DialogContent/DialogContent';
+export * from './components/SwitchButton/SwitchButton';
 export * from './components/DialogContentText/DialogContentText';
 export * from './components/DialogTitle/DialogTitle';
 export * from './components/Divider/Divider';

@@ -4,5 +4,6 @@ export const MainAppRoutesEnum = {
   register: '/finalize-registration',
   usersHandler: '/users-handlers',
   environmentMetrics: '/environment-metrics',
+  settings: '/settings',
   feedback: '/feedback',
 };
