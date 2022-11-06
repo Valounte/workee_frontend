@@ -10,6 +10,7 @@ import { currentSoundSlice } from '@entities/environment-metrics/sound/current/s
 import { soundSlice } from '@entities/environment-metrics/sound/store/slice';
 import { currentTemperatureSlice } from '@entities/environment-metrics/temperature/current/store/slice';
 import { temperatureSlice } from '@entities/environment-metrics/temperature/store/slice';
+import { HealthAndSafetyNewsSlice } from '@entities/health-and-safety-news/store/slice';
 import { jobSlice } from '@entities/jobs/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
@@ -31,6 +32,7 @@ export const store = configureStore({
     [currentSoundSlice.name]: currentSoundSlice.reducer,
     [luminositySlice.name]: luminositySlice.reducer,
     [currentLuminositySlice.name]: currentLuminositySlice.reducer,
+    [HealthAndSafetyNewsSlice.name]: HealthAndSafetyNewsSlice.reducer,
   },
   preloadedState: {
     authentification: {
