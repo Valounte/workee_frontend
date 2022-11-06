@@ -41,6 +41,8 @@ enum TabsEnum {
 const StyledContainer = styled(Container)`
   margin: 0;
   background-color: #f3f3f3;
+  height: 100%;
+  width: 100%;
 `;
 
 const StyledTabs = styled(Tabs)`

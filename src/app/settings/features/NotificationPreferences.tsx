@@ -17,6 +17,7 @@ const StyledBoxContainer = styled.div`
   height: 250px !important;
   border: 1px solid #d9d9d9;
   padding: 28px 28px 28px 28px;
+  background-color: #ffffff;
 `;
 
 const StyledText = styled(Typography)`
