@@ -1,5 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
+import type {} from '@mui/x-data-grid/themeAugmentation';
+
 export const theme = createTheme({
   spacing: 8, // 8px
   shape: {
@@ -79,6 +81,13 @@ export const theme = createTheme({
         colorPrimary: {
           backgroundColor: 'white',
           color: 'black',
+        },
+      },
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'white',
         },
       },
     },

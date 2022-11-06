@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 
 import type { IconBaseProps } from 'react-icons';
-import { AiOutlineSmile } from 'react-icons/ai';
+import { RiEmotionHappyFill } from 'react-icons/ri';
 
 export const SmileIcon = memo((props: IconBaseProps) => (
-  <AiOutlineSmile {...props} />
+  <RiEmotionHappyFill {...props} />
 ));

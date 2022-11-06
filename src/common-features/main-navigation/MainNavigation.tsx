@@ -1,245 +1,97 @@
 import React from 'react';
 
+import { useMediaQuery, useTheme } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 import { selectMe } from '@entities/authentification/store/selectors/selectMe.selector';
 import {
   Stack,
-  Menu,
+  List,
   ListItem,
   ListItemIcon,
-  Typography,
-  Avatar,
-  Divider,
-  SignoutIcon,
   styled,
-  DashboardIcon,
-  AdminIcon,
-  AnalyticsIcon,
-  MetricsIcon,
-  TeamIcon,
-  List,
-  MoreIcon,
-  DropdownIcon,
-  IconButton,
-  AppRouterLink,
   LinearProgress,
+  IconButton,
+  MenuIcon,
+  Typography,
+  Drawer,
 } from '@ui-kit';
-import { ReactComponent as Logo } from '@ui-kit/images/workee-logo.svg';
 
-import { MainAppRoutesEnum } from '../../app/MainAppRoutesEnum';
-import { MainRoutesEnum } from '../../RoutesEnum';
+import { AccountUserMenu } from './features/AccountUserMenu';
+import { LinksDesktop } from './features/links-item/LinksDesktop';
+import { LogoItemDesktop } from './features/logo-item/LogoItemDesktop';
+import { MainNavigationDrawer } from './features/MainNavigationDrawer';
 
-const StyledAvatar = styled(Avatar)`
-  margin-right: 0;
+const StyledStack = styled(Stack)`
+  @media (max-width: 1023px) {
+    border-right: 0;
+    border-bottom: '1px solid lightgrey';
+  }
 `;
 
-const StyledListItemLogo = styled(ListItem)`
-  justify-content: space-between;
-`;
-
-const StyledListItem = styled(ListItem)`
-  justify-content: center;
-`;
-
-const StyledListItemIcon = styled(ListItemIcon)`
-  justify-content: center;
+const StyledList = styled(List)`
+  display: flex;
+  @media (min-width: 1024px) {
+    flex-direction: column;
+  }
+  @media (max-width: 1023px) {
+    width: 100%;
+    border-bottom: 1px solid lightgrey;
+  }
 `;
 
 export const MainNavigation = () => {
-  const me = useSelector(selectMe);
-  const [isShow, setIsShow] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const theme = useTheme();
+  const onlySmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const toggleMenu = () => {
-    setIsShow(!isShow);
+  const me = useSelector(selectMe);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
   if (!me) {
     return <LinearProgress color="secondary" />;
   }
 
-  const { firstname, lastname, email } = me;
-
   return (
-    <Stack justifyContent="flex-start" borderRight="1px solid grey">
-      <List>
-        {isShow ? (
-          <>
-            <StyledListItemLogo divider>
-              <Logo width={100} height="100%" />
-              <MoreIcon fontSize="large" onClick={toggleMenu} />
-            </StyledListItemLogo>
-            <ListItem divider>
-              <Stack direction="row" alignItems="center" spacing={1} mr={2}>
-                <Avatar />
-                <Stack>
-                  <Typography variant="body1">
-                    {firstname} {lastname}
-                  </Typography>
-                  <Typography variant="body1">{email}</Typography>
+    <StyledStack
+      height={{ xs: '8vh', md: '100vh' }}
+      direction={{ xs: 'row', md: 'column' }}
+      justifyContent={{ xs: 'space-between', md: 'flex-start' }}
+      borderRight="1px solid grey">
+      {!onlySmallScreen ? (
+        <StyledList>
+          <LogoItemDesktop />
+          <AccountUserMenu />
+          <LinksDesktop />
+        </StyledList>
+      ) : (
+        <>
+          <StyledList>
+            <ListItem>
+              <ListItemIcon>
+                <Stack direction="row" alignItems="center" spacing={1} mr={2}>
+                  <IconButton onClick={handleDrawerToggle}>
+                    <MenuIcon aria-label="Menu" fontSize="large" />
+                  </IconButton>
+                  <Typography>Menu</Typography>
                 </Stack>
-              </Stack>
-              <IconButton
-                onClick={handleClick}
-                aria-controls={open ? 'account-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}>
-                <DropdownIcon fontSize="large" />
-              </IconButton>
-              <Menu
-                id="account-menu"
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                PaperProps={{
-                  elevation: 0,
-                  sx: {
-                    overflow: 'visible',
-                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                    mt: 1.5,
-                    '& .MuiAvatar-root': {
-                      width: 32,
-                      height: 32,
-                      ml: -0.5,
-                      mr: 1,
-                    },
-                    '&:before': {
-                      content: '""',
-                      display: 'block',
-                      position: 'absolute',
-                      top: 0,
-                      right: 14,
-                      width: 10,
-                      height: 10,
-                      bgcolor: 'background.paper',
-                      transform: 'translateY(-50%) rotate(45deg)',
-                      zIndex: 0,
-                    },
-                  },
-                }}>
-                <ListItem>
-                  <Avatar />
-                  <Typography>Profile</Typography>
-                </ListItem>
-                <Divider />
-                <AppRouterLink to={MainRoutesEnum.landingPage}>
-                  <ListItem>
-                    <ListItemIcon>
-                      <SignoutIcon fontSize="large" />
-                    </ListItemIcon>
-                    <Typography>Déconnexion</Typography>
-                  </ListItem>
-                </AppRouterLink>
-              </Menu>
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <DashboardIcon fontSize="large" />
               </ListItemIcon>
-              <Typography>Dashboard</Typography>
             </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <AdminIcon fontSize="large" />
-              </ListItemIcon>
-              <Typography>Admin</Typography>
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <AnalyticsIcon fontSize="large" />
-              </ListItemIcon>
-              <Typography>Statistiques</Typography>
-            </ListItem>
-            <ListItem>
-              <AppRouterLink
-                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
-                <ListItemIcon>
-                  <MetricsIcon fontSize="large" />
-                </ListItemIcon>
-                <Typography>Workee</Typography>
-              </AppRouterLink>
-            </ListItem>
-            <ListItem>
-              <AppRouterLink
-                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.usersHandler}`}>
-                <ListItemIcon>
-                  <TeamIcon fontSize="large" />
-                </ListItemIcon>
-                <Typography>Gestion</Typography>
-              </AppRouterLink>
-            </ListItem>
-            <Divider />
-            <AppRouterLink to={MainRoutesEnum.landingPage}>
-              <ListItem>
-                <ListItemIcon>
-                  <SignoutIcon fontSize="large" />
-                </ListItemIcon>
-                <Typography>Déconnexion</Typography>
-              </ListItem>
-            </AppRouterLink>
-          </>
-        ) : (
-          <>
-            <StyledListItem divider onClick={toggleMenu}>
-              <StyledListItemIcon>
-                <MoreIcon fontSize="large" onClick={toggleMenu} />
-              </StyledListItemIcon>
-            </StyledListItem>
-            <StyledListItem divider>
-              <Stack direction="row" alignItems="center" mt={0} spacing={1}>
-                <StyledAvatar />
-              </Stack>
-            </StyledListItem>
-            <StyledListItem>
-              <StyledListItemIcon>
-                <DashboardIcon fontSize="large" />
-              </StyledListItemIcon>
-            </StyledListItem>
-            <StyledListItem>
-              <StyledListItemIcon>
-                <AdminIcon fontSize="large" />
-              </StyledListItemIcon>
-            </StyledListItem>
-            <StyledListItem>
-              <StyledListItemIcon>
-                <AnalyticsIcon fontSize="large" />
-              </StyledListItemIcon>
-            </StyledListItem>
-            <StyledListItem>
-              <AppRouterLink
-                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
-                <StyledListItemIcon>
-                  <MetricsIcon fontSize="large" />
-                </StyledListItemIcon>
-              </AppRouterLink>
-            </StyledListItem>
-            <StyledListItem>
-              <AppRouterLink
-                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.usersHandler}`}>
-                <StyledListItemIcon>
-                  <TeamIcon fontSize="large" />
-                </StyledListItemIcon>
-              </AppRouterLink>
-            </StyledListItem>
-            <Divider />
-            <AppRouterLink to={MainRoutesEnum.landingPage}>
-              <StyledListItem>
-                <StyledListItemIcon>
-                  <SignoutIcon fontSize="large" />
-                </StyledListItemIcon>
-              </StyledListItem>
-            </AppRouterLink>
-          </>
-        )}
-      </List>
-    </Stack>
+          </StyledList>
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}>
+            <MainNavigationDrawer />
+          </Drawer>
+        </>
+      )}
+    </StyledStack>
   );
 };

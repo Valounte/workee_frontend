@@ -36,7 +36,7 @@ export const AppRoutes = () => {
   });
 
   return (
-    <Stack direction="row" height="100vh" spacing={0}>
+    <Stack direction={{ xs: 'column', md: 'row' }} height="100vh" spacing={0}>
       <MainNavigation />
       <Suspense fallback={<LinearProgress color="secondary" />}>
         <Routes>
