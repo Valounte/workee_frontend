@@ -94,7 +94,7 @@ export const AccountUserMenu = () => {
           horizontal: 'left',
         }}>
         <ListItem>
-          <Typography variant="body1">Profile</Typography>
+          <Typography variant="body1">Profil</Typography>
         </ListItem>
         <Divider />
         <AppRouterLink
