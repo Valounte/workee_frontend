@@ -23,7 +23,6 @@ import {
 import { MainRoutesEnum } from '../../RoutesEnum';
 import { useAppDispatch } from '../../store/useAppDispatch';
 import { MainAppRoutesEnum } from '../MainAppRoutesEnum';
-import { CreateJobForm } from './features/jobs/CreateJobForm';
 import { DataGridJobs } from './features/jobs/DataGridJobs';
 import { CreateTeamForm } from './features/teams/CreateTeamForm';
 import { DataGridTeams } from './features/teams/DataGridTeams';
@@ -103,7 +102,7 @@ const UsersHandlerScreen = () => {
         <Typography>Jobs</Typography>
         <DataGridJobs loading={loadingJobs} error={errorJobs} />
       </TabPanel>
-    </div>
+    </StyledContainer>
   );
 };
 

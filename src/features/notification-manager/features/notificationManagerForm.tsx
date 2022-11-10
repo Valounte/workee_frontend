@@ -3,7 +3,7 @@ import React, {useCallback} from 'react';
 import {MenuItem} from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import {unwrapResult} from "@reduxjs/toolkit";
-import {useFormik} from 'formik';
+import {isEmptyArray, useFormik} from 'formik';
 import {useSnackbar} from "notistack";
 import {useSelector} from "react-redux";
 import {useAsync} from "react-use";
@@ -54,8 +54,8 @@ export const NotificationManagerForm = () => {
                 message: values.message,
                 token,
             };
-            if (values.teamsId === [] && values.usersId === []) {
-                enqueueSnackbar('You need to add at least !', {
+            if ( isEmptyArray(values.teamsId) && isEmptyArray(values.usersId)) {
+                enqueueSnackbar('You need to add at least one receiver !', {
                     variant: 'error',
                 });
                 return;

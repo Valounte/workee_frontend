@@ -13,6 +13,7 @@ import {
   Tooltip,
 } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
+import { NotificationIcon } from 'src/ui-kit/icons/Notification/Notification';
 
 import { MainRoutesEnum } from '../../../../RoutesEnum';
 
@@ -65,6 +66,16 @@ export const LinksDesktop = () => (
           <NewsIcon aria-label="news" fontSize="large" />
         </Tooltip>
       </StyledListItemIcon>
+    </StyledListItem>
+    <StyledListItem>
+      <AppRouterLink
+        to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notificationManager}`}>
+        <StyledListItemIcon>
+          <Tooltip arrow title="Notifications" placement="right">
+            <NotificationIcon aria-label="Notifications" fontSize="large" />
+          </Tooltip>
+        </StyledListItemIcon>
+      </AppRouterLink>
     </StyledListItem>
   </>
 );

@@ -7,11 +7,25 @@ import { useAsync } from 'react-use';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getNotificationsThunk } from '@entities/notifications/store/thunks/getNotifications.thunk';
 import { RoutesEnum } from '@entities/RoutesEnum';
-import { Tabs, Tab, Box, TabPanel } from '@ui-kit';
+import { Container, styled, Tabs, Tab, Box, TabPanel, Stack, Typography } from '@ui-kit';
+import { NotificationIcon } from 'src/ui-kit/icons/Notification/Notification';
 
 import { useAppDispatch } from '../../store/useAppDispatch';
 import {NotificationManagerForm} from "./features/notificationManagerForm";
 import { DataGridNotifications } from './features/notifications/DataGridNotifications';
+
+const StyledContainer = styled(Container)`
+  margin: 0;
+  background-color: #f3f3f3;
+`;
+
+const StyledTabs = styled(Tabs)`
+  border-bottom: '1px solid grey';
+`;
+
+const StyledTab = styled(Tab)`
+  margin: 2px 0 !important;
+`;
 
 /* eslint-disable no-unused-vars */
 enum TabsEnum {
@@ -40,25 +54,24 @@ const NotificationManagerScreen = () => {
   );
 
   return (
-    <div>
-      <Box display="flex" justifyContent="center">
-        <Tabs value={value} onChange={handleChangeTab} variant="scrollable">
-          <Tab disableRipple value={TabsEnum.notifications} label="Notification" />
-          <Tab disableRipple value={TabsEnum.createNotifications} label="Créer une notification" />
-        </Tabs>
+    <StyledContainer>
+            <Box height="15vh" p={2}>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <NotificationIcon fontSize="large" />
+          <Typography variant="h4">Notifications</Typography>
+        </Stack>
+        <StyledTabs value={value} onChange={handleChangeTab}>
+          <StyledTab disableRipple value={TabsEnum.notifications} label="Notifications" />
+          <StyledTab disableRipple value={TabsEnum.createNotifications} label="Créer une notification" />
+        </StyledTabs>
       </Box>
-
-
       <TabPanel value={value} index={TabsEnum.notifications}>
         <DataGridNotifications loading={loadingNotifications} error={errorNotifications} />
       </TabPanel>
-
-
       <TabPanel value={value} index={TabsEnum.createNotifications}>
         <NotificationManagerForm />
       </TabPanel>
-
-    </div>
+    </StyledContainer>
   );
 };
 
