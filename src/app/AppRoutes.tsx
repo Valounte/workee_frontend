@@ -13,6 +13,8 @@ import { useAppDispatch } from 'src/store/useAppDispatch';
 import { MainAppRoutesEnum } from './MainAppRoutesEnum';
 
 const FeedbackScreen = React.lazy(() => import('./feedback/Feedback.screen'));
+const DashboardScreen = React.lazy(() => import('./dashboard/Dashboard.screen'));
+
 const Settings = React.lazy(() => import('./settings/Settings.Screen'));
 const EnvironmentMetricsScreen = React.lazy(
   () => import('./environment-metrics/EnvironmentMetrics.screen')

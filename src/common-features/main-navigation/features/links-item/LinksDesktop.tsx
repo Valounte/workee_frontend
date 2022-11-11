@@ -27,11 +27,13 @@ const StyledListItemIcon = styled(ListItemIcon)`
 export const LinksDesktop = () => (
   <>
     <StyledListItem>
+    <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.home}`}>
       <StyledListItemIcon>
         <Tooltip arrow title="Dashboard" placement="right">
           <DashboardIcon aria-label="dashboard" fontSize="large" />
         </Tooltip>
       </StyledListItemIcon>
+      </AppRouterLink>
     </StyledListItem>
     <StyledListItem>
       <AppRouterLink
