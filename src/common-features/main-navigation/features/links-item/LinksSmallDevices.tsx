@@ -18,12 +18,11 @@ import { MainRoutesEnum } from '../../../../RoutesEnum';
 export const LinksSmallDevices = () => (
   <>
     <ListItem>
-    <AppRouterLink
-        to={`${MainRoutesEnum.app}${MainAppRoutesEnum.home}`}>
-      <ListItemIcon>
-        <DashboardIcon aria-label="dashboard" fontSize="large" />
-      </ListItemIcon>
-      <Typography>Dashboard</Typography>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.home}`}>
+        <ListItemIcon>
+          <DashboardIcon aria-label="dashboard" fontSize="large" />
+        </ListItemIcon>
+        <Typography>Dashboard</Typography>
       </AppRouterLink>
     </ListItem>
     <ListItem>

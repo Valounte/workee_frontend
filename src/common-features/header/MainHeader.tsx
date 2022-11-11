@@ -85,7 +85,7 @@ export const MainHeader = () => {
                   onClose={handleCloseNavMenu}>
                   <MenuItem key="environment-metrics" onClick={handleCloseNavMenu}>
                     <AppRouterLink
-                      to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
+                      to={`${MainRoutesEnum.app}${MainAppRoutesEnum.home}`}>
                       <Typography textAlign="center">Accès à la solution</Typography>
                     </AppRouterLink>
                   </MenuItem>
@@ -99,8 +99,7 @@ export const MainHeader = () => {
               spacing={2}
               display={{ xs: 'none', sm: 'flex' }}
               order={{ sm: '2' }}>
-              <AppRouterLink
-                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.environmentMetrics}`}>
+              <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.home}`}>
                 <Typography textAlign="center">Accès à la solution</Typography>
               </AppRouterLink>
             </Stack>
