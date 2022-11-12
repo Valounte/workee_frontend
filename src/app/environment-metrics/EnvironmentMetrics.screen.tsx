@@ -13,15 +13,7 @@ import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/curren
 import { getSoundHistoricThunk } from '@entities/environment-metrics/sound/store/thunks/getSoundHistoric.thunk';
 import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { getTemperaturesHistoricThunk } from '@entities/environment-metrics/temperature/store/thunks/getTemperaturesHistoric.thunk';
-import {
-  styled,
-  Container,
-  Grid,
-  Box,
-  Stack,
-  Typography,
-  MetricsIcon,
-} from '@ui-kit';
+import { Grid, Box, Stack, Typography, MetricsIcon } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 import { MainRoutesEnum } from 'src/RoutesEnum';
 import { useAppDispatch } from 'src/store/useAppDispatch';
@@ -30,11 +22,6 @@ import { Humidity } from './features/humidity/Humidity';
 import { Luminosity } from './features/luminosity/Luminosity';
 import { Sound } from './features/sound/Sound';
 import { Temperature } from './features/temperature/Temperature';
-
-const StyledContainer = styled(Container)`
-  margin: 0;
-  background-color: #f3f3f3;
-`;
 
 export const EnvironmentMetricsScreen = () => {
   const token = useSelector(selectToken);
@@ -118,7 +105,7 @@ export const EnvironmentMetricsScreen = () => {
   };
 
   return (
-    <StyledContainer>
+    <>
       <Box height="15vh" p={2}>
         <Stack direction="row" alignItems="center" spacing={2}>
           <MetricsIcon fontSize="large" />
@@ -141,7 +128,7 @@ export const EnvironmentMetricsScreen = () => {
           <Luminosity />
         </Grid>
       </Grid>
-    </StyledContainer>
+    </>
   );
 };
 

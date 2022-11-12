@@ -36,14 +36,6 @@ export const DataGridJobs = memo(({ loading, error }: DataGridJobsProps) => {
       autoHeight
       pageSize={5}
       rowsPerPageOptions={[5]}
-      sx={{
-        '& .MuiDataGrid-main': {
-          backgroundColor: 'rgba(255, 255, 255, 1)',
-        },
-        '& .MuiDataGrid-footerContainer': {
-          backgroundColor: 'rgba(255, 255, 255, 1)',
-        },
-      }}
     />
   );
 });

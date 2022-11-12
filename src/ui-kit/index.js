@@ -52,6 +52,7 @@ export * from './icons/Arrows/ExpandMore';
 export * from './icons/Arrows/ExpandLess';
 export * from './icons/Emotions/Smile';
 export * from './icons/Menu/Menu';
+export * from './icons/Notifications/Notifications';
 export * from './icons/Signout/Signout';
 export * from './icons/Dashboard/Dashboard';
 export * from './icons/Analytics/Analytics';

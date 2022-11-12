@@ -72,6 +72,7 @@ export const CreateJobForm = () => {
               id="name"
               name="name"
               label="Nom de métier"
+              color="secondary"
               value={formik.values.name}
               onChange={formik.handleChange}
               error={formik.touched.name && Boolean(formik.errors.name)}
@@ -88,6 +89,7 @@ export const CreateJobForm = () => {
               id="description"
               name="description"
               label="Description"
+              color="secondary"
               value={formik.values.description}
               onChange={formik.handleChange}
               error={formik.touched.name && Boolean(formik.errors.description)}
@@ -102,7 +104,7 @@ export const CreateJobForm = () => {
             />
 
             <Box textAlign="center">
-              <Button variant="contained" type="submit">
+              <Button variant="contained" type="submit" color="secondary">
                 <Typography>Création</Typography>
               </Button>
             </Box>

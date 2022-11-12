@@ -7,7 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { MainNavigation } from '@common-features/main-navigation/MainNavigation';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getMeThunk } from '@entities/authentification/store/thunks/getMe.thunk';
-import { LinearProgress, Stack } from '@ui-kit';
+import { Container, LinearProgress, Stack, styled } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 import { MainAppRoutesEnum } from './MainAppRoutesEnum';
@@ -27,6 +27,15 @@ const PageNotFoundScreen = React.lazy(
   () => import('@common-features/page-not-found/PageNotFound.screen')
 );
 
+const StyledContainer = styled(Container)`
+  margin: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 209, 159, 1) 0%,
+    rgba(255, 246, 226, 1) 40%
+  );
+`;
+
 export const AppRoutes = () => {
   const dispatch = useAppDispatch();
   const token = useSelector(selectToken);
@@ -40,28 +49,35 @@ export const AppRoutes = () => {
   });
 
   return (
-    <Stack direction={{ xs: 'column', md: 'row' }} height="100vh" spacing={0}>
+    <Stack
+      direction={{ xs: 'column', md: 'row' }}
+      height="100vh"
+      width="100vw"
+      spacing={0}>
       <MainNavigation />
-      <Suspense fallback={<LinearProgress color="secondary" />}>
-        <Routes>
-          <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
-          <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
-          <Route path={MainAppRoutesEnum.settings} element={<Settings />} />
-          <Route
-            path={MainAppRoutesEnum.usersHandler}
-            element={<UsersHandlerScreen />}
-          />
-          <Route
-            path={MainAppRoutesEnum.environmentMetrics}
-            element={<EnvironmentMetricsScreen />}
-          />
-          <Route
-            path={MainAppRoutesEnum.Notifications}
-            element={<NotificationsScreen />}
-          />
-          <Route path="*" element={<PageNotFoundScreen />} />
-        </Routes>
-      </Suspense>
+      <StyledContainer maxWidth={false}>
+        <Suspense fallback={<LinearProgress color="secondary" />}>
+          <Routes>
+            <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
+            <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
+            <Route path={MainAppRoutesEnum.settings} element={<Settings />} />
+            <Route
+              path={MainAppRoutesEnum.usersHandler}
+              element={<UsersHandlerScreen />}
+            />
+            <Route
+              path={MainAppRoutesEnum.environmentMetrics}
+              element={<EnvironmentMetricsScreen />}
+            />
+            <Route
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              path={MainAppRoutesEnum.Notifications}
+              element={<NotificationsScreen />}
+            />
+            <Route path="*" element={<PageNotFoundScreen />} />
+          </Routes>
+        </Suspense>
+      </StyledContainer>
     </Stack>
   );
 };
