@@ -8,25 +8,15 @@ import { selectToken } from '@entities/authentification/store/selectors/selectTo
 import { ChangeNotificationPreferenceParams } from '@entities/settings/services/changeNotificationPreference.service';
 import { selectNotificationPreferences } from '@entities/settings/store/selectors/getNotificationPreferences.selector';
 import { changeNotificationPreferenceThunk } from '@entities/settings/store/thunks/ChangeNotificationPreference.thunk';
-import { styled, Switch, Typography } from '@ui-kit';
+import {
+  Card,
+  CardContent,
+  NotificationsIcon,
+  Stack,
+  Switch,
+  Typography,
+} from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
-
-const StyledBoxContainer = styled.div`
-  margin-top: 33px;
-  width: 760px !important;
-  height: 250px !important;
-  border: 1px solid #d9d9d9;
-  padding: 28px 28px 28px 28px;
-  background-color: #ffffff;
-`;
-
-const StyledText = styled(Typography)`
-  padding-bottom: 15px;
-`;
-
-const StyledTextContainer = styled.div`
-  margin-top: 17px;
-`;
 
 export const NotificationPreferences = () => {
   const token = useSelector(selectToken);
@@ -75,11 +65,14 @@ export const NotificationPreferences = () => {
   return (
     <div>
       {normalAlert && urgentAlert && importantAlert && (
-        <StyledBoxContainer>
-          <Typography variant="h5">Notifications</Typography>
-          <StyledTextContainer>
-            <StyledText variant="body1">
-              Souhaitez-vous rendre les notifications urgentes muettes ?
+        <Card>
+          <CardContent>
+            <Stack direction="row" alignItems="center" spacing={1} mb={2}>
+              <NotificationsIcon fontSize="large" />
+              <Typography variant="h5">Notifications</Typography>
+            </Stack>
+            <Typography variant="body1">
+              Rendre les notifications urgentes muettes ?
               {urgentAlert?.isMuted ? (
                 <Switch
                   defaultChecked
@@ -89,9 +82,9 @@ export const NotificationPreferences = () => {
               ) : (
                 <Switch onChange={handleChange('urgent')} color="warning" />
               )}
-            </StyledText>
-            <StyledText variant="body1">
-              Souhaitez-vous rendre les notifications importantes muettes ?
+            </Typography>
+            <Typography variant="body1">
+              Rendre les notifications importantes muettes ?
               {importantAlert?.isMuted ? (
                 <Switch
                   defaultChecked
@@ -101,9 +94,9 @@ export const NotificationPreferences = () => {
               ) : (
                 <Switch onChange={handleChange('important')} color="warning" />
               )}
-            </StyledText>
-            <StyledText variant="body1">
-              Souhaitez-vous rendre les notifications normales muettes ?
+            </Typography>
+            <Typography variant="body1">
+              Rendre les notifications normales muettes ?
               {normalAlert?.isMuted ? (
                 <Switch
                   defaultChecked
@@ -113,9 +106,9 @@ export const NotificationPreferences = () => {
               ) : (
                 <Switch onChange={handleChange('normal')} color="warning" />
               )}
-            </StyledText>
-          </StyledTextContainer>
-        </StyledBoxContainer>
+            </Typography>
+          </CardContent>
+        </Card>
       )}
     </div>
   );

@@ -54,11 +54,13 @@ export const LinksDesktop = () => (
       </AppRouterLink>
     </StyledListItem>
     <StyledListItem>
-      <StyledListItemIcon>
-        <Tooltip arrow title="Avis" placement="right">
-          <SmileIcon aria-label="avis" fontSize="large" />
-        </Tooltip>
-      </StyledListItemIcon>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.feedback}`}>
+        <StyledListItemIcon>
+          <Tooltip arrow title="Avis" placement="right">
+            <SmileIcon aria-label="avis" fontSize="large" />
+          </Tooltip>
+        </StyledListItemIcon>
+      </AppRouterLink>
     </StyledListItem>
     <StyledListItem>
       <StyledListItemIcon>

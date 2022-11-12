@@ -9,25 +9,8 @@ import { selectToken } from '@entities/authentification/store/selectors/selectTo
 import { ChangeEnvironmentMetricsPreferenceParams } from '@entities/settings/services/changeEnvironmentMetricsPreference.service';
 import { selectEnvironmentMetricsPreferences } from '@entities/settings/store/selectors/getEnvironmentMetricsPreferences.selector';
 import { changeEnvironmentMetricsPreferenceThunk } from '@entities/settings/store/thunks/ChangeEnvironmentMetricsPreference.thunk';
-import { styled, Switch, Typography } from '@ui-kit';
+import { Card, CardContent, MetricsIcon, Stack, Switch, Typography } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
-
-const StyledBoxContainer = styled.div`
-  margin-top: 33px;
-  width: 760px !important;
-  height: 290px !important;
-  border: 1px solid #d9d9d9;
-  padding: 28px 28px 28px 28px;
-  background-color: #ffffff;
-`;
-
-const StyledText = styled(Typography)`
-  padding-bottom: 15px;
-`;
-
-const StyledTextContainer = styled.div`
-  margin-top: 17px;
-`;
 
 enum MetricsType {
   TEMPERATURE = 'TEMPERATURE',
@@ -92,12 +75,14 @@ export const EnvironmentMetricsPreferences = () => {
         temperaturePreference &&
         humidityPreference &&
         luminosityPreference && (
-          <StyledBoxContainer>
-            <Typography variant="h5">Données d&apos;environnement</Typography>
-            <StyledTextContainer>
-              <StyledText variant="body1">
-                Souhaitez-vous désactiver la collecte et les conseils sur les données
-                sonores ?
+          <Card>
+            <CardContent>
+              <Stack direction="row" alignItems="center" spacing={1} mb={2}>
+                <MetricsIcon fontSize="large" />
+                <Typography variant="h5">Données d&apos;environnement</Typography>
+              </Stack>
+              <Typography variant="body1">
+                Désactiver la collecte et les conseils sur les données sonores ?
                 {soundPreference?.isDesactivated ? (
                   <Switch
                     defaultChecked
@@ -110,10 +95,10 @@ export const EnvironmentMetricsPreferences = () => {
                     color="warning"
                   />
                 )}
-              </StyledText>
-              <StyledText variant="body1">
-                Souhaitez-vous désactiver la collecte et les conseils sur les données
-                de température ?
+              </Typography>
+              <Typography variant="body1">
+                Désactiver la collecte et les conseils sur les données de température
+                ?
                 {temperaturePreference?.isDesactivated ? (
                   <Switch
                     defaultChecked
@@ -126,9 +111,9 @@ export const EnvironmentMetricsPreferences = () => {
                     color="warning"
                   />
                 )}
-              </StyledText>
-              <StyledText variant="body1">
-                Souhaitez-vous désactiver la collecte et les conseils sur les données
+              </Typography>
+              <Typography variant="body1">
+                Désactiver la collecte et les conseils sur les données
                 d&apos;humidité ?
                 {humidityPreference?.isDesactivated ? (
                   <Switch
@@ -142,10 +127,10 @@ export const EnvironmentMetricsPreferences = () => {
                     color="warning"
                   />
                 )}
-              </StyledText>
-              <StyledText variant="body1">
-                Souhaitez-vous désactiver la collecte et les conseils sur les données
-                de luminosité ?
+              </Typography>
+              <Typography variant="body1">
+                Désactiver la collecte et les conseils sur les données de luminosité
+                ?
                 {luminosityPreference?.isDesactivated ? (
                   <Switch
                     defaultChecked
@@ -158,9 +143,9 @@ export const EnvironmentMetricsPreferences = () => {
                     color="warning"
                   />
                 )}
-              </StyledText>
-            </StyledTextContainer>
-          </StyledBoxContainer>
+              </Typography>
+            </CardContent>
+          </Card>
         )}
     </div>
   );
