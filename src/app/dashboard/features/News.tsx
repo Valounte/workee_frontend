@@ -19,6 +19,9 @@ const StyledContainer = styled(Stack)`
 const StyledNews = styled.div`
   border-bottom: 1px solid #d9d9d9;
   margin-bottom: 12px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledNewsDescription = styled(Typography)`
@@ -40,17 +43,23 @@ export const News = () => {
       </Title>
       <StyledContainer>
         {news.slice(0, 5).map(newsItem => (
-          <StyledNews>
-            <Typography variant="subtitle1" fontSize={16}>
-              {newsItem.title}
-            </Typography>
-            <StyledNewsDescription variant="body2" fontSize={10}>
-              {newsItem.description}
-            </StyledNewsDescription>
-            <StyledNewsDate variant="body2" fontSize={10}>
-              {newsItem.pubDate}
-            </StyledNewsDate>
-          </StyledNews>
+          <a
+            href={newsItem.link}
+            style={{ textDecoration: 'none', color: 'black' }}
+            target="_blank"
+            rel="noreferrer">
+            <StyledNews>
+              <Typography variant="subtitle1" fontSize={16}>
+                {newsItem.title}
+              </Typography>
+              <StyledNewsDescription variant="body2" fontSize={10}>
+                {newsItem.description}
+              </StyledNewsDescription>
+              <StyledNewsDate variant="body2" fontSize={10}>
+                {newsItem.pubDate}
+              </StyledNewsDate>
+            </StyledNews>
+          </a>
         ))}
       </StyledContainer>
     </div>

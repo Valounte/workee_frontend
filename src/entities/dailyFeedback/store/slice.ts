@@ -4,11 +4,13 @@ import { Team } from '@entities/teams/Team';
 
 import { DailyFeedback } from '../DailyFeedback';
 import { getDailyFeedbackThunk } from './thunks/getDailyFeedback.thunk';
+import { isDailyFeedbackSubmittedThunk } from './thunks/isDailyFeedbackSubmitted.thunk';
 
 export interface DailyFeedbackByTeam {
   averageSatisfactionDegree?: number;
   dailyFeedback?: DailyFeedback[];
   team?: Team;
+  isDailyFeedbackSubmitted?: boolean;
 }
 
 export const dailyFeedbackAdapter = createEntityAdapter<DailyFeedbackByTeam>({
@@ -23,5 +25,11 @@ export const dailyFeedbackSlice = createSlice({
     builder.addCase(getDailyFeedbackThunk.fulfilled, (state, { payload }) => {
       dailyFeedbackAdapter.setAll(state, payload);
     });
+    builder.addCase(
+      isDailyFeedbackSubmittedThunk.fulfilled,
+      (state, { payload }) => {
+        state.isDailyFeedbackSubmitted = payload;
+      }
+    );
   },
 });

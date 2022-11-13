@@ -4,12 +4,16 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
+import { isDailyFeedbackSubmittedThunk } from '@entities/dailyFeedback/store/thunks/isDailyFeedbackSubmitted.thunk';
 import { getCurrentHumidityThunk } from '@entities/environment-metrics/humidity/current/store/thunks/getCurrentHumidity.thunk';
 import { getCurrentLuminosityThunk } from '@entities/environment-metrics/luminosity/current/store/thunks/getCurrentLuminosity.thunk';
 import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/current/store/thunks/getCurrentSound.thunk';
 import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { getHealthAndSafetyNewsThunk } from '@entities/health-and-safety-news/store/thunks/getHealthAndSafetyNews.thunk';
-import { Grid, Stack, styled, Typography } from '@ui-kit';
+import { getNotificationsThunk } from '@entities/notifications/store/thunks/getNotifications.thunk';
+import { InvitationStatusEnum } from '@entities/teaOrCoffeeMeetings/InvitationStatusEnum';
+import { getTeaOrCoffeeMeetingThunk } from '@entities/teaOrCoffeeMeetings/store/thunks/getTeaOrCoffeeMeetings.thunk';
+import { Box, Grid, Stack, styled, Typography } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 import { EnvironmentMetrics } from './features/EnvironmentMetrics';
@@ -18,7 +22,7 @@ import { LastNotifications } from './features/LastNotifications';
 import { News } from './features/News';
 import { NextTeaOrCoffeeMeeting } from './features/NextTeaOrCoffeeMeeting';
 
-const StyledContainer = styled.div`
+const StyledContainer = styled(Box)`
   margin: 0;
   background-color: #f3f3f3;
   height: 100%;
@@ -34,7 +38,7 @@ const StyledSubTitle = styled(Typography)`
   margin-left: 29px;
 `;
 
-const StyledNewsBox = styled.div`
+const StyledNewsBox = styled(Box)`
   border: 1px solid #d9d9d9;
   background-color: #ffffff;
   margin-top: 15px;
@@ -45,7 +49,7 @@ const StyledNewsBox = styled.div`
   border-radius: 4px;
 `;
 
-const StyledNotifAndFeedbackBox = styled.div`
+const StyledNotifAndFeedbackBox = styled(Box)`
   border: 1px solid #d9d9d9;
   background-color: #ffffff;
   margin-top: 15px;
@@ -61,7 +65,7 @@ const StyledGrid = styled(Grid)`
   padding-left: 29px;
 `;
 
-const StyledTeaOrCoffee = styled.div`
+const StyledTeaOrCoffee = styled(Box)`
   border: 1px solid #d9d9d9;
   background-color: #ffffff;
   margin-top: 15px;
@@ -77,6 +81,23 @@ export const DashboardScreen = () => {
   const dispatch = useAppDispatch();
 
   dispatch(getHealthAndSafetyNewsThunk({ token }))
+    .then(() => unwrapResult)
+    .catch(() => {
+      console.log('error');
+    });
+
+  dispatch(
+    getTeaOrCoffeeMeetingThunk({
+      token,
+      invitationStatus: InvitationStatusEnum.ACCEPTED,
+    })
+  )
+    .then(() => unwrapResult)
+    .catch(() => {
+      console.log('error');
+    });
+
+  dispatch(isDailyFeedbackSubmittedThunk({ token }))
     .then(() => unwrapResult)
     .catch(() => {
       console.log('error');
@@ -106,6 +127,12 @@ export const DashboardScreen = () => {
       });
 
     dispatch(getCurrentSoundThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.log('error');
+      });
+
+    dispatch(getNotificationsThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
         console.log('error');

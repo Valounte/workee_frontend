@@ -4,7 +4,9 @@ import ClearIcon from '@mui/icons-material/Clear';
 import DoneIcon from '@mui/icons-material/Done';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import { useSelector } from 'react-redux';
 
+import { selectTeaOrCoffeeMeetings } from '@entities/teaOrCoffeeMeetings/store/selector/getTeaOrCoffeeMeetings.selector';
 import { Divider, Stack, styled, Typography } from '@ui-kit';
 
 const StyledTitle = styled(Typography)`
@@ -48,57 +50,73 @@ const StyledInvitedUserContainer = styled.div`
   margin-left: 20px;
 `;
 
-export const NextTeaOrCoffeeMeeting = () => (
-  <>
-    <StyledTitle variant="subtitle1" fontSize={24}>
-      Votre prochain &quot;Thé ou café ?&quot;
-    </StyledTitle>
-    <StyledContainer>
-      <Stack direction="row" alignItems="center">
-        <StyledIcon />
-        <Stack spacing={1} alignItems="left" justifyContent="center">
-          <Typography variant="subtitle1" fontSize={16}>
-            Hôte : Valentin Lyon
-          </Typography>
-          <Typography variant="subtitle1" fontSize={16}>
-            Date : 12/12/2021 12:00
-          </Typography>
-        </Stack>
-        <StyledInvitedUserContainer style={{ maxHeight: 150, overflow: 'auto' }}>
-          <Stack spacing={1} divider={<Divider orientation="horizontal" flexItem />}>
-            <Stack
-              direction="row"
-              spacing={1}
-              alignItems="left"
-              justifyContent="center">
-              <Typography variant="subtitle1" fontSize={10}>
-                Jessica Chapuis
+export const NextTeaOrCoffeeMeeting = () => {
+  const teaOrCoffeeMeetings = useSelector(selectTeaOrCoffeeMeetings).slice(0, 1);
+
+  return (
+    <>
+      <StyledTitle variant="subtitle1" fontSize={24}>
+        Votre prochain &quot;Thé ou café ?&quot;
+      </StyledTitle>
+      <StyledContainer>        
+        { (teaOrCoffeeMeetings[0] && teaOrCoffeeMeetings[0].id) ?
+          <Stack direction="row" alignItems="center">
+            <StyledIcon />
+            <Stack spacing={1} alignItems="left" justifyContent="center">
+              <Typography variant="subtitle1" fontSize={16}>
+                Hôte : {teaOrCoffeeMeetings[0].initiator.firstname ?? ''}{' '}
+                {teaOrCoffeeMeetings[0].initiator.lastname ?? ''}
               </Typography>
-              <PendingIcon />
-            </Stack>
-            <Stack
-              direction="row"
-              spacing={1}
-              alignItems="left"
-              justifyContent="center">
-              <Typography variant="subtitle1" fontSize={10}>
-                Pierre Acker
+              <Typography variant="subtitle1" fontSize={16}>
+                {teaOrCoffeeMeetings[0].date.toLocaleString('en-GB', {
+                  timeZone: 'UTC',
+                })}
               </Typography>
-              <AcceptedIcon />
             </Stack>
-            <Stack
-              direction="row"
-              spacing={1}
-              alignItems="left"
-              justifyContent="center">
-              <Typography variant="subtitle1" fontSize={10}>
-                Deborah Kemmoun
-              </Typography>
-              <RejectedIcon />
-            </Stack>
+            {teaOrCoffeeMeetings[0].invitedUsersStatus &&
+            <StyledInvitedUserContainer style={{ maxHeight: 150, overflow: 'auto' }}>
+              <Stack
+                spacing={1}
+                divider={<Divider orientation="horizontal" flexItem />}>
+                {teaOrCoffeeMeetings[0].invitedUsersStatus.map(invitedUserStatus => (
+                  <Stack
+                    direction="row"
+                    spacing={1}
+                    alignItems="left"
+                    justifyContent="center">
+                    <Typography variant="subtitle1" fontSize={10}>
+                      {invitedUserStatus.invitedUser.firstname}{' '}
+                      {invitedUserStatus.invitedUser.lastname}
+                    </Typography>
+                    {invitedUserStatus.invitationStatus === 'PENDING' && (
+                      <PendingIcon />
+                    )}
+                    {invitedUserStatus.invitationStatus === 'ACCEPTED' && (
+                      <AcceptedIcon />
+                    )}
+                    {invitedUserStatus.invitationStatus === 'DECLINED' && (
+                      <RejectedIcon />
+                    )}
+                  </Stack>
+                ))}
+              </Stack>
+            </StyledInvitedUserContainer>
+            }
           </Stack>
-        </StyledInvitedUserContainer>
-      </Stack>
-    </StyledContainer>
-  </>
-);
+          :
+          <Stack direction="row" alignItems="center">
+          <StyledIcon />
+          <Stack spacing={1} alignItems="left" justifyContent="center">
+            <Typography variant="subtitle1" fontSize={16}>
+              Pas de meeting wsh
+            </Typography>
+            <Typography variant="subtitle1" fontSize={16}>
+              Coucou
+            </Typography>
+          </Stack>
+          </Stack>
+        }
+      </StyledContainer>
+    </>
+  );
+};

@@ -66,7 +66,7 @@ export const AppRoutes = () => {
       <StyledContainer maxWidth={false}>
         <Suspense fallback={<LinearProgress color="secondary" />}>
           <Routes>
-            <Route path={MainAppRoutesEnum.home} element={<>Dashboard</>} />
+            <Route path={MainAppRoutesEnum.home} element={<DashboardScreen />} />
             <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
             <Route path={MainAppRoutesEnum.settings} element={<Settings />} />
             <Route
