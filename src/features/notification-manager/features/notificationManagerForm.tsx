@@ -61,7 +61,6 @@ export const NotificationManagerForm = () => {
                 return;
             }
 
-            console.log(sendNotifValues);
             dispatch(sendNotificationThunk(sendNotifValues))
                 .then(unwrapResult)
                 .then(() => {
@@ -96,7 +95,7 @@ export const NotificationManagerForm = () => {
         },
         [formik]
     );
-    
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <Box width="50%" margin="0 auto" padding="30px">
