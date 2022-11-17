@@ -12,6 +12,7 @@ import {
   TeamIcon,
 } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
+import { NotificationIcon } from 'src/ui-kit/icons/Notification/Notification';
 
 import { MainRoutesEnum } from '../../../../RoutesEnum';
 
@@ -51,6 +52,15 @@ export const LinksSmallDevices = () => (
         <NewsIcon aria-label="news" fontSize="large" />
       </ListItemIcon>
       <Typography>Actualités</Typography>
+    </ListItem>
+    <ListItem>
+    <AppRouterLink
+        to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notificationManager}`}>
+        <ListItemIcon>
+        <NotificationIcon aria-label="Notifications" fontSize="large" />
+        </ListItemIcon>
+        <Typography>Notifications</Typography>
+      </AppRouterLink>
     </ListItem>
   </>
 );
