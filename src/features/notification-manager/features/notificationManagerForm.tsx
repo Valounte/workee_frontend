@@ -1,23 +1,22 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
 
-import {MenuItem} from "@mui/material";
-import Autocomplete from '@mui/material/Autocomplete';
-import {unwrapResult} from "@reduxjs/toolkit";
-import {isEmptyArray, useFormik} from 'formik';
-import {useSnackbar} from "notistack";
-import {useSelector} from "react-redux";
-import {useAsync} from "react-use";
-import {array as yupArray, object as yupObject, string as yupString} from 'yup';
+import { MenuItem } from "@mui/material";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { isEmptyArray, useFormik } from 'formik';
+import { useSnackbar } from "notistack";
+import { useSelector } from "react-redux";
+import { useAsync } from "react-use";
+import { array as yupArray, object as yupObject, string as yupString } from 'yup';
 
-import {selectToken} from "@entities/authentification/store/selectors/selectToken.selector";
-import {sendNotificationThunk} from "@entities/notifications/store/thunks/sendNotification.thunk";
-import {selectTeams} from "@entities/teams/store/selectors/getTeams.selector";
-import {getTeamsThunk} from "@entities/teams/store/thunks/getTeams.thunk";
-import {selectUsers} from "@entities/users/store/selectors/getUsers.selector";
-import {getUsersThunk} from "@entities/users/store/thunks/getUsers.thunk";
-import {Box, Button, SelectChangeEvent, SelectInput, TextField, Typography} from '@ui-kit';
+import { selectToken } from "@entities/authentification/store/selectors/selectToken.selector";
+import { sendNotificationThunk } from "@entities/notifications/store/thunks/sendNotification.thunk";
+import { selectTeams } from "@entities/teams/store/selectors/getTeams.selector";
+import { getTeamsThunk } from "@entities/teams/store/thunks/getTeams.thunk";
+import { selectUsers } from "@entities/users/store/selectors/getUsers.selector";
+import { getUsersThunk } from "@entities/users/store/thunks/getUsers.thunk";
+import { Box, Button, SelectChangeEvent, SelectInput, TextField, Typography, Chip } from '@ui-kit';
 
-import {useAppDispatch} from "../../../store/useAppDispatch";
+import { useAppDispatch } from "../../../store/useAppDispatch";
 
 const validationSchema = yupObject({
     teamsId: yupArray(),
@@ -37,7 +36,7 @@ export const NotificationManagerForm = () => {
     let usersFromStore = useSelector(selectUsers);
     let teamsFromStore = useSelector(selectTeams);
     const dispatch = useAppDispatch();
-    const {enqueueSnackbar} = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();
     const formik = useFormik({
         initialValues: {
             teamsId: [],
@@ -54,8 +53,8 @@ export const NotificationManagerForm = () => {
                 message: values.message,
                 token,
             };
-            if ( isEmptyArray(values.teamsId) && isEmptyArray(values.usersId)) {
-                enqueueSnackbar('You need to add at least one receiver !', {
+            if (isEmptyArray(values.teamsId) && isEmptyArray(values.usersId)) {
+                enqueueSnackbar('Vous devez ajouter au moins une personne à notifier !', {
                     variant: 'error',
                 });
                 return;
@@ -64,26 +63,26 @@ export const NotificationManagerForm = () => {
             dispatch(sendNotificationThunk(sendNotifValues))
                 .then(unwrapResult)
                 .then(() => {
-                    enqueueSnackbar('Notification successfully sent !', {
+                    enqueueSnackbar('La notification à bien été envoyé !', {
                         variant: 'success',
                     });
                 })
                 .catch(() => {
-                    enqueueSnackbar('Error notification !', {
+                    enqueueSnackbar("Une erreur est survenue lors de l'envoie de la notificaion !", {
                         variant: 'error',
                     });
                 });
         },
     });
 
-    const {error: errorUsers} = useAsync(() =>
-        dispatch(getUsersThunk({token}))
+    const { error: errorUsers } = useAsync(() =>
+        dispatch(getUsersThunk({ token }))
     );
     if (errorUsers) {
         usersFromStore = [];
     }
-    const {error: errorTeams} = useAsync(() =>
-        dispatch(getTeamsThunk({token}))
+    const { error: errorTeams } = useAsync(() =>
+        dispatch(getTeamsThunk({ token }))
     );
     if (errorTeams) {
         teamsFromStore = [];
@@ -96,25 +95,88 @@ export const NotificationManagerForm = () => {
         [formik]
     );
 
+    const handleChangeTeams = useCallback(
+        (event: SelectChangeEvent<unknown>) => {
+            formik.setFieldValue('teamsId', event.target.value).catch(() => { });
+        },
+        [formik]
+    );
+
+    const handleChangeUsers = useCallback(
+        (event: SelectChangeEvent<unknown>) => {
+            formik.setFieldValue('usersId', event.target.value).catch(() => { });
+        },
+        [formik]
+    );
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <Box width="50%" margin="0 auto" padding="30px">
                 <Box display="flex" flexDirection="column" maxWidth="70%" margin="0 auto">
-                    <Autocomplete
-                        key="teamsId"
+                    <SelectInput
+                        id="teams"
+                        name="teams"
+                        label="Equipe(s) à notifier"
                         multiple
-                        id="teamsId"
-                        options={teamsFromStore.map(team => `${team.name}`)}
-                        renderInput={(params) => <TextField key="team" style={{marginBottom: 25}} {...params} label="Equipe(s) à notifier"/>}
-                    />
-                    <Autocomplete
-                        key="usersId"
+                        value={formik.values.teamsId}
+                        onChange={handleChangeTeams}
+                        error={formik.touched.teamsId && Boolean(formik.errors.teamsId)}
+                        renderValue={() => {
+                            const teamsNameSelected = formik.values.teamsId.map(teamId => {
+                                const team = teamsFromStore.find(team => team.id === teamId);
+                                return team ? team.name : teamId;
+                            });
+                            return (
+                                <Box display="flex" flexWrap="wrap" gap={0.5}>
+                                    {teamsNameSelected.map(teamSelectedRender => (
+                                        <Chip key={teamSelectedRender} label={teamSelectedRender} />
+                                    ))}
+                                </Box>
+                            );
+                        }}
+                        errorMessage={
+                            formik.touched.teamsId && formik.errors.teamsId != null
+                                ? formik.errors.teamsId.toString()
+                                : ' '
+                        }>
+                        {teamsFromStore.map(team => (
+                            <MenuItem key={team.id} value={team.id}>
+                                {team.name}
+                            </MenuItem>
+                        ))}
+                    </SelectInput>
+                    <SelectInput
+                        id="users"
+                        name="users"
+                        label="Personne(s) à notifier"
                         multiple
-                        id="usersId"
-                        disablePortal
-                        options={usersFromStore.map(user => `${user.firstname   } ${  user.lastname}`)}
-                        renderInput={(params) => <TextField key="user" style={{marginBottom: 25}} {...params} label="Personne(s) à notifer"/>}
-                    />
+                        value={formik.values.usersId}
+                        onChange={handleChangeUsers}
+                        error={formik.touched.usersId && Boolean(formik.errors.usersId)}
+                        renderValue={() => {
+                            const usersNameSelected = formik.values.usersId.map(userId => {
+                                const user = usersFromStore.find(user => user.id === userId);
+                                return user ? user.firstname : userId;
+                            });
+                            return (
+                                <Box display="flex" flexWrap="wrap" gap={0.5}>
+                                    {usersNameSelected.map(userSelectedRender => (
+                                        <Chip key={userSelectedRender} label={userSelectedRender} />
+                                    ))}
+                                </Box>
+                            );
+                        }}
+                        errorMessage={
+                            formik.touched.usersId && formik.errors.usersId != null
+                                ? formik.errors.usersId.toString()
+                                : ' '
+                        }>
+                        {usersFromStore.map(user => (
+                            <MenuItem key={user.id} value={user.id}>
+                                {user.firstname}
+                            </MenuItem>
+                        ))}
+                    </SelectInput>
                     <SelectInput
                         key="status"
                         id="status"
@@ -127,7 +189,7 @@ export const NotificationManagerForm = () => {
                             formik.touched.alertLevel && formik.errors.alertLevel != null ? formik.errors.alertLevel : ' '
                         }>
                         {statusLevel.map(level => (
-                            <MenuItem key={`item${  level}`} value={level}>
+                            <MenuItem key={`item${level}`} value={level}>
                                 {level}
                             </MenuItem>
                         ))}
@@ -146,7 +208,7 @@ export const NotificationManagerForm = () => {
                                 ? formik.errors.message
                                 : ' '
                         }
-                        InputLabelProps={{style: {fontSize: 15}}}
+                        InputLabelProps={{ style: { fontSize: 15 } }}
                     />
 
                     <Button key="submit" variant="contained" type="submit">
