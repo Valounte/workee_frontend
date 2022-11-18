@@ -63,13 +63,13 @@ export const RegisterForm = memo((props: RegisterFormProps) => {
       dispatch(registerThunk(registerValues))
         .then(unwrapResult)
         .then(() => {
-          enqueueSnackbar('Successfull registered and connected', {
+          enqueueSnackbar('Enregistré et connecté avec succès', {
             variant: 'success',
           });
           navigate(MainRoutesEnum.landingPage);
         })
         .catch(() => {
-          enqueueSnackbar('Account already created', {
+          enqueueSnackbar('Compte déjà créé', {
             variant: 'error',
           });
         });
