@@ -54,8 +54,7 @@ export const LinksSmallDevices = () => (
       <Typography>Actualités</Typography>
     </ListItem>
     <ListItem>
-      <AppRouterLink
-        to={`${MainRoutesEnum.app}${MainAppRoutesEnum.Notifications}`}>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.Notifications}`}>
         <ListItemIcon>
           <NotificationIcon aria-label="Notifications" fontSize="large" />
         </ListItemIcon>

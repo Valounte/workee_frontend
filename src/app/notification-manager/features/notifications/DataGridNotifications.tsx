@@ -11,10 +11,10 @@ import { notificationMessageDataGridCol } from './data-grid/notificationMessageD
 import { notificationSenderDataGridCol } from './data-grid/notificationSenderDataGridCol';
 
 const columns: GridColDef[] = [
-    notificationIdDataGridCol,
-    notificationMessageDataGridCol,
-    notificationSenderDataGridCol,
-    notificationDateDataGridCol,
+  notificationIdDataGridCol,
+  notificationMessageDataGridCol,
+  notificationSenderDataGridCol,
+  notificationDateDataGridCol,
 ];
 
 interface DataGridNotificationsProps {
@@ -22,27 +22,29 @@ interface DataGridNotificationsProps {
   error: Error | undefined;
 }
 
-export const DataGridNotifications = memo(({ loading, error }: DataGridNotificationsProps) => {
-  const notifications = useSelector(selectNotifications);
-  const rows = useMemo(
-    () =>
-      notifications.map(notification => ({
+export const DataGridNotifications = memo(
+  ({ loading, error }: DataGridNotificationsProps) => {
+    const notifications = useSelector(selectNotifications);
+    const rows = useMemo(
+      () =>
+        notifications.map(notification => ({
           id: notification.id,
           message: notification.message,
           senderFirstname: notification.senderFirstname,
-          sentAt : notification.sentAt,
-      })),
-    [notifications]
-  );
-  return (
-    <DataGrid
-      loading={loading}
-      error={error}
-      rows={rows}
-      columns={columns}
-      autoHeight
-      pageSize={15}
-      rowsPerPageOptions={[15]}
-    />
-  );
-});
+          sentAt: notification.sentAt,
+        })),
+      [notifications]
+    );
+    return (
+      <DataGrid
+        loading={loading}
+        error={error}
+        rows={rows}
+        columns={columns}
+        autoHeight
+        pageSize={15}
+        rowsPerPageOptions={[15]}
+      />
+    );
+  }
+);

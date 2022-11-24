@@ -39,7 +39,8 @@ export const store = configureStore({
     [currentLuminositySlice.name]: currentLuminositySlice.reducer,
     [HealthAndSafetyNewsSlice.name]: HealthAndSafetyNewsSlice.reducer,
     [notificationPreferencesSlice.name]: notificationPreferencesSlice.reducer,
-    [environmentMetricsPreferencesSlice.name]: environmentMetricsPreferencesSlice.reducer,
+    [environmentMetricsPreferencesSlice.name]:
+      environmentMetricsPreferencesSlice.reducer,
     [notificationsSlice.name]: notificationsSlice.reducer,
   },
   preloadedState: {
