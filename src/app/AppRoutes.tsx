@@ -17,6 +17,9 @@ const Settings = React.lazy(() => import('./settings/Settings.Screen'));
 const EnvironmentMetricsScreen = React.lazy(
   () => import('./environment-metrics/EnvironmentMetrics.screen')
 );
+const NotificationsScreen = React.lazy(
+  () => import('./notification-manager/notificationManager.screen')
+);
 const UsersHandlerScreen = React.lazy(
   () => import('./usersHandler/UsersHandler.screen')
 );
@@ -51,6 +54,10 @@ export const AppRoutes = () => {
           <Route
             path={MainAppRoutesEnum.environmentMetrics}
             element={<EnvironmentMetricsScreen />}
+          />
+          <Route
+            path={MainAppRoutesEnum.Notifications}
+            element={<NotificationsScreen />}
           />
           <Route path="*" element={<PageNotFoundScreen />} />
         </Routes>

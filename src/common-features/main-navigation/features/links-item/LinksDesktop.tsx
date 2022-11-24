@@ -11,6 +11,7 @@ import {
   TeamIcon,
   styled,
   Tooltip,
+  NotificationIcon,
 } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 
@@ -65,6 +66,16 @@ export const LinksDesktop = () => (
           <NewsIcon aria-label="news" fontSize="large" />
         </Tooltip>
       </StyledListItemIcon>
+    </StyledListItem>
+
+    <StyledListItem>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.Notifications}`}>
+        <StyledListItemIcon>
+          <Tooltip arrow title="Notifications" placement="right">
+            <NotificationIcon aria-label="Notifications" fontSize="large" />
+          </Tooltip>
+        </StyledListItemIcon>
+      </AppRouterLink>
     </StyledListItem>
   </>
 );

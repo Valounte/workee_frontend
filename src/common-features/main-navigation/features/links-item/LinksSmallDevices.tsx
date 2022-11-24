@@ -8,6 +8,7 @@ import {
   ListItemIcon,
   MetricsIcon,
   NewsIcon,
+  NotificationIcon,
   SmileIcon,
   TeamIcon,
 } from '@ui-kit';
@@ -51,6 +52,14 @@ export const LinksSmallDevices = () => (
         <NewsIcon aria-label="news" fontSize="large" />
       </ListItemIcon>
       <Typography>Actualités</Typography>
+    </ListItem>
+    <ListItem>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.Notifications}`}>
+        <ListItemIcon>
+          <NotificationIcon aria-label="Notifications" fontSize="large" />
+        </ListItemIcon>
+        <Typography>Notifications</Typography>
+      </AppRouterLink>
     </ListItem>
   </>
 );
