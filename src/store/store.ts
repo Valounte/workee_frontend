@@ -12,6 +12,7 @@ import { currentTemperatureSlice } from '@entities/environment-metrics/temperatu
 import { temperatureSlice } from '@entities/environment-metrics/temperature/store/slice';
 import { HealthAndSafetyNewsSlice } from '@entities/health-and-safety-news/store/slice';
 import { jobSlice } from '@entities/jobs/store/slice';
+import { notificationsSlice } from '@entities/notifications/store/slice';
 import {
   environmentMetricsPreferencesSlice,
   notificationPreferencesSlice,
@@ -38,8 +39,8 @@ export const store = configureStore({
     [currentLuminositySlice.name]: currentLuminositySlice.reducer,
     [HealthAndSafetyNewsSlice.name]: HealthAndSafetyNewsSlice.reducer,
     [notificationPreferencesSlice.name]: notificationPreferencesSlice.reducer,
-    [environmentMetricsPreferencesSlice.name]:
-      environmentMetricsPreferencesSlice.reducer,
+    [environmentMetricsPreferencesSlice.name]: environmentMetricsPreferencesSlice.reducer,
+    [notificationsSlice.name]: notificationsSlice.reducer,
   },
   preloadedState: {
     authentification: {
