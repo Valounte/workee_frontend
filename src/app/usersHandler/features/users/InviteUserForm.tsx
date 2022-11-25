@@ -68,13 +68,13 @@ export const InviteUserForm = () => {
       dispatch(inviteThunk(InviteValues))
         .then(unwrapResult)
         .then(() => {
-          enqueueSnackbar('User successfully invited !', {
+          enqueueSnackbar("L'utilisateur a bien été invité", {
             variant: 'success',
           });
           formik.resetForm();
         })
         .catch(() => {
-          enqueueSnackbar('Error invitation', {
+          enqueueSnackbar("Une erreur est survenue lors de l'invitation", {
             variant: 'error',
           });
         });

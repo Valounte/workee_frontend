@@ -43,7 +43,7 @@ export const NotificationPreferences = () => {
         isMute,
       };
 
-      const status = isMute ? 'muettes' : 'activés';
+      const status = isMute ? 'muettes' : 'activées';
 
       dispatch(changeNotificationPreferenceThunk(param))
         .then(unwrapResult)
@@ -56,7 +56,7 @@ export const NotificationPreferences = () => {
           );
         })
         .catch(() => {
-          enqueueSnackbar('Error !', {
+          enqueueSnackbar('Une erreur est survenue', {
             variant: 'error',
           });
         });

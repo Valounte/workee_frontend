@@ -53,13 +53,13 @@ export const LoginForm = () => {
       dispatch(loginThunk(values))
         .then(unwrapResult)
         .then(() => {
-          enqueueSnackbar('Successfull connected', {
+          enqueueSnackbar('Connexion réussie', {
             variant: 'success',
           });
           navigate(MainRoutesEnum.app);
         })
         .catch(() => {
-          enqueueSnackbar('Password or email incorrect', {
+          enqueueSnackbar('Identifiant ou mot de passe incorrect', {
             variant: 'error',
           });
         });

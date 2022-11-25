@@ -33,7 +33,7 @@ export const MainHeader = () => {
   const handleLogoutButton = useCallback(() => {
     dispatch(logoutThunk())
       .then(() => {
-        enqueueSnackbar('Successfull disconected', {
+        enqueueSnackbar('Déconnecté avec succès', {
           variant: 'success',
         });
       })

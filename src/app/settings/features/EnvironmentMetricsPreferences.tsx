@@ -63,7 +63,7 @@ export const EnvironmentMetricsPreferences = () => {
           });
         })
         .catch(() => {
-          enqueueSnackbar('Error !', {
+          enqueueSnackbar('Une erreur est survenue', {
             variant: 'error',
           });
         });
