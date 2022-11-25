@@ -68,7 +68,7 @@ export const InviteUserForm = () => {
       dispatch(inviteThunk(InviteValues))
         .then(unwrapResult)
         .then(() => {
-          enqueueSnackbar("L'utilisateur à bien été invité", {
+          enqueueSnackbar("L'utilisateur a bien été invité", {
             variant: 'success',
           });
           formik.resetForm();

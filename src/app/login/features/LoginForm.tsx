@@ -53,7 +53,7 @@ export const LoginForm = () => {
       dispatch(loginThunk(values))
         .then(unwrapResult)
         .then(() => {
-          enqueueSnackbar('Connexion réussi', {
+          enqueueSnackbar('Connexion réussie', {
             variant: 'success',
           });
           navigate(MainRoutesEnum.app);
