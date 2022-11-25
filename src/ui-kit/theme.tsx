@@ -72,7 +72,7 @@ export const theme = createTheme({
       sm: 640,
       md: 1024,
       lg: 1536,
-      xl: 1536,
+      xl: 1700,
     },
   },
   components: {
@@ -88,6 +88,8 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: 'white',
+          boxShadow:
+            '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
         },
       },
     },

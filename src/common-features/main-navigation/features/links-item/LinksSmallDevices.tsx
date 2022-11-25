@@ -7,7 +7,6 @@ import {
   DashboardIcon,
   ListItemIcon,
   MetricsIcon,
-  NewsIcon,
   NotificationIcon,
   SmileIcon,
   TeamIcon,
@@ -48,13 +47,7 @@ export const LinksSmallDevices = () => (
       <Typography>Avis</Typography>
     </ListItem>
     <ListItem>
-      <ListItemIcon>
-        <NewsIcon aria-label="news" fontSize="large" />
-      </ListItemIcon>
-      <Typography>Actualités</Typography>
-    </ListItem>
-    <ListItem>
-      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.Notifications}`}>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notifications}`}>
         <ListItemIcon>
           <NotificationIcon aria-label="Notifications" fontSize="large" />
         </ListItemIcon>

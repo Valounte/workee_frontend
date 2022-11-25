@@ -16,7 +16,6 @@ import {
   TabPanel,
   Stack,
   styled,
-  Container,
   TeamIcon,
 } from '@ui-kit';
 
@@ -37,13 +36,6 @@ enum TabsEnum {
   jobs = 'jobs',
 }
 /* eslint-enable no-unused-vars */
-
-const StyledContainer = styled(Container)`
-  margin: 0;
-  background-color: #f3f3f3;
-  height: 100%;
-  width: 100%;
-`;
 
 const StyledTabs = styled(Tabs)`
   border-bottom: '1px solid grey';
@@ -78,13 +70,16 @@ const UsersHandlerScreen = () => {
     dispatch(getUsersThunk({ token }))
   );
   return (
-    <StyledContainer>
+    <>
       <Box height="15vh" p={2}>
         <Stack direction="row" alignItems="center" spacing={2}>
           <TeamIcon fontSize="large" />
           <Typography variant="h4">Gestion</Typography>
         </Stack>
-        <StyledTabs value={value} onChange={handleChangeTab}>
+        <StyledTabs
+          value={value}
+          onChange={handleChangeTab}
+          indicatorColor="secondary">
           <StyledTab disableRipple value={TabsEnum.users} label="Utilisateurs" />
           <StyledTab disableRipple value={TabsEnum.teams} label="Équipes" />
           <StyledTab disableRipple value={TabsEnum.jobs} label="Métiers" />
@@ -92,25 +87,25 @@ const UsersHandlerScreen = () => {
       </Box>
       <Box p={2}>
         <TabPanel value={value} index={TabsEnum.users}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
             <InviteUserForm />
             <DataGridUsers loading={loadingUsers} error={errorUsers} />
           </Stack>
         </TabPanel>
         <TabPanel value={value} index={TabsEnum.teams}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
             <CreateTeamForm />
             <DataGridTeams loading={loadingTeams} error={errorTeams} />
           </Stack>
         </TabPanel>
         <TabPanel value={value} index={TabsEnum.jobs}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
             <CreateJobForm />
             <DataGridJobs loading={loadingJobs} error={errorJobs} />
           </Stack>
         </TabPanel>
       </Box>
-    </StyledContainer>
+    </>
   );
 };
 

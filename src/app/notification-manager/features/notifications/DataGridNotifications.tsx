@@ -44,6 +44,7 @@ export const DataGridNotifications = memo(
         autoHeight
         pageSize={15}
         rowsPerPageOptions={[15]}
+        rowHeight={35}
       />
     );
   }

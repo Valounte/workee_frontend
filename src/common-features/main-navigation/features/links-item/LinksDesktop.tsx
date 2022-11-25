@@ -6,7 +6,6 @@ import {
   DashboardIcon,
   ListItemIcon,
   MetricsIcon,
-  NewsIcon,
   SmileIcon,
   TeamIcon,
   styled,
@@ -54,22 +53,16 @@ export const LinksDesktop = () => (
       </AppRouterLink>
     </StyledListItem>
     <StyledListItem>
-      <StyledListItemIcon>
-        <Tooltip arrow title="Avis" placement="right">
-          <SmileIcon aria-label="avis" fontSize="large" />
-        </Tooltip>
-      </StyledListItemIcon>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.feedback}`}>
+        <StyledListItemIcon>
+          <Tooltip arrow title="Avis" placement="right">
+            <SmileIcon aria-label="avis" fontSize="large" />
+          </Tooltip>
+        </StyledListItemIcon>
+      </AppRouterLink>
     </StyledListItem>
     <StyledListItem>
-      <StyledListItemIcon>
-        <Tooltip arrow title="News" placement="right">
-          <NewsIcon aria-label="news" fontSize="large" />
-        </Tooltip>
-      </StyledListItemIcon>
-    </StyledListItem>
-
-    <StyledListItem>
-      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.Notifications}`}>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notifications}`}>
         <StyledListItemIcon>
           <Tooltip arrow title="Notifications" placement="right">
             <NotificationIcon aria-label="Notifications" fontSize="large" />

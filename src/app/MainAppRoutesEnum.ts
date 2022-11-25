@@ -6,5 +6,5 @@ export const MainAppRoutesEnum = {
   environmentMetrics: '/environment-metrics',
   settings: '/settings',
   feedback: '/feedback',
-  Notifications: '/notifications',
+  notifications: '/notifications',
 };

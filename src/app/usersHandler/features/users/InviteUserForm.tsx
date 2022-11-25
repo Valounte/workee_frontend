@@ -103,13 +103,17 @@ export const InviteUserForm = () => {
             <AddUserIcon fontSize="large" />
             <Typography variant="h5">Inviter un utilisateur</Typography>
           </Stack>
-          <Box display="flex" flexDirection="column" width="50vh">
+          <Box
+            display="flex"
+            flexDirection="column"
+            width={{ xs: '100%', md: '30vw' }}>
             <TextField
               autoFocus
               variant="outlined"
               id="email"
               name="email"
               label="Email"
+              color="secondary"
               value={formik.values.email}
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
@@ -125,6 +129,7 @@ export const InviteUserForm = () => {
               id="firstname"
               name="firstname"
               label="Prénom"
+              color="secondary"
               value={formik.values.firstname}
               onChange={formik.handleChange}
               error={formik.touched.firstname && Boolean(formik.errors.firstname)}
@@ -140,6 +145,7 @@ export const InviteUserForm = () => {
               id="lastname"
               name="lastname"
               label="Nom"
+              color="secondary"
               value={formik.values.lastname}
               onChange={formik.handleChange}
               error={formik.touched.lastname && Boolean(formik.errors.lastname)}
@@ -155,6 +161,7 @@ export const InviteUserForm = () => {
               id="job"
               name="job"
               label="Job (Optionel)"
+              color="secondary"
               value={formik.values.job}
               error={formik.touched.job && Boolean(formik.errors.job)}
               onChange={handleChangeJob}
@@ -178,6 +185,7 @@ export const InviteUserForm = () => {
               name="teams"
               label="Teams (Optionel)"
               multiple
+              color="secondary"
               value={formik.values.teams}
               onChange={handleChangeTeams}
               error={formik.touched.teams && Boolean(formik.errors.teams)}
@@ -209,7 +217,7 @@ export const InviteUserForm = () => {
         </CardContent>
         <CardActions>
           <Box px={1} textAlign="center" width="100%">
-            <Button variant="contained" type="submit">
+            <Button variant="contained" type="submit" color="secondary">
               <Typography>Inviter</Typography>
             </Button>
           </Box>
