@@ -68,7 +68,10 @@ export const CreateTeamForm = () => {
             <Typography variant="h5">Créer une équipe</Typography>
           </Stack>
 
-          <Box display="flex" flexDirection="column" width="50vh">
+          <Box
+            display="flex"
+            flexDirection="column"
+            width={{ xs: '100%', md: '30vw' }}>
             <TextField
               variant="outlined"
               id="name"

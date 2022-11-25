@@ -29,11 +29,17 @@ const PageNotFoundScreen = React.lazy(
 
 const StyledContainer = styled(Container)`
   margin: 0;
-  background: linear-gradient(
-    0deg,
-    rgba(255, 209, 159, 1) 0%,
-    rgba(255, 246, 226, 1) 40%
-  );
+  height: 100%;
+  background-color: hsla(16, 100%, 87%, 1);
+  background-image: radial-gradient(
+      at 53% 60%,
+      hsla(10, 91%, 92%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 96% 5%, hsla(32, 93%, 88%, 1) 0px, transparent 50%),
+    radial-gradient(at 11% 21%, hsla(40, 100%, 95%, 1) 0px, transparent 50%),
+    radial-gradient(at 73% 78%, hsla(22, 81%, 96%, 1) 0px, transparent 50%),
+    radial-gradient(at 8% 99%, hsla(38, 100%, 85%, 1) 0px, transparent 50%);
 `;
 
 export const AppRoutes = () => {
@@ -51,7 +57,7 @@ export const AppRoutes = () => {
   return (
     <Stack
       direction={{ xs: 'column', md: 'row' }}
-      height="100vh"
+      height={{ md: '100vh' }}
       width="100vw"
       spacing={0}>
       <MainNavigation />
@@ -70,8 +76,7 @@ export const AppRoutes = () => {
               element={<EnvironmentMetricsScreen />}
             />
             <Route
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-              path={MainAppRoutesEnum.Notifications}
+              path={MainAppRoutesEnum.notifications}
               element={<NotificationsScreen />}
             />
             <Route path="*" element={<PageNotFoundScreen />} />

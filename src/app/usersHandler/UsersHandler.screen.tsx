@@ -87,19 +87,19 @@ const UsersHandlerScreen = () => {
       </Box>
       <Box p={2}>
         <TabPanel value={value} index={TabsEnum.users}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
             <InviteUserForm />
             <DataGridUsers loading={loadingUsers} error={errorUsers} />
           </Stack>
         </TabPanel>
         <TabPanel value={value} index={TabsEnum.teams}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
             <CreateTeamForm />
             <DataGridTeams loading={loadingTeams} error={errorTeams} />
           </Stack>
         </TabPanel>
         <TabPanel value={value} index={TabsEnum.jobs}>
-          <Stack direction="row" spacing={2}>
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
             <CreateJobForm />
             <DataGridJobs loading={loadingJobs} error={errorJobs} />
           </Stack>

@@ -114,17 +114,23 @@ export const EnvironmentMetricsScreen = () => {
         <Typography variant="body1">Données relevées le {date}</Typography>
       </Box>
 
-      <Grid container spacing={2} columns={12} py={4} alignItems="stretch">
-        <Grid item sm={6}>
+      <Grid
+        container
+        spacing={2}
+        columns={12}
+        py={4}
+        alignItems="stretch"
+        height="85%">
+        <Grid item xs={12} md={6}>
           <Temperature />
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={12} md={6}>
           <Humidity />
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={12} md={6}>
           <Sound />
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={12} md={6}>
           <Luminosity />
         </Grid>
       </Grid>

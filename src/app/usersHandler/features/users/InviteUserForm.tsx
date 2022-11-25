@@ -103,7 +103,10 @@ export const InviteUserForm = () => {
             <AddUserIcon fontSize="large" />
             <Typography variant="h5">Inviter un utilisateur</Typography>
           </Stack>
-          <Box display="flex" flexDirection="column" width="50vh">
+          <Box
+            display="flex"
+            flexDirection="column"
+            width={{ xs: '100%', md: '30vw' }}>
             <TextField
               autoFocus
               variant="outlined"
