@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import { useFormik } from 'formik';
 import { useSnackbar } from 'notistack';
@@ -22,12 +22,7 @@ const validationSchema = yupObject({
   isAnonymous: yupBoolean().required('Case obligatoire'),
 });
 
-interface FeedbackFormProps {
-  onClose: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const FeedbackForm = memo((props: FeedbackFormProps) => {
-  const { onClose } = props;
+export const FeedbackForm = () => {
   const token = useSelector(selectToken);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -53,7 +48,6 @@ export const FeedbackForm = memo((props: FeedbackFormProps) => {
         satisfactionDegree,
       })
         .then(() => {
-          onClose(false);
           enqueueSnackbar('Feedback envoyé avec succès', {
             variant: 'success',
           });
@@ -108,4 +102,4 @@ export const FeedbackForm = memo((props: FeedbackFormProps) => {
       </Stack>
     </form>
   );
-});
+};

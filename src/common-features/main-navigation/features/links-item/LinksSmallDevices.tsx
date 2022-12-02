@@ -41,10 +41,12 @@ export const LinksSmallDevices = () => (
       </AppRouterLink>
     </ListItem>
     <ListItem>
-      <ListItemIcon>
-        <SmileIcon aria-label="avis" fontSize="large" />
-      </ListItemIcon>
-      <Typography>Avis</Typography>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.feedback}`}>
+        <ListItemIcon>
+          <SmileIcon aria-label="avis" fontSize="large" />
+        </ListItemIcon>
+        <Typography>Avis</Typography>
+      </AppRouterLink>
     </ListItem>
     <ListItem>
       <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notifications}`}>
