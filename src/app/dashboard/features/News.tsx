@@ -58,7 +58,7 @@ export const News = () => {
                             variant="outlined"
                           />
                         </Stack>
-                        <Typography variant="body2" noWrap maxHeight="5vh">
+                        <Typography variant="body2" noWrap>
                           {newsItem.description}
                         </Typography>
                       </Stack>
