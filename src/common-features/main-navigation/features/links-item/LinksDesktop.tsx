@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Badge } from '@mui/material';
+
 import {
   ListItem,
   AppRouterLink,
@@ -67,7 +69,9 @@ export const LinksDesktop = () => (
       <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notifications}`}>
         <StyledListItemIcon>
           <Tooltip arrow title="Notifications" placement="right">
-            <NotificationIcon aria-label="Notifications" fontSize="large" />
+            <Badge variant="dot" color="secondary">
+              <NotificationIcon aria-label="Notifications" fontSize="large" />
+            </Badge>
           </Tooltip>
         </StyledListItemIcon>
       </AppRouterLink>

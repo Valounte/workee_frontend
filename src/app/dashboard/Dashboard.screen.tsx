@@ -13,7 +13,7 @@ import { getHealthAndSafetyNewsThunk } from '@entities/health-and-safety-news/st
 import { getNotificationsThunk } from '@entities/notifications/store/thunks/getNotifications.thunk';
 import { InvitationStatusEnum } from '@entities/teaOrCoffeeMeetings/InvitationStatusEnum';
 import { getTeaOrCoffeeMeetingThunk } from '@entities/teaOrCoffeeMeetings/store/thunks/getTeaOrCoffeeMeetings.thunk';
-import { Box, Grid, Stack, styled, Typography } from '@ui-kit';
+import { Box, DashboardIcon, Grid, Stack, Typography } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 import { EnvironmentMetrics } from './features/EnvironmentMetrics';
@@ -21,60 +21,6 @@ import { Feedback } from './features/Feedback';
 import { LastNotifications } from './features/LastNotifications';
 import { News } from './features/News';
 import { NextTeaOrCoffeeMeeting } from './features/NextTeaOrCoffeeMeeting';
-
-const StyledContainer = styled(Box)`
-  margin: 0;
-  background-color: #f3f3f3;
-  height: 100%;
-  width: 100%;
-`;
-
-const StyledTitle = styled(Typography)`
-  margin-top: 18px;
-  margin-left: 29px;
-`;
-
-const StyledSubTitle = styled(Typography)`
-  margin-left: 29px;
-`;
-
-const StyledNewsBox = styled(Box)`
-  border: 1px solid #d9d9d9;
-  background-color: #ffffff;
-  margin-top: 15px;
-  display: flex;
-  flex-flow: column;
-  height: 650px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-`;
-
-const StyledNotifAndFeedbackBox = styled(Box)`
-  border: 1px solid #d9d9d9;
-  background-color: #ffffff;
-  margin-top: 15px;
-  display: flex;
-  flex-flow: column;
-  height: 380px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-`;
-
-const StyledGrid = styled(Grid)`
-  padding-right: 29px;
-  padding-left: 29px;
-`;
-
-const StyledTeaOrCoffee = styled(Box)`
-  border: 1px solid #d9d9d9;
-  background-color: #ffffff;
-  margin-top: 15px;
-  display: flex;
-  flex-flow: column;
-  height: 255px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-`;
 
 export const DashboardScreen = () => {
   const token = useSelector(selectToken);
@@ -146,36 +92,36 @@ export const DashboardScreen = () => {
   };
 
   return (
-    <StyledContainer>
-      <StyledTitle variant="h4">Dashboard</StyledTitle>
-      <StyledSubTitle variant="body1">
-        Voici une synthèse de votre activité
-      </StyledSubTitle>
-      <EnvironmentMetrics />
-
-      <StyledGrid container spacing={2}>
-        <Grid item md={4}>
-          <StyledNotifAndFeedbackBox>
-            <Feedback />
-          </StyledNotifAndFeedbackBox>
-        </Grid>
-        <Grid item md={4}>
-          <Stack spacing={2}>
-            <StyledNotifAndFeedbackBox>
-              <LastNotifications />
-            </StyledNotifAndFeedbackBox>
-            <StyledTeaOrCoffee>
+    <>
+      <Box height="8vh" p={2}>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <DashboardIcon fontSize="large" />
+          <Typography variant="h4">Dashboard</Typography>
+        </Stack>
+        <Typography variant="body1">Voici une synthèse de votre activité</Typography>
+      </Box>
+      <Box height="87vh" p={2}>
+        <Grid container spacing={2} columns={12} py={2}>
+          <EnvironmentMetrics />
+          <Grid item md={4} xs={12}>
+            <Stack spacing={2}>
               <NextTeaOrCoffeeMeeting />
-            </StyledTeaOrCoffee>
-          </Stack>
+              <Feedback />
+            </Stack>
+          </Grid>
+          <Grid item md={4} xs={12}>
+            <Stack>
+              <LastNotifications />
+            </Stack>
+          </Grid>
+          <Grid item md={4} xs={12}>
+            <Stack>
+              <News />
+            </Stack>
+          </Grid>
         </Grid>
-        <Grid item md={4}>
-          <StyledNewsBox>
-            <News />
-          </StyledNewsBox>
-        </Grid>
-      </StyledGrid>
-    </StyledContainer>
+      </Box>
+    </>
   );
 };
 

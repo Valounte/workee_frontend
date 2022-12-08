@@ -7,5 +7,5 @@ const dailyFeedbackAdapterSelectors = dailyFeedbackAdapter.getSelectors();
 
 export const selectDailyFeedback = createSelector(
   (state: RootState) => state.dailyFeedback,
-  entity => dailyFeedbackAdapterSelectors.selectAll(entity)
+  entity => dailyFeedbackAdapterSelectors.selectAll(entity.dailyFeedbackAdapter)
 );

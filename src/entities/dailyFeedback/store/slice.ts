@@ -1,4 +1,9 @@
-import { createEntityAdapter, createSlice, nanoid } from '@reduxjs/toolkit';
+import {
+  createEntityAdapter,
+  createSlice,
+  EntityAdapter,
+  nanoid,
+} from '@reduxjs/toolkit';
 
 import { Team } from '@entities/teams/Team';
 
@@ -13,17 +18,27 @@ export interface DailyFeedbackByTeam {
   isDailyFeedbackSubmitted?: boolean;
 }
 
+export interface dailyFeedbackSliceInterface {
+  dailyFeedbackAdapter: EntityAdapter<DailyFeedbackByTeam>;
+  isDailyFeedbackSubmitted: boolean;
+}
+
 export const dailyFeedbackAdapter = createEntityAdapter<DailyFeedbackByTeam>({
   selectId: () => nanoid(),
 });
 
+const initialState = {
+  dailyFeedbackAdapter: dailyFeedbackAdapter.getInitialState(),
+  isDailyFeedbackSubmitted: false,
+};
+
 export const dailyFeedbackSlice = createSlice({
   name: 'dailyFeedback',
-  initialState: dailyFeedbackAdapter.getInitialState(),
+  initialState,
   reducers: {},
   extraReducers: builder => {
     builder.addCase(getDailyFeedbackThunk.fulfilled, (state, { payload }) => {
-      dailyFeedbackAdapter.setAll(state, payload);
+      dailyFeedbackAdapter.setAll(state.dailyFeedbackAdapter, payload);
     });
     builder.addCase(
       isDailyFeedbackSubmittedThunk.fulfilled,

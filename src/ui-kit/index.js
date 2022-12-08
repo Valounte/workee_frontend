@@ -72,3 +72,4 @@ export * from './icons/Social/LinkedIn';
 export * from './icons/Work/Work';
 export * from './icons/Settings/Settings';
 export * from './icons/Notification/Notification';
+export * from './icons/Mug/Mug';

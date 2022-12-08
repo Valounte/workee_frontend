@@ -1,67 +1,75 @@
 import React from 'react';
 
+import { ListItemText } from '@mui/material';
+import format from 'date-fns/format';
 import { useSelector } from 'react-redux';
 
 import { selectHealthAndSafetyNews } from '@entities/health-and-safety-news/store/selectors/getHealthAndSafetyNews.selector';
-import { Stack, styled, Typography } from '@ui-kit';
-
-const Title = styled(Typography)`
-  margin-top: 28px;
-  margin-left: 27px;
-  margin-bottom: 15px;
-`;
-
-const StyledContainer = styled(Stack)`
-  margin-left: 27px;
-  margin-right: 27px;
-`;
-
-const StyledNews = styled.div`
-  border-bottom: 1px solid #d9d9d9;
-  margin-bottom: 12px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const StyledNewsDescription = styled(Typography)`
-  margin-top: 5px;
-  margin-bottom: 9px;
-`;
-
-const StyledNewsDate = styled(Typography)`
-  margin-bottom: 9px;
-`;
+import {
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Chip,
+  Divider,
+  List,
+  ListItem,
+  NewsIcon,
+  Stack,
+  Typography,
+} from '@ui-kit';
 
 export const News = () => {
   const news = useSelector(selectHealthAndSafetyNews);
 
+  console.log(news);
+
   return (
-    <div>
-      <Title variant="subtitle1" fontSize={24}>
-        Actualités de la santé et sécurité au travail
-      </Title>
-      <StyledContainer>
-        {news.slice(0, 5).map(newsItem => (
-          <a
-            href={newsItem.link}
-            style={{ textDecoration: 'none', color: 'black' }}
-            target="_blank"
-            rel="noreferrer">
-            <StyledNews>
-              <Typography variant="subtitle1" fontSize={16}>
-                {newsItem.title}
-              </Typography>
-              <StyledNewsDescription variant="body2" fontSize={10}>
-                {newsItem.description}
-              </StyledNewsDescription>
-              <StyledNewsDate variant="body2" fontSize={10}>
-                {newsItem.pubDate}
-              </StyledNewsDate>
-            </StyledNews>
-          </a>
-        ))}
-      </StyledContainer>
-    </div>
+    <Card>
+      <CardHeader
+        title={
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <NewsIcon fontSize="large" />
+            <Typography variant="h5">Point santé et sécurité au travail</Typography>
+          </Stack>
+        }
+      />
+      <CardContent>
+        <Box>
+          <Stack
+            direction="column"
+            divider={<Divider orientation="horizontal" flexItem />}>
+            {news.slice(0, 3).map(newsItem => (
+              <List key={newsItem.title}>
+                <ListItem>
+                  <a
+                    href={newsItem.link}
+                    style={{ textDecoration: 'none', color: 'black' }}
+                    target="_blank"
+                    rel="noreferrer">
+                    <ListItemText>
+                      <Stack direction="column">
+                        <Stack direction="row">
+                          <Typography variant="subtitle1" color="primary">
+                            {newsItem.title}
+                          </Typography>
+                          <Chip
+                            label={format(new Date(newsItem.pubDate), 'dd MMM yyyy')}
+                            variant="outlined"
+                          />
+                        </Stack>
+                        <Typography variant="body2" noWrap maxHeight="5vh">
+                          {newsItem.description}
+                        </Typography>
+                      </Stack>
+                    </ListItemText>
+                  </a>
+                </ListItem>
+              </List>
+            ))}
+          </Stack>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };

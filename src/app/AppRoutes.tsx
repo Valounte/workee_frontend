@@ -34,14 +34,14 @@ const StyledContainer = styled(Container)`
   height: 100%;
   background-color: hsla(16, 100%, 87%, 1);
   background-image: radial-gradient(
-      at 53% 60%,
-      hsla(10, 91%, 92%, 1) 0px,
+      at 65% 53%,
+      hsla(17, 92%, 80%, 1) 0px,
       transparent 50%
     ),
-    radial-gradient(at 96% 5%, hsla(32, 93%, 88%, 1) 0px, transparent 50%),
-    radial-gradient(at 11% 21%, hsla(40, 100%, 95%, 1) 0px, transparent 50%),
-    radial-gradient(at 73% 78%, hsla(22, 81%, 96%, 1) 0px, transparent 50%),
-    radial-gradient(at 8% 99%, hsla(38, 100%, 85%, 1) 0px, transparent 50%);
+    radial-gradient(at 100% 1%, hsla(24, 94%, 76%, 1) 0px, transparent 50%),
+    radial-gradient(at 7% 6%, hsla(44, 100%, 98%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 77%, hsla(40, 80%, 96%, 1) 0px, transparent 50%),
+    radial-gradient(at 18% 77%, hsla(36, 100%, 85%, 1) 0px, transparent 50%);
 `;
 
 export const AppRoutes = () => {
@@ -59,7 +59,7 @@ export const AppRoutes = () => {
   return (
     <Stack
       direction={{ xs: 'column', md: 'row' }}
-      height={{ md: '100vh' }}
+      height={{ md: '100vh', sm: '195vh', xs: '209vh' }}
       width="100vw"
       spacing={0}>
       <MainNavigation />

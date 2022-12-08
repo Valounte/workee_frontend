@@ -55,6 +55,11 @@ export const theme = createTheme({
       fontSize: '3.2rem',
       lineHeight: '1.15',
     },
+    subtitle1: {
+      fontWeight: 400,
+      fontSize: '1.6rem',
+      lineHeight: '1.5',
+    },
     body1: {
       fontWeight: 400,
       fontSize: '1.6rem',
@@ -64,6 +69,7 @@ export const theme = createTheme({
       fontWeight: 300,
       fontSize: '1.6rem',
       lineHeight: '1.35',
+      paddingTop: 0,
     },
   },
   breakpoints: {
@@ -90,6 +96,15 @@ export const theme = createTheme({
           backgroundColor: 'white',
           boxShadow:
             '0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)',
+        },
+      },
+    },
+    MuiCardHeader: {
+      styleOverrides: {
+        root: {
+          background: '#ff7c27',
+          color: 'white',
+          padding: '16px',
         },
       },
     },
