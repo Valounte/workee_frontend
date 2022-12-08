@@ -18,6 +18,7 @@ import {
   notificationPreferencesSlice,
 } from '@entities/settings/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
+import { teaOrCoffeeMeetingSlice } from '@entities/teaOrCoffeeMeetings/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
 import { usersSlice } from '../entities/users/store/slice';
@@ -39,6 +40,7 @@ export const store = configureStore({
     [currentLuminositySlice.name]: currentLuminositySlice.reducer,
     [HealthAndSafetyNewsSlice.name]: HealthAndSafetyNewsSlice.reducer,
     [notificationPreferencesSlice.name]: notificationPreferencesSlice.reducer,
+    [teaOrCoffeeMeetingSlice.name]: teaOrCoffeeMeetingSlice.reducer,
     [environmentMetricsPreferencesSlice.name]:
       environmentMetricsPreferencesSlice.reducer,
     [notificationsSlice.name]: notificationsSlice.reducer,

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Badge } from '@mui/material';
+
 import {
   ListItem,
   AppRouterLink,
@@ -27,11 +29,13 @@ const StyledListItemIcon = styled(ListItemIcon)`
 export const LinksDesktop = () => (
   <>
     <StyledListItem>
-      <StyledListItemIcon>
-        <Tooltip arrow title="Dashboard" placement="right">
-          <DashboardIcon aria-label="dashboard" fontSize="large" />
-        </Tooltip>
-      </StyledListItemIcon>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.home}`}>
+        <StyledListItemIcon>
+          <Tooltip arrow title="Dashboard" placement="right">
+            <DashboardIcon aria-label="dashboard" fontSize="large" />
+          </Tooltip>
+        </StyledListItemIcon>
+      </AppRouterLink>
     </StyledListItem>
     <StyledListItem>
       <AppRouterLink
@@ -65,7 +69,9 @@ export const LinksDesktop = () => (
       <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.notifications}`}>
         <StyledListItemIcon>
           <Tooltip arrow title="Notifications" placement="right">
-            <NotificationIcon aria-label="Notifications" fontSize="large" />
+            <Badge variant="dot" color="secondary">
+              <NotificationIcon aria-label="Notifications" fontSize="large" />
+            </Badge>
           </Tooltip>
         </StyledListItemIcon>
       </AppRouterLink>

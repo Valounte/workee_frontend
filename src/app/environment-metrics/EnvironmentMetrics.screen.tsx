@@ -51,49 +51,49 @@ export const EnvironmentMetricsScreen = () => {
     dispatch(getTemperaturesHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
 
     dispatch(getHumidityHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
 
     dispatch(getSoundHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
 
     dispatch(getLuminosityHistoricThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
 
     dispatch(getCurrentHumidityThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
 
     dispatch(getCurrentLuminosityThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
 
     dispatch(getCurrentSoundThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
 
     dispatch(getCurrentTemperatureThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
   };
 
@@ -106,34 +106,35 @@ export const EnvironmentMetricsScreen = () => {
 
   return (
     <>
-      <Box height="15vh" p={2}>
+      <Box height="8vh" p={2}>
         <Stack direction="row" alignItems="center" spacing={2}>
           <MetricsIcon fontSize="large" />
           <Typography variant="h4">Workee</Typography>
         </Stack>
         <Typography variant="body1">Données relevées le {date}</Typography>
       </Box>
-
-      <Grid
-        container
-        spacing={2}
-        columns={12}
-        py={4}
-        alignItems="stretch"
-        height="85%">
-        <Grid item xs={12} md={6}>
-          <Temperature />
+      <Box p={2}>
+        <Grid
+          container
+          spacing={2}
+          columns={12}
+          py={2}
+          alignItems="stretch"
+          height="87vh">
+          <Grid item xs={12} md={6}>
+            <Temperature />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Humidity />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Sound />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Luminosity />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Humidity />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Sound />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Luminosity />
-        </Grid>
-      </Grid>
+      </Box>
     </>
   );
 };
