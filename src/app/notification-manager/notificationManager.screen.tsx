@@ -6,7 +6,7 @@ import { useAsync } from 'react-use';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { getNotificationsThunk } from '@entities/notifications/store/thunks/getNotifications.thunk';
-import { styled, Tabs, Tab, Box, TabPanel, Stack, Typography, Card } from '@ui-kit';
+import { styled, Tabs, Tab, Box, TabPanel, Stack, Typography } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 import { MainRoutesEnum } from 'src/RoutesEnum';
 import { NotificationIcon } from 'src/ui-kit/icons/Notification/Notification';
