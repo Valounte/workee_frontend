@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import styled from '@emotion/styled';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
@@ -7,6 +7,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 import { IconContainerProps, Rating, RatingProps } from '@mui/material';
+import { IconBase } from 'react-icons';
 
 const StyledRating = styled(Rating)(() => ({
   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
@@ -42,16 +43,29 @@ const customIcons: {
   },
 };
 
-const IconContainer = (props: IconContainerProps) => {
+const IconContainer = memo((props: IconContainerProps) => {
   const { value, ...other } = props;
   return <span {...other}>{customIcons[value].icon}</span>;
-};
+});
 
-export const SatisfactionDegree = (props: RatingProps) => (
+export const SatisfactionDegree = memo((props: RatingProps) => (
   <StyledRating
     IconContainerComponent={IconContainer}
     getLabelText={(value: number) => customIcons[value].label}
     highlightSelectedOnly
     {...props}
   />
+));
+
+interface SatisfactionDegreeIconProps {
+  value: number | undefined;
+}
+
+export const SatisfactionDegreeIcon = memo(
+  ({ value }: SatisfactionDegreeIconProps) => {
+    if (value === undefined) {
+      return null;
+    }
+    return <IconBase size={80}>{customIcons[Math.round(value)].icon}</IconBase>;
+  }
 );

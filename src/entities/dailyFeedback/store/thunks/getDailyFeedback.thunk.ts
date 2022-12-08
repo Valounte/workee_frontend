@@ -7,7 +7,7 @@ import {
 } from '@entities/dailyFeedback/services/getDailyFeedback.service';
 
 export const getDailyFeedbackThunk = createAsyncThunk<
-  LastWeekDailyFeedback,
+  LastWeekDailyFeedback[],
   getDailyFeedbackParams
 >(
   '/last-week-daily-feedback',
