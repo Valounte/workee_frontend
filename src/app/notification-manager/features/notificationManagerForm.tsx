@@ -22,6 +22,8 @@ import {
   TextField,
   Typography,
   Chip,
+  CardContent,
+  Card,
 } from '@ui-kit';
 
 import { useAppDispatch } from '../../../store/useAppDispatch';
@@ -33,7 +35,7 @@ const validationSchema = yupObject({
   message: yupString().required('Message Obligatoire'),
 });
 
-const statusLevel = ['NORMAL_ALERT', 'IMPORTANT_ALERT', 'URGENT_ALERT'];
+const statusLevel = ['normal', 'important', 'urgent'];
 
 export const NotificationManagerForm = () => {
   const token = useSelector(selectToken);
@@ -113,8 +115,9 @@ export const NotificationManagerForm = () => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Box width="50%" margin="0 auto" padding="30px">
-        <Box display="flex" flexDirection="column" maxWidth="70%" margin="0 auto">
+      <Card sx={{maxWidth:"50%" }}>
+        <CardContent>
+        <Box display="flex" flexDirection="column" margin="0 auto">
           <SelectInput
             id="teams"
             name="teams"
@@ -194,7 +197,7 @@ export const NotificationManagerForm = () => {
             }>
             {statusLevel.map(level => (
               <MenuItem key={`item${level}`} value={level}>
-                {level}
+                {level.charAt(0).toUpperCase() + level.slice(1)}
               </MenuItem>
             ))}
           </SelectInput>
@@ -219,7 +222,8 @@ export const NotificationManagerForm = () => {
             <Typography textAlign="center">Envoyer la notification</Typography>
           </Button>
         </Box>
-      </Box>
+        </CardContent>
+      </Card>
     </form>
   );
 };
