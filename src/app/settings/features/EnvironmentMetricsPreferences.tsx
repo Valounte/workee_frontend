@@ -9,7 +9,15 @@ import { selectToken } from '@entities/authentification/store/selectors/selectTo
 import { ChangeEnvironmentMetricsPreferenceParams } from '@entities/settings/services/changeEnvironmentMetricsPreference.service';
 import { selectEnvironmentMetricsPreferences } from '@entities/settings/store/selectors/getEnvironmentMetricsPreferences.selector';
 import { changeEnvironmentMetricsPreferenceThunk } from '@entities/settings/store/thunks/ChangeEnvironmentMetricsPreference.thunk';
-import { Card, CardContent, MetricsIcon, Stack, Switch, Typography } from '@ui-kit';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  MetricsIcon,
+  Stack,
+  Switch,
+  Typography,
+} from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 enum MetricsType {
@@ -76,11 +84,15 @@ export const EnvironmentMetricsPreferences = () => {
         humidityPreference &&
         luminosityPreference && (
           <Card>
+            <CardHeader
+              title={
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <MetricsIcon fontSize="large" />
+                  <Typography variant="h5">Données d&apos;environnement</Typography>
+                </Stack>
+              }
+            />
             <CardContent>
-              <Stack direction="row" alignItems="center" spacing={1} mb={2}>
-                <MetricsIcon fontSize="large" />
-                <Typography variant="h5">Données d&apos;environnement</Typography>
-              </Stack>
               <Typography variant="body1">
                 Désactiver la collecte et les conseils sur les données sonores ?
                 {soundPreference?.isDesactivated ? (

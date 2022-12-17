@@ -17,6 +17,9 @@ import {
   ExpandMoreIcon,
   Tooltip,
   styled,
+  ListItemIcon,
+  SettingsIcon,
+  SignoutIcon,
 } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 
@@ -103,12 +106,18 @@ export const AccountUserMenu = () => {
           onClick={closeUserMenu}
           to={`${MainRoutesEnum.app}${MainAppRoutesEnum.settings}`}>
           <ListItem>
+            <ListItemIcon>
+              <SettingsIcon aria-label="parameters" fontSize="large" />
+            </ListItemIcon>
             <Typography variant="body1">Paramètres</Typography>
           </ListItem>
         </AppRouterLink>
         <Divider />
         <AppRouterLink to={MainRoutesEnum.landingPage}>
           <ListItem>
+            <ListItemIcon>
+              <SignoutIcon aria-label="signout" fontSize="large" />
+            </ListItemIcon>
             <Typography onClick={closeUserMenu} variant="body1">
               Déconnexion
             </Typography>
