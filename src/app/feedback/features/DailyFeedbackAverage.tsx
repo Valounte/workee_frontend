@@ -1,10 +1,13 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 
 import { useSelector } from 'react-redux';
 
 import { selectDailyFeedback } from '@entities/dailyFeedback/store/selectors/getDailyFeedback.selector';
 import { Typography, Stack, Card, CardContent } from '@ui-kit';
 
+import { useAppDispatch } from '../../../store/useAppDispatch';
+import { selectSelectedTeams } from '../store/selectors/getSelectedTeams';
+import { addSelectedTeam, removeSelectedTeam } from '../store/slice';
 import { SatisfactionDegreeIcon } from './feedbackForm/SatisfactionDegree';
 
 interface DailyFeedbackAverageBoxProps {
@@ -14,9 +17,21 @@ interface DailyFeedbackAverageBoxProps {
 }
 
 const DailyFeedbackAverageBox = memo((props: DailyFeedbackAverageBoxProps) => {
+  const dispatch = useAppDispatch();
   const { teamName, teamId, averageSatisfactionDegree } = props;
+  const isSelectedTeam = useSelector(selectSelectedTeams).includes(teamName || '');
+  const backgroundColor = isSelectedTeam ? 'grey.200' : undefined;
+
+  const handleClickCard = useCallback(() => {
+    if (!isSelectedTeam) return dispatch(addSelectedTeam(teamName || ''));
+    return dispatch(removeSelectedTeam(teamName || ''));
+  }, [dispatch, isSelectedTeam, teamName]);
+
   return (
-    <Card key={teamId} sx={{ height: 150, width: 300 }}>
+    <Card
+      key={teamId}
+      sx={{ height: 150, width: 300, backgroundColor }}
+      onClick={handleClickCard}>
       <CardContent>
         <Typography fontSize={20}>{teamName}</Typography>
         <Stack
@@ -25,7 +40,9 @@ const DailyFeedbackAverageBox = memo((props: DailyFeedbackAverageBoxProps) => {
           justifyContent="center"
           spacing={4}
           pt={1}>
-          <SatisfactionDegreeIcon value={averageSatisfactionDegree} />
+          <SatisfactionDegreeIcon
+            value={averageSatisfactionDegree === 0 ? 1 : averageSatisfactionDegree}
+          />
           <Stack direction="row" alignItems="flex-end">
             <Typography fontSize={28}>{averageSatisfactionDegree}</Typography>
             <Typography fontSize={16}>/5</Typography>

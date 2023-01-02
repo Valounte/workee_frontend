@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { selectDailyFeedback } from '@entities/dailyFeedback/store/selectors/getDailyFeedback.selector';
 
+import { selectSelectedTeams } from '../store/selectors/getSelectedTeams';
 import { feedbackMessageDataGridCol } from './data-grid/feedbackMessageDataGridCol';
 import { feedbackUserNameDataGridCol } from './data-grid/feedbackUserNameDataGridCol';
 import { feedbackValueDataGridCol } from './data-grid/feedbackValueDataGridCol';
@@ -17,11 +18,20 @@ const columns: GridColDef[] = [
 
 export const DailyFeedbackDataGrid = () => {
   const feedbacksByTeam = useSelector(selectDailyFeedback);
-  const feedbacks = feedbacksByTeam.map(feedback => feedback.dailyFeedback).flat();
+  const selectedTeams = useSelector(selectSelectedTeams);
+
+  const feedbacksFilteredBySelectedTeams = feedbacksByTeam
+    .filter(feedback => {
+      const teamName = feedback.team?.name;
+      if (!teamName) return false;
+      return selectedTeams.includes(teamName);
+    })
+    .map(feedback => feedback.dailyFeedback)
+    .flat();
 
   const rows = useMemo(
     () =>
-      feedbacks.map(feedback => ({
+      feedbacksFilteredBySelectedTeams.map(feedback => ({
         id: feedback?.id,
         name: feedback?.user
           ? `${feedback?.user.firstname} ${feedback.user.lastname}`
@@ -29,7 +39,7 @@ export const DailyFeedbackDataGrid = () => {
         value: feedback?.satisfactionDegree,
         message: feedback?.message,
       })),
-    [feedbacks]
+    [feedbacksFilteredBySelectedTeams]
   );
   return (
     <DataGrid
