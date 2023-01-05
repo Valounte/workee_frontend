@@ -19,9 +19,10 @@ import {
 } from '@entities/settings/store/slice';
 import { teamSlice } from '@entities/teams/store/slice';
 import { teaOrCoffeeMeetingSlice } from '@entities/teaOrCoffeeMeetings/store/slice';
+import { usersSlice } from '@entities/users/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
-import { usersSlice } from '../entities/users/store/slice';
+import { feedbackFeatureSlice } from '../app/feedback/store/slice';
 
 export const store = configureStore({
   reducer: {
@@ -44,6 +45,7 @@ export const store = configureStore({
     [environmentMetricsPreferencesSlice.name]:
       environmentMetricsPreferencesSlice.reducer,
     [notificationsSlice.name]: notificationsSlice.reducer,
+    [feedbackFeatureSlice.name]: feedbackFeatureSlice.reducer,
   },
   preloadedState: {
     authentification: {

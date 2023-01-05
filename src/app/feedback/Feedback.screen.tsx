@@ -1,12 +1,14 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 
 import { CircularProgress } from '@mui/material';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { uniq } from 'lodash';
 import { useSelector } from 'react-redux';
 import { useAsync } from 'react-use';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
+import { selectDailyFeedback } from '@entities/dailyFeedback/store/selectors/getDailyFeedback.selector';
 import { getDailyFeedbackThunk } from '@entities/dailyFeedback/store/thunks/getDailyFeedback.thunk';
 import {
   Box,
@@ -23,14 +25,30 @@ import { useAppDispatch } from 'src/store/useAppDispatch';
 import { DailyFeedbackAverage } from './features/DailyFeedbackAverage';
 import { DailyFeedbackDataGrid } from './features/DailyFeedbackDataGrid';
 import { FeedbackForm } from './features/feedbackForm/FeedbackForm';
+import { setSelectedTeams } from './store/slice';
 
 const FeedbackScreen = () => {
   const dispatch = useAppDispatch();
   const token = useSelector(selectToken);
 
+  const dailyFeedbacks = useSelector(selectDailyFeedback);
+
   const [tabValue, setTabValue] = useState('view');
 
   const dateToday = format(new Date(), 'dd MMMM yyyy', { locale: fr });
+
+  const allTeams = uniq(
+    dailyFeedbacks.map(feedback => {
+      if (feedback.team?.name) {
+        return feedback.team?.name;
+      }
+      return '';
+    })
+  );
+
+  useEffect(() => {
+    dispatch(setSelectedTeams(allTeams));
+  }, [dispatch, allTeams]);
 
   const { loading, error } = useAsync(() =>
     dispatch(getDailyFeedbackThunk({ token }))
