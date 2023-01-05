@@ -4,5 +4,5 @@ export interface Notification {
   senderLastname: string;
   message: string;
   alert_level: string;
-  sentAt: string;
+  sentAt: Date;
 }

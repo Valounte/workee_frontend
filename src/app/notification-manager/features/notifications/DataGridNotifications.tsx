@@ -1,17 +1,17 @@
 import React, { memo, useMemo } from 'react';
 
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 import { useSelector } from 'react-redux';
 
 import { selectNotifications } from '@entities/notifications/store/selectors/getNotifications.selector';
 
 import { notificationDateDataGridCol } from './data-grid/notificationDateDataGridCol';
-import { notificationIdDataGridCol } from './data-grid/notificationIdDataGridCol';
 import { notificationMessageDataGridCol } from './data-grid/notificationMessageDataGridCol';
 import { notificationSenderDataGridCol } from './data-grid/notificationSenderDataGridCol';
 
 const columns: GridColDef[] = [
-  notificationIdDataGridCol,
   notificationMessageDataGridCol,
   notificationSenderDataGridCol,
   notificationDateDataGridCol,
@@ -30,8 +30,10 @@ export const DataGridNotifications = memo(
         notifications.map(notification => ({
           id: notification.id,
           message: notification.message,
-          senderFirstname: notification.senderFirstname,
-          sentAt: notification.sentAt,
+          senderFirstname: `${notification.senderFirstname} ${notification.senderLastname}`,
+          sentAt: format(new Date(notification.sentAt), ' dd MMMM à H:MM', {
+            locale: fr,
+          }),
         })),
       [notifications]
     );
