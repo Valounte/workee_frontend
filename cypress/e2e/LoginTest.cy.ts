@@ -8,7 +8,7 @@ describe('Test login', () => {
     cy.get('#email').type(randomEmail());
     cy.get('#password').type('CoucouMauvaisMotDepasse123!!!');
     cy.get('[type="submit"]').click();
-    cy.contains('Password or email incorrect');
+    cy.contains('Identifiant ou mot de passe incorrect');
   });
 
   it('Login with invalid email', () => {
@@ -22,14 +22,14 @@ describe('Test login', () => {
     cy.get('#email').type('workee@gmail.com');
     cy.get('#password').type('Password123!');
     cy.get('[type="submit"]').click();
-    cy.contains('Successfull connected');
+    cy.contains('Connexion réussie');
   });
 
   it('Login with valid credentials and disconnecte', () => {
     cy.get('#email').type('workee@gmail.com');
     cy.get('#password').type('Password123!');
     cy.get('[type="submit"]').click();
-    cy.contains('Successfull connected');
+    cy.contains('Connexion réussie');
     // cy.contains('Déconnection').click()
     // cy.contains('Successfull disconected')
   });
