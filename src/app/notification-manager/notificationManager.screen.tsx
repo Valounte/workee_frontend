@@ -77,7 +77,7 @@ const NotificationManagerScreen = () => {
           />
         </TabPanel>
         <TabPanel value={value} index={TabsEnum.createNotifications}>
-            <NotificationManagerForm />
+          <NotificationManagerForm />
         </TabPanel>
       </Box>
     </>
