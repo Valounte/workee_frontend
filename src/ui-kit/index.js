@@ -1,6 +1,7 @@
 // Components
 export * from './components/AppBar/AppBar';
 export * from './components/Avatar/Avatar';
+export * from './components/Badge/Badge';
 export * from './components/Box/Box';
 export * from './components/Button/Button';
 export * from './components/Card/Card';
@@ -66,6 +67,7 @@ export * from './icons/News/News';
 export * from './icons/Admin/Admin';
 export * from './icons/Team/Team';
 export * from './icons/Users/AddUser';
+export * from './icons/Users/UploadPicture';
 export * from './icons/Social/Facebook';
 export * from './icons/Social/Instagram';
 export * from './icons/Social/LinkedIn';

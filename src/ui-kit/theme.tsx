@@ -108,6 +108,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: '1.5rem',
+        },
+      },
+    },
   },
 });
 

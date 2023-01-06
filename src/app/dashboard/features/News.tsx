@@ -22,8 +22,6 @@ import {
 export const News = () => {
   const news = useSelector(selectHealthAndSafetyNews);
 
-  console.log(news);
-
   return (
     <Card>
       <CardHeader
