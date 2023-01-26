@@ -32,7 +32,7 @@ const SettingsScreen = () => {
 
   return (
     <>
-      <Box height="15vh" p={2}>
+      <Box height="8vh" p={2}>
         <Stack direction="row" alignItems="center" spacing={2}>
           <SettingsIcon fontSize="large" />
           <Typography variant="h4">Paramètres</Typography>
@@ -41,15 +41,22 @@ const SettingsScreen = () => {
           Configurez les préférences d&apos;utilisation de votre Workee ici
         </Typography>
       </Box>
-
-      <Grid container spacing={2} columns={12} py={4} alignItems="stretch">
-        <Grid item sm={6}>
-          <NotificationPreferences />
+      <Box height="87vh" p={2}>
+        <Grid
+          container
+          spacing={2}
+          columns={12}
+          py={4}
+          alignItems="stretch"
+          flexDirection="column">
+          <Grid item sm={6}>
+            <NotificationPreferences />
+          </Grid>
+          <Grid item sm={6}>
+            <EnvironmentMetricsPreferences />
+          </Grid>
         </Grid>
-        <Grid item sm={6}>
-          <EnvironmentMetricsPreferences />
-        </Grid>
-      </Grid>
+      </Box>
     </>
   );
 };

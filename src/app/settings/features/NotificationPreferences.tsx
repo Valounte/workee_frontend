@@ -11,6 +11,7 @@ import { changeNotificationPreferenceThunk } from '@entities/settings/store/thun
 import {
   Card,
   CardContent,
+  CardHeader,
   NotificationsIcon,
   Stack,
   Switch,
@@ -66,11 +67,15 @@ export const NotificationPreferences = () => {
     <div>
       {normalAlert && urgentAlert && importantAlert && (
         <Card>
+          <CardHeader
+            title={
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <NotificationsIcon fontSize="large" />
+                <Typography variant="h5">Notifications</Typography>
+              </Stack>
+            }
+          />
           <CardContent>
-            <Stack direction="row" alignItems="center" spacing={1} mb={2}>
-              <NotificationsIcon fontSize="large" />
-              <Typography variant="h5">Notifications</Typography>
-            </Stack>
             <Typography variant="body1">
               Rendre les notifications urgentes muettes ?
               {urgentAlert?.isMuted ? (
