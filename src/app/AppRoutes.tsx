@@ -14,7 +14,9 @@ import { MainAppRoutesEnum } from './MainAppRoutesEnum';
 
 const FeedbackScreen = React.lazy(() => import('./feedback/Feedback.screen'));
 const DashboardScreen = React.lazy(() => import('./dashboard/Dashboard.screen'));
-
+const UserProfileScreen = React.lazy(
+  () => import('./user-profile/UserProfile.Screen')
+);
 const Settings = React.lazy(() => import('./settings/Settings.Screen'));
 const EnvironmentMetricsScreen = React.lazy(
   () => import('./environment-metrics/EnvironmentMetrics.screen')
@@ -52,7 +54,7 @@ export const AppRoutes = () => {
     dispatch(getMeThunk({ token }))
       .then(() => unwrapResult)
       .catch(() => {
-        console.log('error');
+        console.error('error');
       });
   });
 
@@ -68,6 +70,10 @@ export const AppRoutes = () => {
           <Routes>
             <Route path={MainAppRoutesEnum.home} element={<DashboardScreen />} />
             <Route path={MainAppRoutesEnum.feedback} element={<FeedbackScreen />} />
+            <Route
+              path={MainAppRoutesEnum.userProfile}
+              element={<UserProfileScreen />}
+            />
             <Route path={MainAppRoutesEnum.settings} element={<Settings />} />
             <Route
               path={MainAppRoutesEnum.usersHandler}

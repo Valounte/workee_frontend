@@ -93,9 +93,11 @@ export const AccountUserMenu = () => {
           vertical: 'top',
           horizontal: 'left',
         }}>
-        <ListItem>
-          <Typography variant="body1">Profil</Typography>
-        </ListItem>
+        <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.userProfile}`}>
+          <ListItem>
+            <Typography variant="body1">Profil</Typography>
+          </ListItem>
+        </AppRouterLink>
         <Divider />
         <AppRouterLink
           onClick={closeUserMenu}
