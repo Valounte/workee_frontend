@@ -13,28 +13,28 @@ export const theme = createTheme({
       main: '#bf360c',
       light: '#f9683a',
       dark: '#870000',
-      contrastText: 'white',
+      contrastText: '#ffffff',
     },
     secondary: {
       main: '#ff7f27',
       light: '#ffb058',
       dark: '#c55000',
-      contrastText: 'white',
+      contrastText: '#ffffff',
     },
     text: {
       primary: '#3f1d01',
     },
     error: {
-      main: '#f44336',
+      main: '#cc2d22',
     },
     warning: {
       main: '#ff9800',
     },
     info: {
-      main: '#2196f3',
+      main: '#bdbdbd',
     },
     success: {
-      main: '#47d24d',
+      main: '#24b57a',
     },
   },
   typography: {
@@ -102,9 +102,10 @@ export const theme = createTheme({
     MuiCardHeader: {
       styleOverrides: {
         root: {
-          background: '#ff7c27',
-          color: 'white',
+          color: '#ff7c27',
+          fontWeight: 'bold',
           padding: '16px',
+          borderBottom: '1px solid lightgrey',
         },
       },
     },
@@ -112,6 +113,13 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           fontSize: '1.5rem',
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          padding: 0,
         },
       },
     },

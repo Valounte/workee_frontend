@@ -100,27 +100,31 @@ export const DashboardScreen = () => {
         </Stack>
         <Typography variant="body1">Voici une synthèse de votre activité</Typography>
       </Box>
-      <Box height="87vh" p={2}>
-        <Grid container spacing={2} columns={12} py={2}>
-          <EnvironmentMetrics />
-          <Grid item md={4} xs={12}>
-            <Stack spacing={2}>
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={1}
+        columns={12}
+        height="87vh"
+        p={2}>
+        <EnvironmentMetrics />
+        <Grid item md={4} xs={12}>
+          <Grid container item rowSpacing={1} columnSpacing={1}>
+            <Grid item md={12} xs={12}>
               <NextTeaOrCoffeeMeeting />
+            </Grid>
+            <Grid item md={12} xs={12}>
               <Feedback />
-            </Stack>
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <Stack>
-              <LastNotifications />
-            </Stack>
-          </Grid>
-          <Grid item md={4} xs={12}>
-            <Stack>
-              <News />
-            </Stack>
+            </Grid>
           </Grid>
         </Grid>
-      </Box>
+        <Grid item md={4} xs={12}>
+          <LastNotifications />
+        </Grid>
+        <Grid item md={4} xs={12}>
+          <News />
+        </Grid>
+      </Grid>
     </>
   );
 };

@@ -60,7 +60,7 @@ export const MainNavigation = () => {
       height={{ xs: '8vh', md: '100vh' }}
       direction={{ xs: 'row', md: 'column' }}
       justifyContent={{ xs: 'space-between', md: 'flex-start' }}
-      borderRight="1px solid grey">
+      borderRight="1px solid lightgrey">
       {!onlySmallScreen ? (
         <StyledList>
           <LogoItemDesktop />

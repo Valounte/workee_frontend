@@ -34,16 +34,7 @@ const PageNotFoundScreen = React.lazy(
 const StyledContainer = styled(Container)`
   margin: 0;
   height: 100%;
-  background-color: hsla(16, 100%, 87%, 1);
-  background-image: radial-gradient(
-      at 65% 53%,
-      hsla(17, 92%, 80%, 1) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 100% 1%, hsla(24, 94%, 76%, 1) 0px, transparent 50%),
-    radial-gradient(at 7% 6%, hsla(44, 100%, 98%, 1) 0px, transparent 50%),
-    radial-gradient(at 80% 77%, hsla(40, 80%, 96%, 1) 0px, transparent 50%),
-    radial-gradient(at 18% 77%, hsla(36, 100%, 85%, 1) 0px, transparent 50%);
+  background-color: hsl(20, 100%, 96%);
 `;
 
 export const AppRoutes = () => {
