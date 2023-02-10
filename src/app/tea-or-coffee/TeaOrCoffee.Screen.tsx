@@ -7,8 +7,16 @@ import {
   PickersDayProps,
 } from '@mui/x-date-pickers/PickersDay/PickersDay';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import { format } from 'date-fns';
+import { useSelector } from 'react-redux';
+import { useAsync } from 'react-use';
 
-import { Box, Card, TextField, Typography } from '@ui-kit';
+import { Box, Card, LinearProgress, TextField, Typography } from '@ui-kit';
+
+import { selectToken } from '../../entities/authentification/store/selectors/selectToken.selector';
+import { selectTeaOrCoffeeMeetings } from '../../entities/teaOrCoffeeMeetings/store/selector/getTeaOrCoffeeMeetings.selector';
+import { getTeaOrCoffeeMeetingThunk } from '../../entities/teaOrCoffeeMeetings/store/thunks/getTeaOrCoffeeMeetings.thunk';
+import { useAppDispatch } from '../../store/useAppDispatch';
 
 const isSameDate = (date: Date | null, dateArray: string[]) => {
   const dateDayTime = date?.getDate();
@@ -30,11 +38,9 @@ const isSameDate = (date: Date | null, dateArray: string[]) => {
 const renderDay = (
   day: Date,
   selectedDays: Date[],
-  pickersDayProps: PickersDayProps<Date>
+  pickersDayProps: PickersDayProps<Date>,
+  dateArray: string[]
 ) => {
-  // remplacer par les dates qui ont des tea or cofee
-  const dateArray = ['2023-04-23T16:04:48+01:00', '2023-04-27T16:04:48+01:00'];
-
   const dateDay = day ? new Date(day) : null;
   const backgroundColor = isSameDate(dateDay, dateArray) ? 'orange' : 'transparent';
 
@@ -53,6 +59,24 @@ const renderDay = (
 
 const TeaOrCoffeeScreen = () => {
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date());
+  const dispatch = useAppDispatch();
+
+  const teaOrCoffeeMeetings = useSelector(selectTeaOrCoffeeMeetings);
+  const teaOrCoffeeMeetingsDate = teaOrCoffeeMeetings.map(t => t.date.toString());
+
+  const token = useSelector(selectToken);
+  const { loading } = useAsync(() =>
+    dispatch(getTeaOrCoffeeMeetingThunk({ token }))
+  );
+
+  if (loading) return <LinearProgress color="secondary" />;
+
+  const meetingsToday = teaOrCoffeeMeetings.filter(
+    t =>
+      new Date(t.date).getDate() === selectedDate?.getDate() &&
+      new Date(t.date).getMonth() === selectedDate?.getMonth() &&
+      new Date(t.date).getFullYear() === selectedDate?.getFullYear()
+  );
 
   return (
     <Box maxWidth="100%" pt={2}>
@@ -65,7 +89,14 @@ const TeaOrCoffeeScreen = () => {
           maxWidth: 600,
         }}>
         <Box>
-          <Typography>Date</Typography>
+          <Typography>
+            {selectedDate && format(selectedDate, 'dd/MM/yyyy')}
+          </Typography>
+          {meetingsToday.length > 0 ? (
+            <Typography> meettings</Typography>
+          ) : (
+            <Typography>No meetings today</Typography>
+          )}
         </Box>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <StaticDatePicker
@@ -73,8 +104,10 @@ const TeaOrCoffeeScreen = () => {
             value={selectedDate}
             onChange={setSelectedDate}
             renderInput={params => <TextField {...params} />}
-            dayOfWeekFormatter={day => `${day}.`}
-            renderDay={renderDay}
+            dayOfWeekFormatter={(day: string) => `${day}.`}
+            renderDay={(day: Date, selectedDays: Date[], pickersDayProps) =>
+              renderDay(day, selectedDays, pickersDayProps, teaOrCoffeeMeetingsDate)
+            }
           />
         </LocalizationProvider>
       </Card>

@@ -11,7 +11,6 @@ import { getCurrentSoundThunk } from '@entities/environment-metrics/sound/curren
 import { getCurrentTemperatureThunk } from '@entities/environment-metrics/temperature/current/store/thunks/getCurrentTemperature.thunk';
 import { getHealthAndSafetyNewsThunk } from '@entities/health-and-safety-news/store/thunks/getHealthAndSafetyNews.thunk';
 import { getNotificationsThunk } from '@entities/notifications/store/thunks/getNotifications.thunk';
-import { InvitationStatusEnum } from '@entities/teaOrCoffeeMeetings/InvitationStatusEnum';
 import { getTeaOrCoffeeMeetingThunk } from '@entities/teaOrCoffeeMeetings/store/thunks/getTeaOrCoffeeMeetings.thunk';
 import { Box, DashboardIcon, Grid, Stack, Typography } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
@@ -35,7 +34,6 @@ export const DashboardScreen = () => {
   dispatch(
     getTeaOrCoffeeMeetingThunk({
       token,
-      invitationStatus: InvitationStatusEnum.ACCEPTED,
     })
   )
     .then(() => unwrapResult)
