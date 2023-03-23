@@ -7,16 +7,29 @@ import {
   PickersDayProps,
 } from '@mui/x-date-pickers/PickersDay/PickersDay';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import { format } from 'date-fns';
+import { addMinutes, format } from 'date-fns';
+import { fr } from 'date-fns/locale';
+import { BiTimeFive } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { useAsync } from 'react-use';
 
-import { Box, Card, LinearProgress, TextField, Typography } from '@ui-kit';
+import {
+  Avatar,
+  Box,
+  Button,
+  Card,
+  Divider,
+  LinearProgress,
+  Stack,
+  TextField,
+  Typography,
+} from '@ui-kit';
 
 import { selectToken } from '../../entities/authentification/store/selectors/selectToken.selector';
 import { selectTeaOrCoffeeMeetings } from '../../entities/teaOrCoffeeMeetings/store/selector/getTeaOrCoffeeMeetings.selector';
 import { getTeaOrCoffeeMeetingThunk } from '../../entities/teaOrCoffeeMeetings/store/thunks/getTeaOrCoffeeMeetings.thunk';
 import { useAppDispatch } from '../../store/useAppDispatch';
+import { TeaOrCoffeDataGrid } from './TeaOrCoffeDataGrid';
 
 const isSameDate = (date: Date | null, dateArray: string[]) => {
   const dateDayTime = date?.getDate();
@@ -77,7 +90,6 @@ const TeaOrCoffeeScreen = () => {
       new Date(t.date).getMonth() === selectedDate?.getMonth() &&
       new Date(t.date).getFullYear() === selectedDate?.getFullYear()
   );
-  console.log(meetingsToday);
 
   return (
     <Box maxWidth="100%" pt={2}>
@@ -87,41 +99,85 @@ const TeaOrCoffeeScreen = () => {
       </Typography>
       <Card
         sx={{
-          maxWidth: 600,
+          maxWidth: 700,
         }}>
-        <Box>
-          <Typography>
-            {selectedDate && format(selectedDate, 'dd/MM/yyyy')}
-          </Typography>
-          {meetingsToday.length > 0 ? (
-            <>
-              <Typography> {meetingsToday[0].name}</Typography>
-              <Typography>
-                {format(new Date(meetingsToday[0].date), 'dd/mm/yyyy')}
-              </Typography>
-              <Typography>
-                {meetingsToday[0].initiator.firstname}{' '}
-                {meetingsToday[0].initiator.lastname} te propose un thé ou un café ce
-                jour. Tu peux accompagner ta boisson avec la viennoiserie de ton
-                choix !
-              </Typography>
-            </>
-          ) : (
-            <Typography>No meeting</Typography>
-          )}
-        </Box>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-            value={selectedDate}
-            onChange={setSelectedDate}
-            renderInput={params => <TextField {...params} />}
-            dayOfWeekFormatter={(day: string) => `${day}.`}
-            renderDay={(day: Date, selectedDays: Date[], pickersDayProps) =>
-              renderDay(day, selectedDays, pickersDayProps, teaOrCoffeeMeetingsDate)
-            }
-          />
-        </LocalizationProvider>
+        <Stack direction="row" spacing={2} p={4}>
+          <Box>
+            {meetingsToday.length > 0 ? (
+              <>
+                <Typography variant="h5">Votre prochain Thé ou Café</Typography>
+                <Stack py={2} spacing={1}>
+                  <Avatar src="/broken-image.jpg" />
+                  <Typography variant="body1">
+                    {meetingsToday[0].initiator.firstname}{' '}
+                    {meetingsToday[0].initiator.lastname}
+                  </Typography>
+                </Stack>
+                <Typography variant="body1" fontWeight={500}>
+                  {meetingsToday[0].name}
+                </Typography>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  alignContent="center"
+                  spacing={0.5}>
+                  <BiTimeFive fontSize="medium" />
+
+                  <Typography variant="body1" py={1}>
+                    {format(new Date(meetingsToday[0].date), 'H:mm')} -{' '}
+                    {format(addMinutes(new Date(meetingsToday[0].date), 15), 'H:mm')}
+                  </Typography>
+                </Stack>
+                <Typography variant="body1">
+                  {meetingsToday[0].initiator.firstname}{' '}
+                  {meetingsToday[0].initiator.lastname} te propose un thé ou un café
+                  ce jour. Tu peux accompagner ta boisson avec la viennoiserie de ton
+                  choix !
+                </Typography>
+              </>
+            ) : (
+              <Box
+                height="100%"
+                display="flex"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="center"
+                justifyItems="center">
+                <Typography variant="body1">
+                  Aucun Thé ou Caffé à ce jour, essayez d&apos;en organiser un !
+                </Typography>
+                <Button variant="contained" size="small">
+                  Créer
+                </Button>
+              </Box>
+            )}
+          </Box>
+          <Divider orientation="vertical" flexItem />
+          <LocalizationProvider locale={fr} dateAdapter={AdapterDateFns}>
+            <StaticDatePicker
+              displayStaticWrapperAs="desktop"
+              value={selectedDate}
+              onChange={setSelectedDate}
+              renderInput={params => <TextField {...params} />}
+              dayOfWeekFormatter={(day: string) => `${day}.`}
+              renderDay={(day: Date, selectedDays: Date[], pickersDayProps) =>
+                renderDay(
+                  day,
+                  selectedDays,
+                  pickersDayProps,
+                  teaOrCoffeeMeetingsDate
+                )
+              }
+            />
+          </LocalizationProvider>
+        </Stack>
+      </Card>
+      <Card
+        sx={{
+          mt: 4,
+          maxWidth: '80%',
+        }}>
+        <TeaOrCoffeDataGrid dailyTeaOrCoffee={meetingsToday} />
       </Card>
     </Box>
   );
