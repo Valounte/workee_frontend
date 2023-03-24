@@ -16,7 +16,7 @@ import {
   Card,
   CardContent,
   Stack,
-  WorkIcon,
+  CardHeader,
 } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
@@ -60,16 +60,20 @@ export const CreateJobForm = () => {
   });
   return (
     <Card>
+      <CardHeader
+        title={
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="space-between">
+            <Typography variant="h5">Créer un métier</Typography>
+          </Stack>
+        }
+      />
       <form onSubmit={formik.handleSubmit}>
         <CardContent>
-          <Stack direction="row" alignItems="center" spacing={1} mb={2}>
-            <WorkIcon fontSize="large" />
-            <Typography variant="h5">Inviter un utilisateur</Typography>
-          </Stack>
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: '100%', md: '30vw' }}>
+          <Stack direction="column" width={{ xs: '100%', md: '30vw' }} spacing={2}>
             <TextField
               variant="outlined"
               id="name"
@@ -106,12 +110,12 @@ export const CreateJobForm = () => {
               minRows={3}
             />
 
-            <Box textAlign="center">
+            <Box px={1} textAlign="center" width="100%">
               <Button variant="contained" type="submit" color="secondary">
                 <Typography>Création</Typography>
               </Button>
             </Box>
-          </Box>
+          </Stack>
         </CardContent>
       </form>
     </Card>
