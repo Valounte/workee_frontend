@@ -16,9 +16,11 @@ import {
   Tabs,
   Tab,
   TabPanel,
-  Stack,
   Card,
   CardContent,
+  styled,
+  Stack,
+  TeamIcon,
 } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
@@ -26,6 +28,14 @@ import { DailyFeedbackAverage } from './features/DailyFeedbackAverage';
 import { DailyFeedbackDataGrid } from './features/DailyFeedbackDataGrid';
 import { FeedbackForm } from './features/feedbackForm/FeedbackForm';
 import { setSelectedTeams } from './store/slice';
+
+const StyledTabs = styled(Tabs)`
+  border-bottom: '1px solid grey';
+`;
+
+const StyledTab = styled(Tab)`
+  margin: 2px 0 !important;
+`;
 
 const FeedbackScreen = () => {
   const dispatch = useAppDispatch();
@@ -63,54 +73,56 @@ const FeedbackScreen = () => {
   };
 
   return (
-    <Box maxWidth="100%" pt={2}>
-      <Typography variant="h4">Avis du jour</Typography>
-      <Typography variant="subtitle1">
-        Parlez nous de votre journée du {dateToday}
-      </Typography>
-      <Tabs
-        value={tabValue}
-        onChange={handleChangeTab}
-        indicatorColor="secondary"
-        sx={{ paddingY: 2 }}>
-        <Tab
-          label="Voir les avis par équipe"
-          value="view"
-          disableRipple
-          sx={{ textTransform: 'none' }}
-        />
-        <Tab
-          label="Envoyer un avis"
-          value="send"
-          disableRipple
-          sx={{ textTransform: 'none' }}
-        />
-      </Tabs>
-
-      <TabPanel value={tabValue} index="view">
-        {loading ? (
-          <CircularProgress color="secondary" />
-        ) : (
-          <Stack direction="column" spacing={3}>
-            <DailyFeedbackAverage />
-            <DailyFeedbackDataGrid />
-          </Stack>
-        )}
-      </TabPanel>
-      <TabPanel value={tabValue} index="send">
-        <Card
-          sx={{
-            maxWidth: '350px',
-            alignContent: 'center',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <CardContent>
-            <FeedbackForm />
-          </CardContent>
-        </Card>
-      </TabPanel>
-    </Box>
+    <>
+      <Box height="15vh" p={2}>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <TeamIcon fontSize="large" />
+          <Typography variant="h4">Avis de la semaine - {dateToday}</Typography>
+        </Stack>
+        <StyledTabs
+          value={tabValue}
+          onChange={handleChangeTab}
+          indicatorColor="secondary">
+          <StyledTab
+            label="Voir les avis par équipe"
+            value="view"
+            disableRipple
+            sx={{ textTransform: 'none' }}
+          />
+          <StyledTab
+            label="Envoyer un avis"
+            value="send"
+            disableRipple
+            sx={{ textTransform: 'none' }}
+          />
+        </StyledTabs>
+      </Box>
+      <Box p={2}>
+        <TabPanel value={tabValue} index="view">
+          {loading ? (
+            <CircularProgress color="secondary" />
+          ) : (
+            <Stack direction="column" spacing={2}>
+              <DailyFeedbackAverage />
+              <DailyFeedbackDataGrid />
+            </Stack>
+          )}
+        </TabPanel>
+        <TabPanel value={tabValue} index="send">
+          <Card
+            sx={{
+              maxWidth: '350px',
+              alignContent: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+            <CardContent>
+              <FeedbackForm />
+            </CardContent>
+          </Card>
+        </TabPanel>
+      </Box>
+    </>
   );
 };
 
