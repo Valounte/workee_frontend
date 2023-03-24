@@ -7,7 +7,6 @@ import {
   PointElement,
   LineElement,
   Title,
-  Tooltip,
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
@@ -22,12 +21,12 @@ import {
   Typography,
   Chip,
   Card,
+  CardHeader,
   CardContent,
-  CardActions,
   WarningIcon,
-  Divider,
   GoodIcon,
-  SoundIcon,
+  Tooltip,
+  styled,
 } from '@ui-kit';
 
 ChartJS.register(
@@ -36,9 +35,14 @@ ChartJS.register(
   PointElement,
   LineElement,
   Title,
-  Tooltip,
   Legend
 );
+
+const StyledCardContent = styled(CardContent)`
+  height: 80%;
+  display: flex;
+  justify-content: center;
+`;
 
 export const options = {
   responsive: true,
@@ -72,6 +76,11 @@ export const Sound = () => {
   const soundValues = soundHistoric.map(({ value }) => value).reverse();
   const soundTime = soundHistoric.map(({ createdAt }) => createdAt).reverse();
 
+  const isConformValue = useSelector(selectSoundIsConform);
+
+  const conformColor = '#24b57a';
+  const notConformColor = '#cc2d22';
+
   const data = {
     labels: soundTime,
     datasets: [
@@ -80,13 +89,12 @@ export const Sound = () => {
         data: soundValues,
         fill: false,
         backgroundColor: 'rgba(75,192,192,0.2)',
-        borderColor: 'rgb(255,127,39)',
+        borderColor: isConformValue ? conformColor : notConformColor,
       },
     ],
   };
 
   const currentSound = useSelector(selectCurrentSound);
-  const isConformValue = useSelector(selectSoundIsConform);
   const { value } = currentSound;
   const recommendedSound = `Recommandation : ${
     currentSound.alert.recommendedValue !== ''
@@ -94,46 +102,64 @@ export const Sound = () => {
       : ' < 80dB'
   }`;
 
+  const receivedConformityMessage = currentSound.alert.recommendationMessage;
+  const conformityMessageArray = receivedConformityMessage.split('.');
+  const conformityMessage = conformityMessageArray.shift();
+  const conformityAdvice = conformityMessageArray.toString();
+
   return (
     <Card>
-      <CardContent>
-        <Box display="flex" justifyContent="space-between" mb={4}>
-          <Stack direction="row" alignItems="center" spacing={1} width="50%">
-            <SoundIcon fontSize="large" />
+      <CardHeader
+        title={
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="space-between">
             <Typography variant="h5">Son ambiant</Typography>
+            <Chip label={recommendedSound} variant="outlined" color="secondary" />
           </Stack>
-          <Chip label={recommendedSound} />
-        </Box>
-        <Box display="flex" justifyContent="space-between">
-          <Box alignContent="center" width="50%">
-            <Line options={options} data={data} />
-          </Box>
-          <Box alignSelf="center" width={value !== undefined ? '50%' : '30%'}>
-            <Typography
-              variant={value !== undefined ? 'h1' : 'body1'}
-              textAlign="center"
-              color={isConformValue ? 'success.main' : 'warning.main'}>
-              {value ?? 'Pas de données récentes'}
-              {value !== undefined ? 'dB' : ''}
-            </Typography>
-          </Box>
-        </Box>
-      </CardContent>
-      <Divider />
-      {currentSound.alert.recommendationMessage !== '' && (
-        <CardActions>
-          <Stack direction="row" alignItems="center" spacing={1} px={1}>
-            {isConformValue ? (
-              <GoodIcon fontSize="large" />
-            ) : (
-              <WarningIcon fontSize="large" />
-            )}
-            <Typography variant="body2" alignSelf="center" mx={2}>
-              {currentSound.alert.recommendationMessage}
+        }
+      />
+      <StyledCardContent>
+        {value !== undefined ? (
+          <Stack
+            direction="row"
+            spacing={4}
+            justifyContent="space-between"
+            alignItems="center">
+            <Box alignContent="center">
+              <Line options={options} data={data} />
+            </Box>
+            <Stack alignSelf="center">
+              <Typography
+                variant={value !== undefined ? 'h1' : 'body1'}
+                textAlign="center"
+                color={isConformValue ? 'success.main' : 'error.main'}>
+                {currentSound.value}dB
+              </Typography>
+              <Stack direction="row" alignItems="baseline" spacing={1} px={1}>
+                {isConformValue ? (
+                  <GoodIcon fontSize="large" />
+                ) : (
+                  <WarningIcon fontSize="large" />
+                )}
+                <Tooltip title={conformityAdvice} placement="bottom">
+                  <Typography variant="body2" alignSelf="center" mx={2}>
+                    {conformityMessage}
+                  </Typography>
+                </Tooltip>
+              </Stack>
+            </Stack>
+          </Stack>
+        ) : (
+          <Stack direction="row" spacing={4} justifyContent="center">
+            <Typography variant="body1" textAlign="center" alignSelf="center">
+              Pas de données récentes
             </Typography>
           </Stack>
-        </CardActions>
-      )}
+        )}
+      </StyledCardContent>
     </Card>
   );
 };
