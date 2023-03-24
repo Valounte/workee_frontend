@@ -14,7 +14,7 @@ export const userTeamsDataGridCol: GridColDef = {
       {params.value && (
         <>
           {params.value.map(team => (
-            <Chip label={team.name} />
+            <Chip label={team.name} variant="outlined" color="secondary" />
           ))}
         </>
       )}

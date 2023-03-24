@@ -3,7 +3,7 @@ import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectDailyFeedback } from '@entities/dailyFeedback/store/selectors/getDailyFeedback.selector';
-import { Typography, Stack, Card, CardContent } from '@ui-kit';
+import { Typography, Stack, Card, CardContent, CardHeader, styled } from '@ui-kit';
 
 import { useAppDispatch } from '../../../store/useAppDispatch';
 import { selectSelectedTeams } from '../store/selectors/getSelectedTeams';
@@ -16,11 +16,14 @@ interface DailyFeedbackAverageBoxProps {
   averageSatisfactionDegree?: number;
 }
 
+const StyledCard = styled(Card)`
+  height: 25vh;
+`;
 const DailyFeedbackAverageBox = memo((props: DailyFeedbackAverageBoxProps) => {
   const dispatch = useAppDispatch();
   const { teamName, teamId, averageSatisfactionDegree } = props;
   const isSelectedTeam = useSelector(selectSelectedTeams).includes(teamName || '');
-  const backgroundColor = isSelectedTeam ? 'grey.200' : undefined;
+  const backgroundColor = isSelectedTeam ? undefined : 'hsl(20 76.68% 96.79%)';
 
   const handleClickCard = useCallback(() => {
     if (!isSelectedTeam) return dispatch(addSelectedTeam(teamName || ''));
@@ -28,12 +31,26 @@ const DailyFeedbackAverageBox = memo((props: DailyFeedbackAverageBoxProps) => {
   }, [dispatch, isSelectedTeam, teamName]);
 
   return (
-    <Card
+    <StyledCard
       key={teamId}
       sx={{ height: 150, width: 300, backgroundColor }}
       onClick={handleClickCard}>
+      <CardHeader
+        title={
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="space-between">
+            <Typography variant="h5">{teamName}</Typography>
+            <Stack direction="row" alignItems="flex-end">
+              <Typography fontSize={28}>{averageSatisfactionDegree}</Typography>
+              <Typography fontSize={16}>/5</Typography>
+            </Stack>
+          </Stack>
+        }
+      />
       <CardContent>
-        <Typography fontSize={20}>{teamName}</Typography>
         <Stack
           direction="row"
           alignItems="center"
@@ -41,15 +58,11 @@ const DailyFeedbackAverageBox = memo((props: DailyFeedbackAverageBoxProps) => {
           spacing={4}
           pt={1}>
           <SatisfactionDegreeIcon
-            value={averageSatisfactionDegree === 0 ? 1 : averageSatisfactionDegree}
+            value={averageSatisfactionDegree === 0 ? 0 : averageSatisfactionDegree}
           />
-          <Stack direction="row" alignItems="flex-end">
-            <Typography fontSize={28}>{averageSatisfactionDegree}</Typography>
-            <Typography fontSize={16}>/5</Typography>
-          </Stack>
         </Stack>
       </CardContent>
-    </Card>
+    </StyledCard>
   );
 });
 

@@ -11,13 +11,16 @@ import {
   CardContent,
   Typography,
   Button,
-  SmileIcon,
-  Box,
   Stack,
   CardHeader,
+  styled,
 } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 import { MainRoutesEnum } from 'src/RoutesEnum';
+
+const StyledLink = styled(AppRouterLink)`
+  align-self: center;
+`;
 
 export const Feedback = () => {
   const isDailyFeedbackSubmitted = useSelector(selectIsDailyFeedbackSubmitted);
@@ -29,36 +32,34 @@ export const Feedback = () => {
           <CardHeader
             title={
               <Stack direction="row" alignItems="center" spacing={1}>
-                <SmileIcon fontSize="large" />
                 <Typography variant="h5">Rapport journalier</Typography>
               </Stack>
             }
           />
 
           <CardContent>
-            <Box>
+            <Stack>
               {!isDailyFeedbackSubmitted ? (
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <RateReviewIcon fontSize="large" />
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <RateReviewIcon fontSize="large" color="secondary" />
                   <Typography>
                     Au moins une équipe a besoin de votre feedback journalier !
                   </Typography>
                 </Stack>
               ) : (
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <TaskAltIcon fontSize="large" />
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <TaskAltIcon fontSize="large" color="success" />
                   <Typography>Merci pour votre feedback journalier !</Typography>
                 </Stack>
               )}
-              <AppRouterLink
-                to={`${MainRoutesEnum.app}${MainAppRoutesEnum.feedback}`}>
+              <StyledLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.feedback}`}>
                 {!isDailyFeedbackSubmitted && (
                   <Button variant="contained" color="secondary">
                     Envoyer un feedback
                   </Button>
                 )}
-              </AppRouterLink>
-            </Box>
+              </StyledLink>
+            </Stack>
           </CardContent>
         </>
       )}

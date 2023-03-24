@@ -26,9 +26,8 @@ import {
   MenuItem,
   Card,
   CardContent,
-  CardActions,
   Stack,
-  AddUserIcon,
+  CardHeader,
 } from '@ui-kit';
 
 import { useAppDispatch } from '../../../../store/useAppDispatch';
@@ -97,33 +96,20 @@ export const InviteUserForm = () => {
 
   return (
     <Card>
-      <form onSubmit={formik.handleSubmit}>
-        <CardContent>
-          <Stack direction="row" alignItems="center" spacing={1} mb={2}>
-            <AddUserIcon fontSize="large" />
+      <CardHeader
+        title={
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="space-between">
             <Typography variant="h5">Inviter un utilisateur</Typography>
           </Stack>
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: '100%', md: '30vw' }}>
-            <TextField
-              autoFocus
-              variant="outlined"
-              id="email"
-              name="email"
-              label="Email"
-              color="secondary"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={
-                formik.touched.email && formik.errors.email != null
-                  ? formik.errors.email
-                  : ' '
-              }
-              InputLabelProps={{ style: { fontSize: 15 } }}
-            />
+        }
+      />
+      <form onSubmit={formik.handleSubmit}>
+        <CardContent>
+          <Stack direction="column" width={{ xs: '100%', md: '30vw' }} spacing={2}>
             <TextField
               variant="outlined"
               id="firstname"
@@ -156,72 +142,89 @@ export const InviteUserForm = () => {
               }
               InputLabelProps={{ style: { fontSize: 15 } }}
             />
-
-            <SelectInput
-              id="job"
-              name="job"
-              label="Job (Optionel)"
+            <TextField
+              autoFocus
+              variant="outlined"
+              id="email"
+              name="email"
+              label="Email"
               color="secondary"
-              value={formik.values.job}
-              error={formik.touched.job && Boolean(formik.errors.job)}
-              onChange={handleChangeJob}
-              errorMessage={
-                formik.touched.job && formik.errors.job != null
-                  ? formik.errors.job
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={
+                formik.touched.email && formik.errors.email != null
+                  ? formik.errors.email
                   : ' '
-              }>
-              {jobsFromStore.map(jobFromStore => {
-                const { id, name } = jobFromStore;
-                return (
-                  <MenuItem key={id} value={id}>
-                    {name}
+              }
+              InputLabelProps={{ style: { fontSize: 15 } }}
+            />
+            <Stack direction="row" spacing={2}>
+              <SelectInput
+                variant="outlined"
+                id="job"
+                name="job"
+                label="Job (Optionel)"
+                color="secondary"
+                value={formik.values.job}
+                error={formik.touched.job && Boolean(formik.errors.job)}
+                onChange={handleChangeJob}
+                errorMessage={
+                  formik.touched.job && formik.errors.job != null
+                    ? formik.errors.job
+                    : ' '
+                }>
+                {jobsFromStore.map(jobFromStore => {
+                  const { id, name } = jobFromStore;
+                  return (
+                    <MenuItem key={id} value={id}>
+                      {name}
+                    </MenuItem>
+                  );
+                })}
+              </SelectInput>
+              <SelectInput
+                variant="outlined"
+                id="teams"
+                name="teams"
+                label="Teams (Optionel)"
+                multiple
+                color="secondary"
+                value={formik.values.teams}
+                onChange={handleChangeTeams}
+                error={formik.touched.teams && Boolean(formik.errors.teams)}
+                renderValue={() => {
+                  const teamsNameSelected = formik.values.teams.map(teamId => {
+                    const team = teamsFromStore.find(team => team.id === teamId);
+                    return team ? team.name : teamId;
+                  });
+                  return (
+                    <Box display="flex" flexWrap="wrap" gap={0.5}>
+                      {teamsNameSelected.map(teamSelectedRender => (
+                        <Chip key={teamSelectedRender} label={teamSelectedRender} />
+                      ))}
+                    </Box>
+                  );
+                }}
+                errorMessage={
+                  formik.touched.teams && formik.errors.teams != null
+                    ? formik.errors.teams.toString()
+                    : ' '
+                }>
+                {teamsFromStore.map(team => (
+                  <MenuItem key={team.id} value={team.id}>
+                    {team.name}
                   </MenuItem>
-                );
-              })}
-            </SelectInput>
-
-            <SelectInput
-              id="teams"
-              name="teams"
-              label="Teams (Optionel)"
-              multiple
-              color="secondary"
-              value={formik.values.teams}
-              onChange={handleChangeTeams}
-              error={formik.touched.teams && Boolean(formik.errors.teams)}
-              renderValue={() => {
-                const teamsNameSelected = formik.values.teams.map(teamId => {
-                  const team = teamsFromStore.find(team => team.id === teamId);
-                  return team ? team.name : teamId;
-                });
-                return (
-                  <Box display="flex" flexWrap="wrap" gap={0.5}>
-                    {teamsNameSelected.map(teamSelectedRender => (
-                      <Chip key={teamSelectedRender} label={teamSelectedRender} />
-                    ))}
-                  </Box>
-                );
-              }}
-              errorMessage={
-                formik.touched.teams && formik.errors.teams != null
-                  ? formik.errors.teams.toString()
-                  : ' '
-              }>
-              {teamsFromStore.map(team => (
-                <MenuItem key={team.id} value={team.id}>
-                  {team.name}
-                </MenuItem>
-              ))}
-            </SelectInput>
-          </Box>
-        </CardContent>
-        <CardActions>
+                ))}
+              </SelectInput>
+            </Stack>
+          </Stack>
           <Box px={1} textAlign="center" width="100%">
             <Button variant="contained" type="submit" color="secondary">
               <Typography>Inviter</Typography>
             </Button>
           </Box>
-        </CardActions>
+        </CardContent>
       </form>
     </Card>
   );

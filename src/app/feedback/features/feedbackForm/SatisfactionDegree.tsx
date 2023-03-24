@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 
 import styled from '@emotion/styled';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
+import SentimentNeutralIcon from '@mui/icons-material/SentimentNeutral';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
@@ -9,9 +10,11 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 import { IconContainerProps, Rating, RatingProps } from '@mui/material';
 import { IconBase } from 'react-icons';
 
+import { Typography } from '@ui-kit';
+
 const StyledRating = styled(Rating)(() => ({
   '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
-    color: 'grey',
+    color: 'lightgrey',
   },
 }));
 
@@ -21,25 +24,29 @@ const customIcons: {
     label: string;
   };
 } = {
+  0: {
+    icon: <SentimentNeutralIcon color="disabled" fontSize="large" />,
+    label: "Pas encore d'avis reçus",
+  },
   1: {
     icon: <SentimentVeryDissatisfiedIcon color="error" fontSize="large" />,
-    label: 'Very Dissatisfied',
+    label: "L'équipe n'est vraiment satisfaite",
   },
   2: {
     icon: <SentimentDissatisfiedIcon color="error" fontSize="large" />,
-    label: 'Dissatisfied',
+    label: "L'équipe est insastisfaite",
   },
   3: {
     icon: <SentimentSatisfiedIcon color="warning" fontSize="large" />,
-    label: 'Neutral',
+    label: "L'équipe est neutre",
   },
   4: {
     icon: <SentimentSatisfiedAltIcon color="success" fontSize="large" />,
-    label: 'Satisfied',
+    label: "L'équipe est satisfaite",
   },
   5: {
     icon: <SentimentVerySatisfiedIcon color="success" fontSize="large" />,
-    label: 'Very Satisfied',
+    label: "L'équipe est très satisfaite",
   },
 };
 
@@ -66,6 +73,11 @@ export const SatisfactionDegreeIcon = memo(
     if (value === undefined) {
       return null;
     }
-    return <IconBase size={80}>{customIcons[Math.round(value)].icon}</IconBase>;
+    return (
+      <>
+        <IconBase size={80}>{customIcons[Math.round(value)].icon}</IconBase>
+        <Typography>{customIcons[Math.round(value)].label}</Typography>
+      </>
+    );
   }
 );

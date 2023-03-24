@@ -16,7 +16,7 @@ import {
   Card,
   CardContent,
   Stack,
-  TeamIcon,
+  CardHeader,
 } from '@ui-kit';
 
 import { useAppDispatch } from '../../../../store/useAppDispatch';
@@ -61,17 +61,20 @@ export const CreateTeamForm = () => {
   });
   return (
     <Card>
-      <form onSubmit={formik.handleSubmit}>
-        <CardContent>
-          <Stack direction="row" alignItems="center" spacing={1} mb={2}>
-            <TeamIcon fontSize="large" />
+      <CardHeader
+        title={
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="space-between">
             <Typography variant="h5">Créer une équipe</Typography>
           </Stack>
-
-          <Box
-            display="flex"
-            flexDirection="column"
-            width={{ xs: '100%', md: '30vw' }}>
+        }
+      />
+      <form onSubmit={formik.handleSubmit}>
+        <CardContent>
+          <Stack direction="column" width={{ xs: '100%', md: '30vw' }} spacing={2}>
             <TextField
               variant="outlined"
               id="name"
@@ -108,12 +111,12 @@ export const CreateTeamForm = () => {
               minRows={3}
             />
 
-            <Box textAlign="center">
+            <Box px={1} textAlign="center" width="100%">
               <Button variant="contained" type="submit" color="secondary">
                 <Typography>Création</Typography>
               </Button>
             </Box>
-          </Box>
+          </Stack>
         </CardContent>
       </form>
     </Card>
