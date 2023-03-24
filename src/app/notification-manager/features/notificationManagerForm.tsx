@@ -24,6 +24,8 @@ import {
   Chip,
   CardContent,
   Card,
+  CardHeader,
+  Stack,
 } from '@ui-kit';
 
 import { useAppDispatch } from '../../../store/useAppDispatch';
@@ -114,10 +116,21 @@ export const NotificationManagerForm = () => {
   );
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <Card sx={{ maxWidth: '50%' }}>
+    <Card>
+      <CardHeader
+        title={
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            justifyContent="space-between">
+            <Typography variant="h5">Envoyer une notification</Typography>
+          </Stack>
+        }
+      />
+      <form onSubmit={formik.handleSubmit}>
         <CardContent>
-          <Box display="flex" flexDirection="column" margin="0 auto">
+          <Stack direction="column" width={{ xs: '100%', md: '30vw' }} spacing={2}>
             <SelectInput
               id="teams"
               name="teams"
@@ -217,13 +230,14 @@ export const NotificationManagerForm = () => {
               }
               InputLabelProps={{ style: { fontSize: 15 } }}
             />
-
-            <Button key="submit" variant="contained" type="submit">
+          </Stack>
+          <Box px={1} textAlign="center" width="100%">
+            <Button key="submit" variant="contained" type="submit" color="secondary">
               <Typography textAlign="center">Envoyer la notification</Typography>
             </Button>
           </Box>
         </CardContent>
-      </Card>
-    </form>
+      </form>
+    </Card>
   );
 };
