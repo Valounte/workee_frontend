@@ -23,6 +23,7 @@ import { usersSlice } from '@entities/users/store/slice';
 import { loadStateToken, LocalStorageKey } from '@helpers/localStorage';
 
 import { feedbackFeatureSlice } from '../app/feedback/store/slice';
+import { goalsSlice } from '@entities/professional-development/store/slice';
 
 export const store = configureStore({
   reducer: {
@@ -46,6 +47,7 @@ export const store = configureStore({
       environmentMetricsPreferencesSlice.reducer,
     [notificationsSlice.name]: notificationsSlice.reducer,
     [feedbackFeatureSlice.name]: feedbackFeatureSlice.reducer,
+    [goalsSlice.name]: goalsSlice.reducer,
   },
   preloadedState: {
     authentification: {

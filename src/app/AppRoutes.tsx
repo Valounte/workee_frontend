@@ -30,6 +30,9 @@ const UsersHandlerScreen = React.lazy(
 const PageNotFoundScreen = React.lazy(
   () => import('@common-features/page-not-found/PageNotFound.screen')
 );
+const ProfessionalDevelopmentScreen = React.lazy(
+  () => import('./professional-development/ProfessionalDevelopment.screen')
+);
 
 const StyledContainer = styled(Container)`
   margin: 0;
@@ -77,6 +80,10 @@ export const AppRoutes = () => {
             <Route
               path={MainAppRoutesEnum.notifications}
               element={<NotificationsScreen />}
+            />
+            <Route
+              path={MainAppRoutesEnum.professionalDevelopment}
+              element={<ProfessionalDevelopmentScreen />}
             />
             <Route path="*" element={<PageNotFoundScreen />} />
           </Routes>

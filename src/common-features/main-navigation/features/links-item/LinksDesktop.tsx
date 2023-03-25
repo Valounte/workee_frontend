@@ -76,5 +76,17 @@ export const LinksDesktop = () => (
         </StyledListItemIcon>
       </AppRouterLink>
     </StyledListItem>
+    <StyledListItem>
+      <AppRouterLink
+        to={`${MainRoutesEnum.app}${MainAppRoutesEnum.professionalDevelopment}`}>
+        <StyledListItemIcon>
+          <Tooltip arrow title="Développement professionel" placement="right">
+            <Badge color="secondary">
+              <NotificationIcon aria-label="Notifications" fontSize="large" />
+            </Badge>
+          </Tooltip>
+        </StyledListItemIcon>
+      </AppRouterLink>
+    </StyledListItem>
   </>
 );

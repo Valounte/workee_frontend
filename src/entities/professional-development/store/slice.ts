@@ -1,0 +1,19 @@
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+
+import { Goal } from '../Goal';
+import { getGoalsThunk } from './thunks/getGoals.thunk';
+
+export const goalsAdapter = createEntityAdapter<Goal>({
+  selectId: goal => goal.id,
+});
+
+export const goalsSlice = createSlice({
+  name: 'goals',
+  initialState: goalsAdapter.getInitialState(),
+  reducers: {},
+  extraReducers: builder => {
+    builder.addCase(getGoalsThunk.fulfilled, (state, { payload }) => {
+      goalsAdapter.setAll(state, payload);
+    });
+  },
+});

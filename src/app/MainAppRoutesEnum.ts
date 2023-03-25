@@ -8,4 +8,5 @@ export const MainAppRoutesEnum = {
   settings: '/settings',
   feedback: '/feedback',
   notifications: '/notifications',
+  professionalDevelopment: '/professional-development',
 };
