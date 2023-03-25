@@ -20,12 +20,15 @@ const ProfessionalDevelopmentScreen = () => {
   const goals = useSelector(selectGoals);
 
   useEffect(() => {
-  dispatch(getGoalsThunk({ token }))
-    .then(() => unwrapResult)
-    .catch(() => {
-      console.error('error');
-    });
+    dispatch(getGoalsThunk({ token }))
+      .then(() => unwrapResult)
+      .catch(() => {
+        console.error('error');
+      });
   }, [dispatch, token]);
+
+  useEffect(() => {
+  }, [goals]);
 
   return (
     <div>
@@ -38,11 +41,11 @@ const ProfessionalDevelopmentScreen = () => {
           Définissez vos objectifs professionels et suivez votre évolution
         </Typography>
       </Box>
-    <Box mt={2} style={{width: '50%'}}>  
-      {goals.map((goal) => (
-        <MyGoals providedGoal={goal} />
-      ))}
-    </Box>
+      <Box mt={2} style={{ width: '40%' }}>
+        {goals.map(goal => (
+          <MyGoals providedGoal={goal} />
+        ))}
+      </Box>
     </div>
   );
 };

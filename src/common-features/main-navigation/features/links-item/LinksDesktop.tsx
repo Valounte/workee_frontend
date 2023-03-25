@@ -13,6 +13,7 @@ import {
   styled,
   Tooltip,
   NotificationIcon,
+  TargetIcon,
 } from '@ui-kit';
 import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 
@@ -82,7 +83,7 @@ export const LinksDesktop = () => (
         <StyledListItemIcon>
           <Tooltip arrow title="Développement professionel" placement="right">
             <Badge color="secondary">
-              <NotificationIcon aria-label="Notifications" fontSize="large" />
+              <TargetIcon aria-label="Développement professionel" fontSize="large" />
             </Badge>
           </Tooltip>
         </StyledListItemIcon>
