@@ -16,6 +16,7 @@ import {
 } from '@ui-kit';
 
 import AddSubgoal from './AddSubGoal';
+import EditSubGoal from './EditSubGoal';
 
 interface MyGoalsProps {
   providedGoal: Goal;
@@ -69,7 +70,7 @@ const MyGoals = ({ providedGoal }: MyGoalsProps) => {
           <Typography variant="h6">{providedGoal.goal}</Typography>
           <Box py={1}>
             <Typography variant="body2">
-              {`${providedGoal.progression}% complet (${startDate} - ${endDate})`}
+              {`${providedGoal.progression}% terminé (${startDate} - ${endDate})`}
             </Typography>
           </Box>
           <LinearProgress
@@ -99,6 +100,7 @@ const MyGoals = ({ providedGoal }: MyGoalsProps) => {
                   label={getFormattedStatus(subGoal.status)}
                   color={getChipColor(subGoal.status)}
                 />
+                <EditSubGoal subGoalName={subGoal.subGoal} status={subGoal.status} subGoalId={subGoal.id}/>
               </Box>
               {index !== providedGoal.subGoals.length - 1 && (
                 <Divider sx={{ my: 0.5 }} />
