@@ -99,6 +99,7 @@ const MyGoals = ({ providedGoal }: MyGoalsProps) => {
                 <Chip
                   label={getFormattedStatus(subGoal.status)}
                   color={getChipColor(subGoal.status)}
+                  variant="outlined"
                 />
                 <EditSubGoal subGoalName={subGoal.subGoal} status={subGoal.status} subGoalId={subGoal.id}/>
               </Box>
