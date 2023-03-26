@@ -1,6 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { editSubGoalService, editSubGoalServiceParams } from '@entities/professional-development/services/editSubGoal.service';
+import {
+  editSubGoalService,
+  editSubGoalServiceParams,
+} from '@entities/professional-development/services/editSubGoal.service';
 import { SubGoal } from '@entities/professional-development/SubGoal';
 
 export const editSubGoalThunk = createAsyncThunk<SubGoal, editSubGoalServiceParams>(

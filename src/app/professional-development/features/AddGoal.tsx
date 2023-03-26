@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import AddIcon from '@mui/icons-material/Add';
-import { Dialog, DialogContent, DialogTitle, TextField } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, TextField } from '@mui/material';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useSnackbar } from 'notistack';
 import { useSelector } from 'react-redux';
 
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
-import { addGoalService } from "@entities/professional-development/services/addGoal.service";
-import { getGoalsThunk } from "@entities/professional-development/store/thunks/getGoals.thunk";
-import { Button, DialogActions, Grid } from "@ui-kit";
+import { addGoalService } from '@entities/professional-development/services/addGoal.service';
+import { getGoalsThunk } from '@entities/professional-development/store/thunks/getGoals.thunk';
+import { Button, DialogActions, Grid } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 interface NewGoalModalProps {
@@ -18,9 +18,9 @@ interface NewGoalModalProps {
 }
 
 const NewGoalModal = ({ open, handleClose }: NewGoalModalProps) => {
-  const [name, setName] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [name, setName] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const token = useSelector(selectToken);
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -38,43 +38,45 @@ const NewGoalModal = ({ open, handleClose }: NewGoalModalProps) => {
   };
 
   const handleSave = () => {
-
-        addGoalService({
-          goal: name,
-          startDate: new Date(startDate),
-          endDate: new Date(endDate),
-          token,
-        })
-        .then(() => {
-          enqueueSnackbar('Objectif crée', {
-            variant: 'success',
-          });
-          dispatch(getGoalsThunk({ token }))
+    addGoalService({
+      goal: name,
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+      token,
+    })
+      .then(() => {
+        enqueueSnackbar('Objectif crée', {
+          variant: 'success',
+        });
+        dispatch(getGoalsThunk({ token }))
           .then(() => unwrapResult)
           .catch(() => {
             console.error('error');
           });
-        })
-        .catch(() => {
-          enqueueSnackbar('Erreur', {
-            variant: 'error',
-          });
+      })
+      .catch(() => {
+        enqueueSnackbar('Erreur', {
+          variant: 'error',
         });
-    setName("");
-    setStartDate("");
-    setEndDate("");
+      });
+    setName('');
+    setStartDate('');
+    setEndDate('');
     handleClose();
   };
 
   const handleModalClose = () => {
-    setName("");
-    setStartDate("");
-    setEndDate("");
+    setName('');
+    setStartDate('');
+    setEndDate('');
     handleClose();
   };
 
   return (
-    <Dialog open={open} onClose={handleModalClose} aria-labelledby="form-dialog-title">
+    <Dialog
+      open={open}
+      onClose={handleModalClose}
+      aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Nouvel objectif</DialogTitle>
       <DialogContent>
         <TextField
@@ -130,7 +132,6 @@ const NewGoalModal = ({ open, handleClose }: NewGoalModalProps) => {
   );
 };
 
-
 const AddGoal = () => {
   const [open, setOpen] = useState(false);
 
@@ -144,7 +145,10 @@ const AddGoal = () => {
 
   return (
     <>
-      <AddIcon style={{ color: "#ff9800", fontSize: "5rem", cursor: "pointer" }} onClick={handleOpen} />
+      <AddIcon
+        style={{ color: '#ff9800', fontSize: '5rem', cursor: 'pointer' }}
+        onClick={handleOpen}
+      />
       <NewGoalModal open={open} handleClose={handleClose} />
     </>
   );

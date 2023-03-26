@@ -12,7 +12,6 @@ import { getGoalsThunk } from '@entities/professional-development/store/thunks/g
 import { Typography } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
-
 interface EditSubGoalProps {
   subGoalName: string;
   status: string;
@@ -60,10 +59,10 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
           variant: 'success',
         });
         dispatch(getGoalsThunk({ token }))
-        .then(() => unwrapResult)
-        .catch(() => {
-          console.error('error');
-        });
+          .then(() => unwrapResult)
+          .catch(() => {
+            console.error('error');
+          });
       })
       .catch(() => {
         enqueueSnackbar('Erreur', {
@@ -74,7 +73,7 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
     handleClose();
   };
 
-  const handleNameChange = (status: string) => {
+  const handleNameChange = (status: string): string => {
     switch (status) {
       case 'TO_DO':
         return 'A faire';
@@ -83,11 +82,11 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
       case 'DONE':
         return 'Terminé';
       default:
-        return 'Inconnu';
+        return 'incorrect';
     }
   };
 
-  const reverseNameChange = (status: string) => {
+  const reverseNameChange = (status: string): string => {
     switch (status) {
       case 'A faire':
         return 'TO_DO';
@@ -96,7 +95,7 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
       case 'Terminé':
         return 'DONE';
       default:
-        return 'Inconnu';
+        return 'incorrect';
     }
   };
 
@@ -109,8 +108,7 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-title"
-        aria-describedby="modal-description"
-      >
+        aria-describedby="modal-description">
         <div
           className="modal"
           style={{
@@ -126,16 +124,17 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
             flexDirection: 'column',
             justifyContent: 'space-between',
             padding: '20px',
-          }}
-        >
-          <Typography variant="h6" id="modal-title">Modifier le sous-objectif</Typography>
+          }}>
+          <Typography variant="h6" id="modal-title">
+            Modifier le sous-objectif
+          </Typography>
           <TextField
             label="Nom du sous-objectif"
             variant="outlined"
             fullWidth
             margin="normal"
             value={newSubGoalName}
-            onChange={(e) => setNewSubGoalName(e.target.value)}
+            onChange={e => setNewSubGoalName(e.target.value)}
           />
           <TextField
             select
@@ -144,8 +143,7 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
             fullWidth
             margin="normal"
             defaultValue={handleNameChange(newStatus)}
-            onChange={(e) => setNewStatus(e.target.value)}
-          >
+            onChange={e => setNewStatus(e.target.value)}>
             <MenuItem value="A faire">A faire</MenuItem>
             <MenuItem value="En cours">En cours</MenuItem>
             <MenuItem value="Terminé">Terminé</MenuItem>
@@ -158,15 +156,13 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
                 backgroundColor: '#FEBD69',
                 color: '#fff',
                 marginRight: '10px',
-              }}
-            >
+              }}>
               Enregistrer
             </Button>
             <Button
               variant="contained"
               onClick={handleClose}
-              style={{ backgroundColor: '#FF5A5F', color: '#fff' }}
-            >
+              style={{ backgroundColor: '#FF5A5F', color: '#fff' }}>
               Annuler
             </Button>
           </div>

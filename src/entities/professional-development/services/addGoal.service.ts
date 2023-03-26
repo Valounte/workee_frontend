@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export interface addGoalServiceParams {
-    token: string;
-    goal: string;
-    startDate: Date;
-    endDate: Date;
+  token: string;
+  goal: string;
+  startDate: Date;
+  endDate: Date;
 }
 
 export interface addGoalServiceReturn {

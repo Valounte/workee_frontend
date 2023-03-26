@@ -49,7 +49,7 @@ function AddSubgoal(props: InputProps): JSX.Element {
       console.log(goalId);
       dispatch(
         addSubGoalThunk({
-          subGoal:subgoal,
+          subGoal: subgoal,
           goalId,
           token,
         })
@@ -60,10 +60,10 @@ function AddSubgoal(props: InputProps): JSX.Element {
             variant: 'success',
           });
           dispatch(getGoalsThunk({ token }))
-          .then(() => unwrapResult)
-          .catch(() => {
-            console.error('error');
-          });
+            .then(() => unwrapResult)
+            .catch(() => {
+              console.error('error');
+            });
         })
         .catch(() => {
           enqueueSnackbar('Erreur', {
@@ -71,7 +71,7 @@ function AddSubgoal(props: InputProps): JSX.Element {
           });
         });
 
-        setSubgoal('');
+      setSubgoal('');
     }
   };
 

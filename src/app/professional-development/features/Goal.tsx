@@ -101,7 +101,11 @@ const MyGoals = ({ providedGoal }: MyGoalsProps) => {
                   color={getChipColor(subGoal.status)}
                   variant="outlined"
                 />
-                <EditSubGoal subGoalName={subGoal.subGoal} status={subGoal.status} subGoalId={subGoal.id}/>
+                <EditSubGoal
+                  subGoalName={subGoal.subGoal}
+                  status={subGoal.status}
+                  subGoalId={subGoal.id}
+                />
               </Box>
               {index !== providedGoal.subGoals.length - 1 && (
                 <Divider sx={{ my: 0.5 }} />
