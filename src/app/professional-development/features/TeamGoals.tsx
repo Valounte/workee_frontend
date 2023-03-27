@@ -5,9 +5,15 @@ import { useSelector } from "react-redux";
 
 import { selectMe } from "@entities/authentification/store/selectors/selectMe.selector";
 import { selectToken } from "@entities/authentification/store/selectors/selectToken.selector";
+import { selectGoalsByUser } from "@entities/professional-development/store/selectors/getGoalsByUser.selector";
+import { getGoalsByUserThunk } from "@entities/professional-development/store/thunks/getGoalsByUser.thunk";
 import { getUsersByTeamService } from "@entities/teams/services/getUsersByTeam.service";
 import { Team } from "@entities/teams/Team";
 import { User } from "@entities/users/User";
+import {  Stack } from "@ui-kit";
+import { useAppDispatch } from 'src/store/useAppDispatch';
+
+import MyGoals from "./Goal";
 
 
 const TeamGoals: React.FC = () => {
@@ -17,6 +23,9 @@ const TeamGoals: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<User | undefined>(undefined);
   const [users, setUsers] = useState<User[] | undefined>(undefined);
   const token = useSelector(selectToken);
+  const dispatch = useAppDispatch();
+
+  let goals = useSelector(selectGoalsByUser);  
 
   const handleTeamChange = (event: SelectChangeEvent<number>) => {
     const teamId = event.target.value as number;
@@ -34,14 +43,26 @@ const TeamGoals: React.FC = () => {
     .catch(error => {
         console.error(error);
     })
+    setSelectedUser(undefined);
+    goals = [];
     }
   };
 
   const handleUserChange = (event: SelectChangeEvent<number>) => {
     const userId = event.target.value as number;
     const user = users?.find((user) => user.id === userId);
+    if (!user)
+     return;
     setSelectedUser(user);
     console.log(user);
+    dispatch(getGoalsByUserThunk({
+        userId,
+        token
+    }))
+    .then(() => console.log("ok"))
+    .catch(error => {
+        console.error(error);
+    })
   };
 
   return (
@@ -80,6 +101,12 @@ const TeamGoals: React.FC = () => {
           )) : ''}
         </Select>
       </FormControl>
+      <Stack direction={{ xs: 'column', md: 'column' }} spacing={2}>
+              {goals && selectedUser ? goals.map(goal => (
+                <MyGoals providedGoal={goal} userId={selectedUser.id} />
+              )) : ''}
+            {goals?.length === 0 && selectedUser && selectedTeam ? 'Pas d\'objectifs définis' : ''}
+          </Stack>
       </div>
   );
 };

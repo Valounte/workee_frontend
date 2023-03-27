@@ -5,6 +5,7 @@ import { SubGoal } from '../SubGoal';
 import { addSubGoalThunk } from './thunks/addSubGoal.thunk';
 import { editSubGoalThunk } from './thunks/editSubGoal.thunk';
 import { getGoalsThunk } from './thunks/getGoals.thunk';
+import { getGoalsByUserThunk } from './thunks/getGoalsByUser.thunk';
 
 export const goalsAdapter = createEntityAdapter<Goal>({
   selectId: goal => goal.id,
@@ -20,6 +21,9 @@ export const goalsSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(getGoalsThunk.fulfilled, (state, { payload }) => {
+      goalsAdapter.setAll(state, payload);
+    });
+    builder.addCase(getGoalsByUserThunk.fulfilled, (state, { payload }) => {
       goalsAdapter.setAll(state, payload);
     });
   },

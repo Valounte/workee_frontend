@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { editSubGoalThunk } from '@entities/professional-development/store/thunks/editSubGoal.thunk';
 import { getGoalsThunk } from '@entities/professional-development/store/thunks/getGoals.thunk';
+import { getGoalsByUserThunk } from '@entities/professional-development/store/thunks/getGoalsByUser.thunk';
 import { Typography } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
@@ -16,12 +17,14 @@ interface EditSubGoalProps {
   subGoalName: string;
   status: string;
   subGoalId: number;
+  userId?: number;
 }
 
 const EditSubGoal: React.FC<EditSubGoalProps> = ({
   subGoalId,
   subGoalName,
   status,
+  userId,
 }) => {
   const token = useSelector(selectToken);
   const dispatch = useAppDispatch();
@@ -58,7 +61,7 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
         enqueueSnackbar('Sous-objectif modifié', {
           variant: 'success',
         });
-        dispatch(getGoalsThunk({ token }))
+        dispatch( !userId ? getGoalsThunk({ token }) : getGoalsByUserThunk({ token, userId }))
           .then(() => unwrapResult)
           .catch(() => {
             console.error('error');

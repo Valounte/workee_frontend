@@ -20,9 +20,10 @@ import EditSubGoal from './EditSubGoal';
 
 interface MyGoalsProps {
   providedGoal: Goal;
+  userId?: number;
 }
 
-const MyGoals = ({ providedGoal }: MyGoalsProps) => {
+const MyGoals = ({ providedGoal, userId }: MyGoalsProps) => {
   let colorClass;
   if (providedGoal.progression < 35) {
     colorClass = '227,38,54';
@@ -105,6 +106,7 @@ const MyGoals = ({ providedGoal }: MyGoalsProps) => {
                   subGoalName={subGoal.subGoal}
                   status={subGoal.status}
                   subGoalId={subGoal.id}
+                  userId={userId}
                 />
               </Box>
               {index !== providedGoal.subGoals.length - 1 && (

@@ -77,9 +77,9 @@ const ProfessionalDevelopmentScreen = () => {
           <Stack direction={{ xs: 'column', md: 'column' }} spacing={2}>
             <AddGoal />
             <Box mt={2} style={{ width: '40%' }}>
-              {goals.map(goal => (
+              {goals !== undefined ? goals.map(goal => (
                 <MyGoals providedGoal={goal} />
-              ))}
+              )) : ''}
             </Box>
           </Stack>
         </TabPanel>
