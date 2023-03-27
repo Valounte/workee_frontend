@@ -61,7 +61,9 @@ const EditSubGoal: React.FC<EditSubGoalProps> = ({
         enqueueSnackbar('Sous-objectif modifié', {
           variant: 'success',
         });
-        dispatch( !userId ? getGoalsThunk({ token }) : getGoalsByUserThunk({ token, userId }))
+        dispatch(
+          !userId ? getGoalsThunk({ token }) : getGoalsByUserThunk({ token, userId })
+        )
           .then(() => unwrapResult)
           .catch(() => {
             console.error('error');

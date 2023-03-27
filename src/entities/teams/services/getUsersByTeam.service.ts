@@ -7,7 +7,10 @@ export interface getUsersByTeamServiceParams {
   teamId: number;
 }
 
-export const getUsersByTeamService = ({ token, teamId }: getUsersByTeamServiceParams) =>
+export const getUsersByTeamService = ({
+  token,
+  teamId,
+}: getUsersByTeamServiceParams) =>
   axios.get<User[]>('api/user/team', {
     headers: {
       Authorization: `${token}`,

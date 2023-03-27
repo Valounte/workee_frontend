@@ -5,6 +5,7 @@ export interface addGoalServiceParams {
   goal: string;
   startDate: Date;
   endDate: Date;
+  userId?: number;
 }
 
 export interface addGoalServiceReturn {
@@ -16,10 +17,11 @@ export const addGoalService = ({
   goal,
   startDate,
   endDate,
+  userId,
 }: addGoalServiceParams) =>
   axios.post<addGoalServiceReturn>(
     'api/professional-development-goal',
-    { goal, startDate, endDate },
+    { goal, startDate, endDate, userId },
     {
       headers: {
         Authorization: `${token}`,

@@ -9,15 +9,17 @@ import { useSelector } from 'react-redux';
 import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
 import { addGoalService } from '@entities/professional-development/services/addGoal.service';
 import { getGoalsThunk } from '@entities/professional-development/store/thunks/getGoals.thunk';
+import { getGoalsByUserThunk } from '@entities/professional-development/store/thunks/getGoalsByUser.thunk';
 import { Button, DialogActions, Grid } from '@ui-kit';
 import { useAppDispatch } from 'src/store/useAppDispatch';
 
 interface NewGoalModalProps {
   open: boolean;
   handleClose: () => void;
+  userId?: number | undefined;
 }
 
-const NewGoalModal = ({ open, handleClose }: NewGoalModalProps) => {
+const NewGoalModal = ({ open, handleClose, userId }: NewGoalModalProps) => {
   const [name, setName] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -43,12 +45,15 @@ const NewGoalModal = ({ open, handleClose }: NewGoalModalProps) => {
       startDate: new Date(startDate),
       endDate: new Date(endDate),
       token,
+      userId,
     })
       .then(() => {
         enqueueSnackbar('Objectif crée', {
           variant: 'success',
         });
-        dispatch(getGoalsThunk({ token }))
+        dispatch(
+          !userId ? getGoalsThunk({ token }) : getGoalsByUserThunk({ token, userId })
+        )
           .then(() => unwrapResult)
           .catch(() => {
             console.error('error');
@@ -132,7 +137,11 @@ const NewGoalModal = ({ open, handleClose }: NewGoalModalProps) => {
   );
 };
 
-const AddGoal = () => {
+interface AddGoalProps {
+  userId?: number;
+}
+
+const AddGoal = ({ userId }: AddGoalProps) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -149,7 +158,7 @@ const AddGoal = () => {
         style={{ color: '#ff9800', fontSize: '5rem', cursor: 'pointer' }}
         onClick={handleOpen}
       />
-      <NewGoalModal open={open} handleClose={handleClose} />
+      <NewGoalModal open={open} handleClose={handleClose} userId={userId} />
     </>
   );
 };

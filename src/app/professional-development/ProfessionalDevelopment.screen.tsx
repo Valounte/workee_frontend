@@ -77,14 +77,14 @@ const ProfessionalDevelopmentScreen = () => {
           <Stack direction={{ xs: 'column', md: 'column' }} spacing={2}>
             <AddGoal />
             <Box mt={2} style={{ width: '40%' }}>
-              {goals !== undefined ? goals.map(goal => (
-                <MyGoals providedGoal={goal} />
-              )) : ''}
+              {goals !== undefined
+                ? goals.map(goal => <MyGoals providedGoal={goal} />)
+                : ''}
             </Box>
           </Stack>
         </TabPanel>
         <TabPanel value={value} index={TabsEnum.teamGoals}>
-          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
             <TeamGoals />
           </Stack>
         </TabPanel>
