@@ -7,9 +7,9 @@ import {
 
 import { Team } from '@entities/teams/Team';
 
-import { DailyFeedback } from '../DailyFeedback';
 import { getDailyFeedbackThunk } from './thunks/getDailyFeedback.thunk';
 import { isDailyFeedbackSubmittedThunk } from './thunks/isDailyFeedbackSubmitted.thunk';
+import { DailyFeedback } from '../DailyFeedback';
 
 export interface DailyFeedbackByTeam {
   averageSatisfactionDegree?: number;

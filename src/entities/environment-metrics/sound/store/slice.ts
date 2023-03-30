@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { Sound } from '../Sound';
 import { getSoundHistoricThunk } from './thunks/getSoundHistoric.thunk';
+import { Sound } from '../Sound';
 
 export const soundAdapter = createEntityAdapter<Sound>({
   selectId: sound => sound.id,

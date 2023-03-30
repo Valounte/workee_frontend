@@ -87,10 +87,11 @@ export const AppRoutes = () => {
             <Route
               path={MainAppRoutesEnum.professionalDevelopment}
               element={<ProfessionalDevelopmentScreen />}
-             
             />
-            <Route  path={MainAppRoutesEnum.teaorcoffee}
-              element={<TeaOrCoffeeScreen />}/>
+            <Route
+              path={MainAppRoutesEnum.teaorcoffee}
+              element={<TeaOrCoffeeScreen />}
+            />
             <Route path="*" element={<PageNotFoundScreen />} />
           </Routes>
         </Suspense>

@@ -1,8 +1,8 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { TeaOrCoffeeMeeting } from '../TeaOrCoffeeMeeting';
 import { createTeaOrCoffeeMeetingThunk } from './thunks/createTeaOrCoffeeMeetings.thunk';
 import { getTeaOrCoffeeMeetingThunk } from './thunks/getTeaOrCoffeeMeetings.thunk';
+import { TeaOrCoffeeMeeting } from '../TeaOrCoffeeMeeting';
 
 export const teaOrCoffeeMeetingAdapter = createEntityAdapter<TeaOrCoffeeMeeting>({
   selectId: teaOrCoffeeMeeting => teaOrCoffeeMeeting.id,

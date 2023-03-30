@@ -19,15 +19,15 @@ import {
   TeamIcon,
 } from '@ui-kit';
 
-import { MainRoutesEnum } from '../../RoutesEnum';
-import { useAppDispatch } from '../../store/useAppDispatch';
-import { MainAppRoutesEnum } from '../MainAppRoutesEnum';
 import { CreateJobForm } from './features/jobs/CreateJobForm';
 import { DataGridJobs } from './features/jobs/DataGridJobs';
 import { CreateTeamForm } from './features/teams/CreateTeamForm';
 import { DataGridTeams } from './features/teams/DataGridTeams';
 import { DataGridUsers } from './features/users/DataGridUsers';
 import { InviteUserForm } from './features/users/InviteUserForm';
+import { MainRoutesEnum } from '../../RoutesEnum';
+import { useAppDispatch } from '../../store/useAppDispatch';
+import { MainAppRoutesEnum } from '../MainAppRoutesEnum';
 
 /* eslint-disable no-unused-vars */
 enum TabsEnum {

@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 import { selectDailyFeedback } from '@entities/dailyFeedback/store/selectors/getDailyFeedback.selector';
 import { Typography, Stack, Card, CardContent, CardHeader, styled } from '@ui-kit';
 
+import { SatisfactionDegreeIcon } from './feedbackForm/SatisfactionDegree';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 import { selectSelectedTeams } from '../store/selectors/getSelectedTeams';
 import { addSelectedTeam, removeSelectedTeam } from '../store/slice';
-import { SatisfactionDegreeIcon } from './feedbackForm/SatisfactionDegree';
 
 interface DailyFeedbackAverageBoxProps {
   teamName?: string;

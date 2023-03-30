@@ -2,8 +2,8 @@ import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
 import { sendNotificationThunk } from '@entities/notifications/store/thunks/sendNotification.thunk';
 
-import { Notification } from '../Notification';
 import { getNotificationsThunk } from './thunks/getNotifications.thunk';
+import { Notification } from '../Notification';
 
 export const notificationsAdapter = createEntityAdapter<Notification>({
   selectId: notification => notification.id,

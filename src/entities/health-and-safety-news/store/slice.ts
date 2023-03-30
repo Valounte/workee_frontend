@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { HealthAndSafetyNews } from '../HealthAndSafetyNews';
 import { getHealthAndSafetyNewsThunk } from './thunks/getHealthAndSafetyNews.thunk';
+import { HealthAndSafetyNews } from '../HealthAndSafetyNews';
 
 export const healthAndSafetyNewsAdapter = createEntityAdapter<HealthAndSafetyNews>({
   selectId: healthAndSafetyNews => healthAndSafetyNews.title,
