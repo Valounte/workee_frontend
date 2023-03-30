@@ -144,7 +144,7 @@ const TeaOrCoffeeScreen = () => {
                 justifyContent="center"
                 justifyItems="center">
                 <Typography variant="body1">
-                  Aucun Thé ou Caffé à ce jour, essayez d&apos;en organiser un !
+                  Aucun Thé ou Café à ce jour, essayez d&apos;en organiser un !
                 </Typography>
                 <Button variant="contained" size="small">
                   Créer

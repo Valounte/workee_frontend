@@ -19,7 +19,7 @@ const NoDataGrid = () => (
       height: '100%',
     }}>
     <Typography>
-      Aucun Thé ou Caffé à ce jour, essayez d&apos;en organiser un !
+      Aucun Thé ou Café à ce jour, essayez d&apos;en organiser un !
     </Typography>
   </Box>
 );
