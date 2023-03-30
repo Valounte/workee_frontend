@@ -77,6 +77,7 @@ const TeaOrCoffeeScreen = () => {
       new Date(t.date).getMonth() === selectedDate?.getMonth() &&
       new Date(t.date).getFullYear() === selectedDate?.getFullYear()
   );
+  console.log(meetingsToday);
 
   return (
     <Box maxWidth="100%" pt={2}>
@@ -93,9 +94,20 @@ const TeaOrCoffeeScreen = () => {
             {selectedDate && format(selectedDate, 'dd/MM/yyyy')}
           </Typography>
           {meetingsToday.length > 0 ? (
-            <Typography> meettings</Typography>
+            <>
+              <Typography> {meetingsToday[0].name}</Typography>
+              <Typography>
+                {format(new Date(meetingsToday[0].date), 'dd/mm/yyyy')}
+              </Typography>
+              <Typography>
+                {meetingsToday[0].initiator.firstname}{' '}
+                {meetingsToday[0].initiator.lastname} te propose un thé ou un café ce
+                jour. Tu peux accompagner ta boisson avec la viennoiserie de ton
+                choix !
+              </Typography>
+            </>
           ) : (
-            <Typography>No meetings today</Typography>
+            <Typography>No meeting</Typography>
           )}
         </Box>
         <LocalizationProvider dateAdapter={AdapterDateFns}>

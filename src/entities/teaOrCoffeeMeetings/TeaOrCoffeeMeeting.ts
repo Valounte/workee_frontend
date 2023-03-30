@@ -7,5 +7,6 @@ export interface TeaOrCoffeeMeeting {
   initiator: InvitedUser;
   invitedUsersStatus: InvitedUserStatus[];
   meetingType: MeetingTypeEnum;
-  date: Date;
+  date: string;
+  name: string;
 }
