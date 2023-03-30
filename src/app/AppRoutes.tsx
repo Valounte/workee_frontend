@@ -27,6 +27,9 @@ const NotificationsScreen = React.lazy(
 const UsersHandlerScreen = React.lazy(
   () => import('./usersHandler/UsersHandler.screen')
 );
+const TeaOrCoffeeScreen = React.lazy(
+  () => import('./tea-or-coffee/TeaOrCoffee.Screen')
+);
 const PageNotFoundScreen = React.lazy(
   () => import('@common-features/page-not-found/PageNotFound.screen')
 );
@@ -84,7 +87,10 @@ export const AppRoutes = () => {
             <Route
               path={MainAppRoutesEnum.professionalDevelopment}
               element={<ProfessionalDevelopmentScreen />}
+             
             />
+            <Route  path={MainAppRoutesEnum.teaorcoffee}
+              element={<TeaOrCoffeeScreen />}/>
             <Route path="*" element={<PageNotFoundScreen />} />
           </Routes>
         </Suspense>

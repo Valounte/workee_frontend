@@ -9,4 +9,5 @@ export const MainAppRoutesEnum = {
   feedback: '/feedback',
   notifications: '/notifications',
   professionalDevelopment: '/professional-development',
+  teaorcoffee: '/tea-or-coffee',
 };
