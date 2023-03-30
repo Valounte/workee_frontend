@@ -14,6 +14,10 @@ import { HealthAndSafetyNewsSlice } from '@entities/health-and-safety-news/store
 import { jobSlice } from '@entities/jobs/store/slice';
 import { notificationsSlice } from '@entities/notifications/store/slice';
 import {
+  goalsSlice,
+  subGoalsSlice,
+} from '@entities/professional-development/store/slice';
+import {
   environmentMetricsPreferencesSlice,
   notificationPreferencesSlice,
 } from '@entities/settings/store/slice';
@@ -46,6 +50,8 @@ export const store = configureStore({
       environmentMetricsPreferencesSlice.reducer,
     [notificationsSlice.name]: notificationsSlice.reducer,
     [feedbackFeatureSlice.name]: feedbackFeatureSlice.reducer,
+    [goalsSlice.name]: goalsSlice.reducer,
+    [subGoalsSlice.name]: subGoalsSlice.reducer,
   },
   preloadedState: {
     authentification: {

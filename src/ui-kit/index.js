@@ -78,3 +78,4 @@ export * from './icons/Work/Work';
 export * from './icons/Settings/Settings';
 export * from './icons/Notification/Notification';
 export * from './icons/Mug/Mug';
+export * from './icons/Target/Target';
