@@ -11,9 +11,9 @@ import { MainAppRoutesEnum } from 'src/app/MainAppRoutesEnum';
 import { MainRoutesEnum } from 'src/RoutesEnum';
 import { NotificationIcon } from 'src/ui-kit/icons/Notification/Notification';
 
-import { useAppDispatch } from '../../store/useAppDispatch';
 import { NotificationManagerForm } from './features/notificationManagerForm';
 import { DataGridNotifications } from './features/notifications/DataGridNotifications';
+import { useAppDispatch } from '../../store/useAppDispatch';
 
 /* eslint-disable no-unused-vars */
 enum TabsEnum {

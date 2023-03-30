@@ -1,11 +1,11 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { Goal } from '../Goal';
-import { SubGoal } from '../SubGoal';
 import { addSubGoalThunk } from './thunks/addSubGoal.thunk';
 import { editSubGoalThunk } from './thunks/editSubGoal.thunk';
 import { getGoalsThunk } from './thunks/getGoals.thunk';
 import { getGoalsByUserThunk } from './thunks/getGoalsByUser.thunk';
+import { Goal } from '../Goal';
+import { SubGoal } from '../SubGoal';
 
 export const goalsAdapter = createEntityAdapter<Goal>({
   selectId: goal => goal.id,

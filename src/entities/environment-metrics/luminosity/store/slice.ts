@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { Luminosity } from '../Luminosity';
 import { getLuminosityHistoricThunk } from './thunks/getLuminosityHistoric.thunk';
+import { Luminosity } from '../Luminosity';
 
 export const luminosityAdapter = createEntityAdapter<Luminosity>({
   selectId: luminosity => luminosity.id,

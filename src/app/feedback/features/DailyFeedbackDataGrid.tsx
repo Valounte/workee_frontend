@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 
 import { selectDailyFeedback } from '@entities/dailyFeedback/store/selectors/getDailyFeedback.selector';
 
-import { selectSelectedTeams } from '../store/selectors/getSelectedTeams';
 import { feedbackMessageDataGridCol } from './data-grid/feedbackMessageDataGridCol';
 import { feedbackUserNameDataGridCol } from './data-grid/feedbackUserNameDataGridCol';
 import { feedbackValueDataGridCol } from './data-grid/feedbackValueDataGridCol';
+import { selectSelectedTeams } from '../store/selectors/getSelectedTeams';
 
 const columns: GridColDef[] = [
   feedbackUserNameDataGridCol,

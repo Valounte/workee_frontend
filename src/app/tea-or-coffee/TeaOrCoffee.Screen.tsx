@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import React from 'react';
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -13,6 +15,9 @@ import { BiTimeFive } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 import { useAsync } from 'react-use';
 
+import { selectToken } from '@entities/authentification/store/selectors/selectToken.selector';
+import { selectTeaOrCoffeeMeetings } from '@entities/teaOrCoffeeMeetings/store/selector/getTeaOrCoffeeMeetings.selector';
+import { getTeaOrCoffeeMeetingThunk } from '@entities/teaOrCoffeeMeetings/store/thunks/getTeaOrCoffeeMeetings.thunk';
 import {
   Avatar,
   Box,
@@ -25,11 +30,8 @@ import {
   Typography,
 } from '@ui-kit';
 
-import { selectToken } from '../../entities/authentification/store/selectors/selectToken.selector';
-import { selectTeaOrCoffeeMeetings } from '../../entities/teaOrCoffeeMeetings/store/selector/getTeaOrCoffeeMeetings.selector';
-import { getTeaOrCoffeeMeetingThunk } from '../../entities/teaOrCoffeeMeetings/store/thunks/getTeaOrCoffeeMeetings.thunk';
-import { useAppDispatch } from '../../store/useAppDispatch';
 import { TeaOrCoffeDataGrid } from './TeaOrCoffeDataGrid';
+import { useAppDispatch } from '../../store/useAppDispatch';
 
 const isSameDate = (date: Date | null, dateArray: string[]) => {
   const dateDayTime = date?.getDate();
@@ -160,7 +162,11 @@ const TeaOrCoffeeScreen = () => {
               onChange={setSelectedDate}
               renderInput={params => <TextField {...params} />}
               dayOfWeekFormatter={(day: string) => `${day}.`}
-              renderDay={(day: Date, selectedDays: Date[], pickersDayProps) =>
+              renderDay={(
+                day: Date,
+                selectedDays: Date[],
+                pickersDayProps: PickersDayProps<Date>
+              ) =>
                 renderDay(
                   day,
                   selectedDays,

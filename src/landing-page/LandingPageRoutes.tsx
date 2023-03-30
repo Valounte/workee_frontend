@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Route, Routes } from 'react-router-dom';
 
-import { MainAppRoutesEnum } from '../app/MainAppRoutesEnum';
 import { MainLandingPageRoutesEnum } from './MainLandingPageRoutesEnum';
+import { MainAppRoutesEnum } from '../app/MainAppRoutesEnum';
 
 const HomePageScreen = React.lazy(() => import('./homepage/Homepage.screen'));
 

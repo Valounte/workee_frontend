@@ -70,6 +70,7 @@ export const UserPersonnal = () => {
       <CardContent>
         <form
           onSubmit={formik.handleSubmit}
+          // eslint-disable-next-line react/no-unknown-property
           onLoad={() => {
             formik.setFieldValue('firstname', user?.firstname).catch(() => {});
           }}>

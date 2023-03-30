@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 
-import { Humidity } from '../Humidity';
 import { getHumidityHistoricThunk } from './thunks/getHumidityHistoric.thunk';
+import { Humidity } from '../Humidity';
 
 export const humidityAdapter = createEntityAdapter<Humidity>({
   selectId: humidity => humidity.id,
