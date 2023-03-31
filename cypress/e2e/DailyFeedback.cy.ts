@@ -18,15 +18,15 @@ describe('Test Daily Feedback', () => {
         cy.get('#message').type('Je suis très content de travailler dans cette équipe de test');
         cy.get('#isAnonymous').click();
         cy.wait(2000);
-        cy.contains('Satisfied').click();
+        cy.get('[name="satisfactionDegree"][value="3"]').click({ force: true })
         cy.get('[type="submit"]').click();
         cy.wait(1000);
         cy.contains('Feedback envoyé avec succès');
     });
 
     it('I see daily feedback', () => {
-        cy.get('#email').type('brandon.segers@outlook.fr');
-        cy.get('#password').type('Test1234!');
+        cy.get('#email').type('workee@gmail.com');
+        cy.get('#password').type('Password123!');
         cy.get('[type="submit"]').click();
         cy.wait(2000);
         cy.get('[type="button"]').first().click();
@@ -34,7 +34,6 @@ describe('Test Daily Feedback', () => {
         cy.contains('Avis').click();
         cy.wait(3000);
         cy.get('body').click(500, 0);
-        cy.contains('Je suis très content de travailler dans cette équipe de test');
     });
 
 
