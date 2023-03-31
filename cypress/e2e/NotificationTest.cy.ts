@@ -13,12 +13,10 @@ describe('Test Notifications', () => {
         cy.wait(1200);
         cy.contains('Notifications').click();
         cy.wait(2000);
-        cy.get('body').click(300, 0);
-        cy.contains('Créer une notification').click();
-        cy.wait(2000);
+        cy.get('body').click(700, 0);
         cy.get('#users').click();
         cy.contains('Valentin').click();
-        cy.get('body').click(300, 0);
+        cy.get('body').click(700, 0);
         cy.get('#status').click();
         cy.contains('Normal').click();
         cy.get('#message').type('Test Cypress');
@@ -35,7 +33,7 @@ describe('Test Notifications', () => {
         cy.wait(1200);
         cy.contains('Notifications').click();
         cy.wait(2000);
-        cy.get('body').click(400, 0);
+        cy.get('body').click(700, 0);
         cy.contains('Test Cypress');
     });
 
@@ -48,9 +46,7 @@ describe('Test Notifications', () => {
         cy.wait(1200);
         cy.contains('Notifications').click();
         cy.wait(2000);
-        cy.get('body').click(300, 0);
-        cy.contains('Créer une notification').click();
-        cy.wait(2000);
+        cy.get('body').click(700, 0);
         cy.contains('Envoyer la notification').click();
         cy.contains('Status Obligatoire');
         cy.contains('Message Obligatoire');

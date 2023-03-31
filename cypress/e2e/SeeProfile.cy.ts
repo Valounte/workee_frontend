@@ -10,8 +10,8 @@ describe('Test profile', () => {
         cy.get('[type="submit"]').click();
         cy.wait(2000);
         cy.get('[type="button"]').first().click();
+        cy.get('[type="button"]').eq(1).click({ force: true });
         cy.wait(1200);
-        cy.get('[type="button"]').eq(2).click({ force: true });
         cy.contains('Profil').click();
         cy.wait(2000);
         cy.get('body').click(300, 300);
