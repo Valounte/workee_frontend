@@ -9,7 +9,7 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.11.14",
     "@mui/x-data-grid": "^5.13.1",
-    "@mui/x-date-pickers": "^6.0.3",
+    "@mui/x-date-pickers": "^5.0.20",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@reduxjs/toolkit": "^1.8.2",
     "@svgr/webpack": "^5.5.0",
