@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { FaCoffee } from 'react-icons/fa';
+
 import {
   ListItem,
   AppRouterLink,
@@ -67,6 +69,14 @@ export const LinksSmallDevices = () => (
         </ListItemIcon>
         <Typography>Développement professionel</Typography>
       </AppRouterLink>
+      <ListItem>
+        <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.teaorcoffee}`}>
+          <ListItemIcon>
+            <FaCoffee aria-label="Thé ou caffé" fontSize="large" />
+          </ListItemIcon>
+          <Typography>Thé ou caffé</Typography>
+        </AppRouterLink>
+      </ListItem>
     </ListItem>
   </>
 );

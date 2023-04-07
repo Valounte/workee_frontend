@@ -37,7 +37,6 @@ interface TeaOrCoffeDataGridProps {
 
 export const TeaOrCoffeDataGrid = memo((props: TeaOrCoffeDataGridProps) => {
   const { dailyTeaOrCoffee } = props;
-
   const rows = useMemo(
     () =>
       dailyTeaOrCoffee.map(meeting => ({
@@ -53,7 +52,8 @@ export const TeaOrCoffeDataGrid = memo((props: TeaOrCoffeDataGridProps) => {
     <DataGrid
       rows={rows}
       columns={columns}
-      autoHeight
+      // autoHeight
+      getRowHeight={() => 'auto'}
       pageSize={5}
       rowsPerPageOptions={[5]}
       sx={{
