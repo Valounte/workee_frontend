@@ -81,9 +81,9 @@ export const LinksDesktop = () => (
     <StyledListItem>
       <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.teaorcoffee}`}>
         <StyledListItemIcon>
-          <Tooltip arrow title="Thé ou caffé" placement="right">
+          <Tooltip arrow title="Thé ou café" placement="right">
             <Badge color="secondary">
-              <FaCoffee aria-label="Thé ou caffé" fontSize="large" />
+              <FaCoffee aria-label="Thé ou café" fontSize="large" />
             </Badge>
           </Tooltip>
         </StyledListItemIcon>

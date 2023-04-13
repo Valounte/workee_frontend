@@ -72,9 +72,9 @@ export const LinksSmallDevices = () => (
       <ListItem>
         <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.teaorcoffee}`}>
           <ListItemIcon>
-            <FaCoffee aria-label="Thé ou caffé" fontSize="large" />
+            <FaCoffee aria-label="Thé ou café" fontSize="large" />
           </ListItemIcon>
-          <Typography>Thé ou caffé</Typography>
+          <Typography>Thé ou café</Typography>
         </AppRouterLink>
       </ListItem>
     </ListItem>
