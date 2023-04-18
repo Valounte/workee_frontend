@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Badge } from '@mui/material';
+import { FaCoffee } from 'react-icons/fa';
 
 import {
   ListItem,
@@ -72,6 +73,17 @@ export const LinksDesktop = () => (
           <Tooltip arrow title="Notifications" placement="right">
             <Badge variant="dot" color="secondary">
               <NotificationIcon aria-label="Notifications" fontSize="large" />
+            </Badge>
+          </Tooltip>
+        </StyledListItemIcon>
+      </AppRouterLink>
+    </StyledListItem>
+    <StyledListItem>
+      <AppRouterLink to={`${MainRoutesEnum.app}${MainAppRoutesEnum.teaorcoffee}`}>
+        <StyledListItemIcon>
+          <Tooltip arrow title="Thé ou café" placement="right">
+            <Badge color="secondary">
+              <FaCoffee aria-label="Thé ou café" fontSize="large" />
             </Badge>
           </Tooltip>
         </StyledListItemIcon>

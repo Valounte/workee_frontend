@@ -183,7 +183,9 @@ const TeaOrCoffeeScreen = () => {
           mt: 4,
           maxWidth: '80%',
         }}>
-        <TeaOrCoffeDataGrid dailyTeaOrCoffee={meetingsToday} />
+        <Box height={350}>
+          <TeaOrCoffeDataGrid dailyTeaOrCoffee={meetingsToday} />
+        </Box>
       </Card>
     </Box>
   );
